@@ -5,9 +5,9 @@
 	<msg id='1' display='false' source='trc'>
 		<type>PROCESS_START</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:12 2026</timestamp>
+		<timestamp>Sun May 31 23:32:43 2026</timestamp>
 		<arg name='process'>/home/marcox/Documents/HPC/mat_mul</arg>
-		<arg name='pid'>42211</arg>
+		<arg name='pid'>62983</arg>
 	</msg>
 	<!-- Instrumentation filter's state:
     Patterns applicability:
@@ -58,168 +58,168 @@
 	<msg id='2' display='false' source='trc'>
 		<type>PROCESS_ANALYSIS_MODE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:12 2026</timestamp>
+		<timestamp>Sun May 31 23:32:43 2026</timestamp>
 		<arg name='mode'>full</arg>
 	</msg>
 	<!-- Update image info for [1:0x400000:YN] /home/marcox/Documents/HPC/mat_mul -->
 	<msg id='3' display='false' source='trc'>
 		<type>LOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:12 2026</timestamp>
+		<timestamp>Sun May 31 23:32:43 2026</timestamp>
 		<arg name='module'>/home/marcox/Documents/HPC/mat_mul</arg>
 		<arg name='basement'>0x400000</arg>
 		<arg name='ceiling'>0x40afbf</arg>
 		<arg name='symtab'>yes</arg>
 	</msg>
 	<!-- Instrumenting image: id = 1, name = /home/marcox/Documents/HPC/mat_mul -->
-	<!-- Update image info for [2:0x7F6D5E1E6000:YN] /lib64/ld-linux-x86-64.so.2 -->
+	<!-- Update image info for [2:0x7F8EDA76A000:YN] /lib64/ld-linux-x86-64.so.2 -->
 	<msg id='4' display='false' source='trc'>
 		<type>LOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:12 2026</timestamp>
+		<timestamp>Sun May 31 23:32:43 2026</timestamp>
 		<arg name='module'>/lib64/ld-linux-x86-64.so.2</arg>
-		<arg name='basement'>0x7f6d5e1e6000</arg>
-		<arg name='ceiling'>0x7f6d5e21f2df</arg>
+		<arg name='basement'>0x7f8eda76a000</arg>
+		<arg name='ceiling'>0x7f8eda7a32df</arg>
 		<arg name='symtab'>yes</arg>
 	</msg>
 	<!-- Instrumentation of /lib64/ld-linux-x86-64.so.2 image skipped because of filter conditions [cs-mode]. -->
-	<!-- Update image info for [3:0x7F6D5E1E4000:NN] [vdso] -->
+	<!-- Update image info for [3:0x7F8EDA768000:NN] [vdso] -->
 	<msg id='5' display='false' source='trc'>
 		<type>LOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:12 2026</timestamp>
+		<timestamp>Sun May 31 23:32:43 2026</timestamp>
 		<arg name='module'>[vdso]</arg>
-		<arg name='basement'>0x7f6d5e1e4000</arg>
-		<arg name='ceiling'>0x7f6d5e1e593a</arg>
+		<arg name='basement'>0x7f8eda768000</arg>
+		<arg name='ceiling'>0x7f8eda76993a</arg>
 		<arg name='symtab'>no</arg>
 	</msg>
 	<!-- Instrumentation of [vdso] image skipped because of filter conditions [cs-mode]. -->
-	<!-- Update image info for [4:0x7F6D4925C000:NN] /lib64/libm.so.6 -->
+	<!-- Update image info for [4:0x7F8EC57E0000:NN] /lib64/libm.so.6 -->
 	<msg id='6' display='false' source='trc'>
 		<type>LOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:12 2026</timestamp>
+		<timestamp>Sun May 31 23:32:44 2026</timestamp>
 		<arg name='module'>/lib64/libm.so.6</arg>
-		<arg name='basement'>0x7f6d4925c000</arg>
-		<arg name='ceiling'>0x7f6d4937200f</arg>
+		<arg name='basement'>0x7f8ec57e0000</arg>
+		<arg name='ceiling'>0x7f8ec58f600f</arg>
 		<arg name='symtab'>no</arg>
 	</msg>
 	<!-- Instrumentation of /lib64/libm.so.6 image skipped because of filter conditions [cs-mode]. -->
-	<!-- Update image info for [5:0x7F6D48C00000:YN] /opt/intel/oneapi/compiler/2026.0/lib/libiomp5.so -->
+	<!-- Update image info for [5:0x7F8EC5200000:YN] /opt/intel/oneapi/compiler/2026.0/lib/libiomp5.so -->
 	<msg id='7' display='false' source='trc'>
 		<type>LOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:12 2026</timestamp>
+		<timestamp>Sun May 31 23:32:44 2026</timestamp>
 		<arg name='module'>/opt/intel/oneapi/compiler/2026.0/lib/libiomp5.so</arg>
-		<arg name='basement'>0x7f6d48c00000</arg>
-		<arg name='ceiling'>0x7f6d490914f7</arg>
+		<arg name='basement'>0x7f8ec5200000</arg>
+		<arg name='ceiling'>0x7f8ec56914f7</arg>
 		<arg name='symtab'>yes</arg>
 	</msg>
 	<!-- Instrumentation of /opt/intel/oneapi/compiler/2026.0/lib/libiomp5.so image skipped because of filter conditions [cs-mode]. -->
-	<!-- Update image info for [6:0x7F6D488E7000:YN] /lib64/libc.so.6 -->
+	<!-- Update image info for [6:0x7F8EC5005000:YN] /lib64/libc.so.6 -->
 	<msg id='8' display='false' source='trc'>
 		<type>LOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:12 2026</timestamp>
+		<timestamp>Sun May 31 23:32:44 2026</timestamp>
 		<arg name='module'>/lib64/libc.so.6</arg>
-		<arg name='basement'>0x7f6d488e7000</arg>
-		<arg name='ceiling'>0x7f6d48ae1b6f</arg>
+		<arg name='basement'>0x7f8ec5005000</arg>
+		<arg name='ceiling'>0x7f8ec51ffb6f</arg>
 		<arg name='symtab'>yes</arg>
 	</msg>
 	<!-- Instrumentation of /lib64/libc.so.6 image skipped because of filter conditions. -->
-	<!-- Update image info for [7:0x7F6D49106000:NN] /lib64/librt.so.1 -->
+	<!-- Update image info for [7:0x7F8EC4FFC000:NN] /lib64/librt.so.1 -->
 	<msg id='9' display='false' source='trc'>
 		<type>LOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:12 2026</timestamp>
+		<timestamp>Sun May 31 23:32:44 2026</timestamp>
 		<arg name='module'>/lib64/librt.so.1</arg>
-		<arg name='basement'>0x7f6d49106000</arg>
-		<arg name='ceiling'>0x7f6d49109007</arg>
+		<arg name='basement'>0x7f8ec4ffc000</arg>
+		<arg name='ceiling'>0x7f8ec4fff007</arg>
 		<arg name='symtab'>no</arg>
 	</msg>
 	<!-- Instrumentation of /lib64/librt.so.1 image skipped because of filter conditions [cs-mode]. -->
-	<!-- Update image info for [8:0x7F6D490CA000:NN] /lib64/libdl.so.2 -->
+	<!-- Update image info for [8:0x7F8EC4FC4000:NN] /lib64/libdl.so.2 -->
 	<msg id='10' display='false' source='trc'>
 		<type>LOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:12 2026</timestamp>
+		<timestamp>Sun May 31 23:32:44 2026</timestamp>
 		<arg name='module'>/lib64/libdl.so.2</arg>
-		<arg name='basement'>0x7f6d490ca000</arg>
-		<arg name='ceiling'>0x7f6d490cd007</arg>
+		<arg name='basement'>0x7f8ec4fc4000</arg>
+		<arg name='ceiling'>0x7f8ec4fc7007</arg>
 		<arg name='symtab'>no</arg>
 	</msg>
 	<!-- Instrumentation of /lib64/libdl.so.2 image skipped because of filter conditions [cs-mode]. -->
-	<!-- Update image info for [9:0x7F6D490A5000:NN] /lib64/libpthread.so.0 -->
+	<!-- Update image info for [9:0x7F8EC4F9C000:NN] /lib64/libpthread.so.0 -->
 	<msg id='11' display='false' source='trc'>
 		<type>LOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:12 2026</timestamp>
+		<timestamp>Sun May 31 23:32:44 2026</timestamp>
 		<arg name='module'>/lib64/libpthread.so.0</arg>
-		<arg name='basement'>0x7f6d490a5000</arg>
-		<arg name='ceiling'>0x7f6d490a8007</arg>
+		<arg name='basement'>0x7f8ec4f9c000</arg>
+		<arg name='ceiling'>0x7f8ec4f9f007</arg>
 		<arg name='symtab'>no</arg>
 	</msg>
 	<!-- Instrumentation of /lib64/libpthread.so.0 image skipped because of filter conditions [cs-mode]. -->
 	<msg id='12' display='false' source='trc'>
 		<type>UNLOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:21 2026</timestamp>
+		<timestamp>Sun May 31 23:32:52 2026</timestamp>
 		<arg name='module'>/home/marcox/Documents/HPC/mat_mul</arg>
 	</msg>
 	<msg id='13' display='false' source='trc'>
 		<type>UNLOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:21 2026</timestamp>
+		<timestamp>Sun May 31 23:32:52 2026</timestamp>
 		<arg name='module'>/lib64/ld-linux-x86-64.so.2</arg>
 	</msg>
 	<msg id='14' display='false' source='trc'>
 		<type>UNLOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:21 2026</timestamp>
+		<timestamp>Sun May 31 23:32:52 2026</timestamp>
 		<arg name='module'>[vdso]</arg>
 	</msg>
 	<msg id='15' display='false' source='trc'>
 		<type>UNLOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:21 2026</timestamp>
+		<timestamp>Sun May 31 23:32:52 2026</timestamp>
 		<arg name='module'>/lib64/libm.so.6</arg>
 	</msg>
 	<msg id='16' display='false' source='trc'>
 		<type>UNLOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:21 2026</timestamp>
+		<timestamp>Sun May 31 23:32:52 2026</timestamp>
 		<arg name='module'>/opt/intel/oneapi/compiler/2026.0/lib/libiomp5.so</arg>
 	</msg>
 	<msg id='17' display='false' source='trc'>
 		<type>UNLOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:21 2026</timestamp>
+		<timestamp>Sun May 31 23:32:53 2026</timestamp>
 		<arg name='module'>/lib64/libc.so.6</arg>
 	</msg>
 	<msg id='18' display='false' source='trc'>
 		<type>UNLOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:21 2026</timestamp>
+		<timestamp>Sun May 31 23:32:53 2026</timestamp>
 		<arg name='module'>/lib64/librt.so.1</arg>
 	</msg>
 	<msg id='19' display='false' source='trc'>
 		<type>UNLOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:21 2026</timestamp>
+		<timestamp>Sun May 31 23:32:53 2026</timestamp>
 		<arg name='module'>/lib64/libdl.so.2</arg>
 	</msg>
 	<msg id='20' display='false' source='trc'>
 		<type>UNLOAD_MODULE</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:21 2026</timestamp>
+		<timestamp>Sun May 31 23:32:53 2026</timestamp>
 		<arg name='module'>/lib64/libpthread.so.0</arg>
 	</msg>
 	<msg id='21' display='false' source='trc'>
 		<type>PROCESS_FINISH</type>
 		<severity>INFO</severity>
-		<timestamp>Sun May 31 22:38:21 2026</timestamp>
+		<timestamp>Sun May 31 23:32:53 2026</timestamp>
 		<arg name='process'>/home/marcox/Documents/HPC/mat_mul</arg>
-		<arg name='pid'>42211</arg>
+		<arg name='pid'>62983</arg>
 		<arg name='exitcode'>0x0</arg>
 	</msg>
 	<!-- Application exited with code 0 -->

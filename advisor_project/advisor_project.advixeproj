@@ -2,7 +2,7 @@
 <root>
  <cli_project type="bool">true</cli_project>
  <rdmgr>
-  <timestamp type="u64_t">1780259874</timestamp>
+  <timestamp type="u64_t">1780263146</timestamp>
   <hostname type="string">marco-fedora</hostname>
   <os type="string">linux</os>
   <product type="string">Intel® Advisor 2026.0.0</product>

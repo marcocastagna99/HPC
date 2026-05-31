@@ -37,16 +37,20 @@ function compile(){
 }
 
 # Function to run Intel Advisor (Roofline) and save a snapshot
+# Funzione per lanciare Advisor (Roofline completo) e salvare lo snapshot
 function roofline(){
     local N="$1"
     local snapshot_name="roofline_N${N}"
     
+    # 1. Pulizia preventiva: cancella la vecchia cartella di progetto e il vecchio snapshot
+    echo "Pulizia vecchi dati di Advisor..."
+    rm -rf "$ADVISOR_DIR"
+    rm -f "$RESULTS_DIR/$snapshot_name.advixeexpz"
+    
     title "Running Intel Advisor Roofline Analysis for N=$N"
-    # Collect Survey and FLOPs in one go
     advisor --collect=roofline --project-dir="$ADVISOR_DIR" -- "$COMPILED_FILE" "$N"
     
     echo "Creating Advisor Snapshot..."
-    # Pack the results into a file you can open locally via the GUI
     advisor --snapshot --project-dir="$ADVISOR_DIR" "$RESULTS_DIR/$snapshot_name"
     echo "Saved: $RESULTS_DIR/$snapshot_name.advixeexpz"
 }
@@ -85,22 +89,21 @@ for N in 5000 10000 15000; do
     measure_time "$N" "sequential_O3_xHost"
 done
 
-':
+
 # 2. OpenMP Scalability Tests
-title "PHASE 2: OpenMP Scalability Tests"
+#title "PHASE 2: OpenMP Scalability Tests"
 
 # We use N=10000 to test thread scaling as a solid middle-ground
-N_TEST=10000 
+#N_TEST=10000 
 
 # Clear the OpenMP scaling log file if it exists
-> "$RESULTS_DIR/times_openmp_scaling.log"
+#> "$RESULTS_DIR/times_openmp_scaling.log"
 
-for threads in 1 2 4 8 12 16 20; do
-    title "Testing OpenMP with $threads Threads (N=$N_TEST)"
-    export OMP_NUM_THREADS=$threads
-    measure_time "$N_TEST" "openmp_scaling"
-done
+#for threads in 1 2 4 8 12 16 20; do
+#    title "Testing OpenMP with $threads Threads (N=$N_TEST)"
+#    export OMP_NUM_THREADS=$threads
+#    measure_time "$N_TEST" "openmp_scaling"
+#done
 
 title "ALL BENCHMARKS COMPLETED!"
 echo "Check the '$RESULTS_DIR' folder for your execution logs and Advisor snapshots."
-'
