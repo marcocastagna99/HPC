@@ -1,0 +1,35 @@
+# callstacks file version: 8
+#    rowid	    parent	       rva	 loop	 system	                                function	binary	instance_start_rva	instance_size	instance_end_rva	finst_rowid	roi	is_inlined	jit_method_id	tripcounts_roi	flops_roi	cachesim_roi	data_transfer_roi	projection_roi
+         1	        -1	      1808	    0	      0	                                  _start	/home/marcox/Documents/HPC/mat_mul	1808	38	0	1	0	0	0	0	0	0	0	0
+         2	        -1	      1844	    0	      0	                                  _start	/home/marcox/Documents/HPC/mat_mul	1808	38	0	1	0	0	0	0	0	0	0	0
+         3	        31	     14231	    1	      1	      [Loop@0x3779 in __libc_start_main]	/lib64/libc.so.6	14201,14336	131,65	0	3	0	0	0	0	0	0	0	0
+         4	         3	     13952	    0	      1	                  __libc_start_call_main	/lib64/libc.so.6	13824	271	0	11	0	0	0	0	0	0	0	0
+         5	         4	      2246	    0	      0	                                    main	/home/marcox/Documents/HPC/mat_mul	2048	761	0	2	0	0	0	0	0	0	0	0
+         6	         5	     12634	    0	      0	                  __intel_avx_rep_memset	/home/marcox/Documents/HPC/mat_mul	12368	4295	0	5	0	0	0	0	0	0	0	0
+         7	        19	      2422	    1	      0	               [Loop at line 29 in main]	/home/marcox/Documents/HPC/mat_mul	2416	21	2437	6	0	0	0	0	0	0	0	0
+         8	        19	      2416	    1	      0	               [Loop at line 29 in main]	/home/marcox/Documents/HPC/mat_mul	2416	21	2437	6	0	0	0	0	0	0	0	0
+         9	        24	      2630	    1	      0	               [Loop at line 41 in main]	/home/marcox/Documents/HPC/mat_mul	2624	27	2651	8	0	0	0	0	0	0	0	0
+        10	        24	      2636	    1	      0	               [Loop at line 41 in main]	/home/marcox/Documents/HPC/mat_mul	2624	27	2651	8	0	0	0	0	0	0	0	0
+        11	        24	      2624	    1	      0	               [Loop at line 41 in main]	/home/marcox/Documents/HPC/mat_mul	2624	27	2651	8	0	0	0	0	0	0	0	0
+        12	        24	      2642	    1	      0	               [Loop at line 41 in main]	/home/marcox/Documents/HPC/mat_mul	2624	27	2651	8	0	0	0	0	0	0	0	0
+        13	        23	      2598	    1	      0	               [Loop at line 40 in main]	/home/marcox/Documents/HPC/mat_mul	2576,2672	84,47	2544	9	0	0	0	0	0	0	0	0
+        14	        24	      2646	    1	      0	               [Loop at line 41 in main]	/home/marcox/Documents/HPC/mat_mul	2624	27	2651	8	0	0	0	0	0	0	0	0
+        15	         4	      2773	    0	      0	                                    main	/home/marcox/Documents/HPC/mat_mul	2048	761	0	2	0	0	0	0	0	0	0	0
+        16	        15	    529969	    0	      1	                         _int_free_chunk	/lib64/libc.so.6	529888	248	0	12	0	0	0	0	0	0	0	0
+        17	        16	   1000699	    0	      1	                                __munmap	/lib64/libc.so.6	1000688	37	0	13	0	0	0	0	0	0	0	0
+        18	         4	      2384	    0	      0	                                    main	/home/marcox/Documents/HPC/mat_mul	2048	761	0	2	0	0	0	0	0	0	0	0
+        19	        18	      2416	    1	      0	               [Loop at line 28 in main]	/home/marcox/Documents/HPC/mat_mul	2384	82	2490	7	0	0	0	0	0	0	0	0
+        20	         4	      2422	    0	      0	                                    main	/home/marcox/Documents/HPC/mat_mul	2048	761	0	2	0	0	0	0	0	0	0	0
+        21	         4	      2416	    0	      0	                                    main	/home/marcox/Documents/HPC/mat_mul	2048	761	0	2	0	0	0	0	0	0	0	0
+        22	         4	      2544	    0	      0	                                    main	/home/marcox/Documents/HPC/mat_mul	2048	761	0	2	0	0	0	0	0	0	0	0
+        23	        22	      2576	    1	      0	               [Loop at line 39 in main]	/home/marcox/Documents/HPC/mat_mul	2544,2672	116,47	2719	10	0	0	0	0	0	0	0	0
+        24	        23	      2624	    1	      0	               [Loop at line 40 in main]	/home/marcox/Documents/HPC/mat_mul	2576,2672	84,47	2544	9	0	0	0	0	0	0	0	0
+        25	         4	      2630	    0	      0	                                    main	/home/marcox/Documents/HPC/mat_mul	2048	761	0	2	0	0	0	0	0	0	0	0
+        26	         4	      2636	    0	      0	                                    main	/home/marcox/Documents/HPC/mat_mul	2048	761	0	2	0	0	0	0	0	0	0	0
+        27	         4	      2624	    0	      0	                                    main	/home/marcox/Documents/HPC/mat_mul	2048	761	0	2	0	0	0	0	0	0	0	0
+        28	         4	      2642	    0	      0	                                    main	/home/marcox/Documents/HPC/mat_mul	2048	761	0	2	0	0	0	0	0	0	0	0
+        29	         4	      2598	    0	      0	                                    main	/home/marcox/Documents/HPC/mat_mul	2048	761	0	2	0	0	0	0	0	0	0	0
+        30	         4	      2646	    0	      0	                                    main	/home/marcox/Documents/HPC/mat_mul	2048	761	0	2	0	0	0	0	0	0	0	0
+        31	         2	     14201	    0	      1	                       __libc_start_main	/lib64/libc.so.6	14096	336	0	4	0	0	0	0	0	0	0	0
+        32	         2	     14231	    0	      1	                       __libc_start_main	/lib64/libc.so.6	14096	336	0	4	0	0	0	0	0	0	0	0
+        33	        -1	         0	    0	      0	                [Unknown stack frame(s)]	n/a	0	0	0	15	0	0	0	0	0	0	0	0
