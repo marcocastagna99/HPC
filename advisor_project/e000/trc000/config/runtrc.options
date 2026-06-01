@@ -1,8 +1,8 @@
 -r
-/home/marcox/Documents/HPC/advisor_project/e000/trc000
+/home/marco99/hpc/project/HPC/advisor_project/e000/trc000
 -quiet
 -cs-file
-/home/marcox/Documents/HPC/advisor_project/e000/callstacks.def
+/home/marco99/hpc/project/HPC/advisor_project/e000/callstacks.def
 --cs-mode=no-count-loops,no-count-flops,stl-profiling,stack-stitching
 --target-loops=n
 --count-flops

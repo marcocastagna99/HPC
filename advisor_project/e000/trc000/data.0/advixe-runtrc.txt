@@ -1,10 +1,10 @@
 
-=== Start: [2026/05/31 23:32:33] === 
+=== Start: [2026/06/01 10:43:28] === 
 Peak bandwidth measurement started...
 Peak bandwidth measurement finished.
 Analysis started...
-Result file: /home/marcox/Documents/HPC/advisor_project/e000/trc000/trc000.advixe 
+Result file: /home/marco99/hpc/project/HPC/advisor_project/e000/trc000/trc000.advixe 
 Application exit code: 0 
-Result file: /home/marcox/Documents/HPC/advisor_project/e000/trc000/trc000.advixe 
+Result file: /home/marco99/hpc/project/HPC/advisor_project/e000/trc000/trc000.advixe 
 Analysis completed
-=== End: [2026/05/31 23:32:57] === 
+=== End: [2026/06/01 10:43:53] === 

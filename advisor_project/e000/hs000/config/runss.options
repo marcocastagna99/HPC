@@ -1,5 +1,5 @@
 -r
-/home/marcox/Documents/HPC/advisor_project/e000/hs000
+/home/marco99/hpc/project/HPC/advisor_project/e000/hs000
 -quiet
 --mrte-mode=auto
 --follow-child
