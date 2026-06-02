@@ -37,7 +37,6 @@ function compile(){
 }
 
 # Function to run Intel Advisor (Roofline) and save a snapshot
-# Funzione per lanciare Advisor (Roofline completo) e salvare lo snapshot
 function roofline(){
     local N="$1"
     local snapshot_name="roofline_N${N}"

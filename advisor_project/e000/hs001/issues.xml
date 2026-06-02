@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<bag xmlns:boolean="http://www.w3.org/2001/XMLSchema#boolean" xmlns:float="http://www.w3.org/2001/XMLSchema#float" xmlns:int="http://www.w3.org/2001/XMLSchema#int" xmlns:unsignedInt="http://www.w3.org/2001/XMLSchema#unsignedInt" xmlns:unsignedLong="http://www.w3.org/2001/XMLSchema#unsignedLong" int:version="16">
+ <issues>
+  <issue>
+   <unsignedInt:flags>321</unsignedInt:flags>
+   <id>issue_roofline_guidance</id>
+   <int:severity>2</int:severity>
+   <text/>
+   <title>issue_roofline_guidance_title</title>
+   <attributes>
+    <float:severity>2</float:severity>
+   </attributes>
+   <parameters boolean:is_vectorized="true" zone="mem" ops_type="int"/>
+   <recommendations>
+    <recommendation>
+     <int:confidence>2</int:confidence>
+     <unsignedInt:flags>8</unsignedInt:flags>
+     <id>rec_roofline_guidance_memory_bound</id>
+     <text>roofline_guidance_memory_bound_text</text>
+     <title>This loop is mostly memory bound </title>
+     <attributes>
+      <float:confidence>2</float:confidence>
+     </attributes>
+     <parameters>
+      <boolean:is_vectorized>true</boolean:is_vectorized>
+      <boolean:is_fma_dominated>false</boolean:is_fma_dominated>
+      <boolean:scalar_mem_instructions>false</boolean:scalar_mem_instructions>
+      <current_isa>AVX</current_isa>
+      <best_isa>AVX2</best_isa>
+      <boolean:inefficient_map>false</boolean:inefficient_map>
+      <boolean:low_vector_efficiency>false</boolean:low_vector_efficiency>
+      <int:limiting_roof>3</int:limiting_roof>
+     </parameters>
+    </recommendation>
+    <recommendation>
+     <int:confidence>2</int:confidence>
+     <unsignedInt:flags>1032</unsignedInt:flags>
+     <id>rec_roofline_guidance_collect_all_memory_levels</id>
+     <text>rec_roofline_guidance_collect_text</text>
+     <title>Collect Roofline for all memory levels </title>
+     <attributes>
+      <float:confidence>2</float:confidence>
+     </attributes>
+     <parameters/>
+    </recommendation>
+   </recommendations>
+   <unsignedLong:rowKey>4</unsignedLong:rowKey>
+  </issue>
+  <issue>
+   <unsignedInt:flags>65</unsignedInt:flags>
+   <id>issue_loop_misalignment</id>
+   <int:severity>1</int:severity>
+   <text>Align this loop using compiler options or pragmas</text>
+   <title>Misaligned loop code present</title>
+   <attributes>
+    <float:severity>1</float:severity>
+   </attributes>
+   <parameters/>
+   <recommendations>
+    <recommendation>
+     <int:confidence>1</int:confidence>
+     <unsignedInt:flags>8</unsignedInt:flags>
+     <id>rec_align_loop_c</id>
+     <text>align_loop_text</text>
+     <title>Force the compiler to align loop code </title>
+     <attributes>
+      <float:confidence>1</float:confidence>
+     </attributes>
+     <parameters/>
+    </recommendation>
+   </recommendations>
+   <unsignedLong:rowKey>4</unsignedLong:rowKey>
+  </issue>
+  <issue>
+   <unsignedInt:flags>321</unsignedInt:flags>
+   <id>issue_roofline_guidance</id>
+   <int:severity>2</int:severity>
+   <text/>
+   <title>issue_roofline_guidance_title</title>
+   <attributes>
+    <float:severity>2</float:severity>
+   </attributes>
+   <parameters boolean:is_vectorized="false" zone="mem" ops_type="float"/>
+   <recommendations>
+    <recommendation>
+     <int:confidence>2</int:confidence>
+     <unsignedInt:flags>8</unsignedInt:flags>
+     <id>rec_roofline_guidance_memory_bound</id>
+     <text>roofline_guidance_memory_bound_text</text>
+     <title>This loop is mostly memory bound </title>
+     <attributes>
+      <float:confidence>2</float:confidence>
+     </attributes>
+     <parameters>
+      <boolean:is_vectorized>false</boolean:is_vectorized>
+      <boolean:is_fma_dominated>false</boolean:is_fma_dominated>
+      <boolean:scalar_mem_instructions>false</boolean:scalar_mem_instructions>
+      <boolean:inefficient_map>false</boolean:inefficient_map>
+      <boolean:low_vector_efficiency>false</boolean:low_vector_efficiency>
+      <int:limiting_roof>2</int:limiting_roof>
+     </parameters>
+    </recommendation>
+    <recommendation>
+     <int:confidence>2</int:confidence>
+     <unsignedInt:flags>1032</unsignedInt:flags>
+     <id>rec_roofline_guidance_collect_all_memory_levels</id>
+     <text>rec_roofline_guidance_collect_text</text>
+     <title>Collect Roofline for all memory levels </title>
+     <attributes>
+      <float:confidence>2</float:confidence>
+     </attributes>
+     <parameters/>
+    </recommendation>
+   </recommendations>
+   <unsignedLong:rowKey>6</unsignedLong:rowKey>
+  </issue>
+  <issue>
+   <unsignedInt:flags>65</unsignedInt:flags>
+   <id>issue_fma</id>
+   <int:severity>1</int:severity>
+   <text>Your current hardware supports the AVX2 instruction set architecture (ISA), which enables the use of fused multiply-add (FMA) instructions. Improve performance by utilizing FMA instructions. </text>
+   <title>Potential underutilization of FMA instructions </title>
+   <attributes>
+    <float:severity>1</float:severity>
+   </attributes>
+   <parameters/>
+   <recommendations>
+    <recommendation>
+     <int:confidence>1</int:confidence>
+     <unsignedInt:flags>8</unsignedInt:flags>
+     <id>rec_fma_enforce_vec_c</id>
+     <text>Loop contains FMA instructions (so vectorization could be beneficial) but is not vectorized. To fix: Review corresponding compiler diagnostics to check if vectorization enforcement is possible and profitable. &lt;/br&gt; &lt;b&gt;Read More: &lt;/b&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;https://www.intel.com/content/www/us/en/developer/articles/technical/advisor-vectorization-resources.html&quot;&gt;Vectorization Resources for Intel&amp;reg; Advisor Users&lt;/a&gt; &lt;/ul&gt;
+</text>
+     <title>Force vectorization if possible </title>
+     <attributes>
+      <float:confidence>1</float:confidence>
+     </attributes>
+     <parameters>
+      <boolean:no_dependency_disclaimer>true</boolean:no_dependency_disclaimer>
+     </parameters>
+    </recommendation>
+   </recommendations>
+   <unsignedLong:rowKey>6</unsignedLong:rowKey>
+  </issue>
+ </issues>
+ <traits>
+  <trait>
+   <int:fieldId>0</int:fieldId>
+   <int:id>13</int:id>
+   <text>System Function Calls Present </text>
+   <unsignedLong:rowKey>1</unsignedLong:rowKey>
+  </trait>
+  <trait>
+   <int:fieldId>0</int:fieldId>
+   <int:id>14</int:id>
+   <text>Indirect Function Calls Present </text>
+   <unsignedLong:rowKey>1</unsignedLong:rowKey>
+  </trait>
+  <trait>
+   <int:fieldId>155</int:fieldId>
+   <int:id>4</int:id>
+   <text>Low Trip Counts May Produce Ineffective Peeled/Remainder Loops After Vectorization - Consider Adding Data Padding or Identifying Expected Number of Iterations </text>
+   <unsignedLong:rowKey>6</unsignedLong:rowKey>
+  </trait>
+  <trait>
+   <int:fieldId>148</int:fieldId>
+   <int:id>5</int:id>
+   <text>Low Trip Counts May Produce Ineffective Peeled/Remainder Loops After Vectorization - Consider Adding Data Padding or Identifying Expected Number of Iterations </text>
+   <unsignedLong:rowKey>6</unsignedLong:rowKey>
+  </trait>
+ </traits>
+</bag>

@@ -2,32 +2,31 @@
 #    rowid	    parent	       rva	 loop	 system	                                function	binary	instance_start_rva	instance_size	instance_end_rva	finst_rowid	roi	is_inlined	jit_method_id	tripcounts_roi	flops_roi	cachesim_roi	data_transfer_roi	projection_roi
          1	        -1	      5168	    0	      0	                                  _start	/home/marco99/hpc/project/HPC/mat_mul	5168	38	0	1	0	0	0	0	0	0	0	0
          2	        -1	      5204	    0	      0	                                  _start	/home/marco99/hpc/project/HPC/mat_mul	5168	38	0	1	0	0	0	0	0	0	0	0
-         3	        29	    171583	    1	      1	[Loop at line 379 in __libc_start_main_impl]	/lib/x86_64-linux-gnu/libc.so.6	171555,171688	129,65	0	9	0	0	0	0	0	0	0	0
+         3	        28	    171583	    1	      1	[Loop at line 379 in __libc_start_main_impl]	/lib/x86_64-linux-gnu/libc.so.6	171555,171688	129,65	0	9	0	0	0	0	0	0	0	0
          4	         3	    171407	    0	      1	                  __libc_start_call_main	/lib/x86_64-linux-gnu/libc.so.6	171280	172	0	11	0	0	0	0	0	0	0	0
          5	         4	      5606	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
          6	         5	     15994	    0	      0	                  __intel_avx_rep_memset	/home/marco99/hpc/project/HPC/mat_mul	15728	4295	0	3	0	0	0	0	0	0	0	0
-         7	        18	      5776	    1	      0	               [Loop at line 29 in main]	/home/marco99/hpc/project/HPC/mat_mul	5776	21	5797	4	0	0	0	0	0	0	0	0
-         8	        22	      5996	    1	      0	               [Loop at line 41 in main]	/home/marco99/hpc/project/HPC/mat_mul	5984	27	6011	6	0	0	0	0	0	0	0	0
-         9	        22	      5990	    1	      0	               [Loop at line 41 in main]	/home/marco99/hpc/project/HPC/mat_mul	5984	27	6011	6	0	0	0	0	0	0	0	0
-        10	        22	      5984	    1	      0	               [Loop at line 41 in main]	/home/marco99/hpc/project/HPC/mat_mul	5984	27	6011	6	0	0	0	0	0	0	0	0
-        11	        22	      6002	    1	      0	               [Loop at line 41 in main]	/home/marco99/hpc/project/HPC/mat_mul	5984	27	6011	6	0	0	0	0	0	0	0	0
-        12	        21	      5958	    1	      0	               [Loop at line 40 in main]	/home/marco99/hpc/project/HPC/mat_mul	5936,6032	84,47	5904	7	0	0	0	0	0	0	0	0
-        13	        22	      6006	    1	      0	               [Loop at line 41 in main]	/home/marco99/hpc/project/HPC/mat_mul	5984	27	6011	6	0	0	0	0	0	0	0	0
-        14	         4	      6133	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
-        15	        14	    677017	    0	      1	                        __GI___libc_free	/lib/x86_64-linux-gnu/libc.so.6	676832	257	0	12	0	0	0	0	0	0	0	0
-        16	        15	   1174267	    0	      1	                                __munmap	/lib/x86_64-linux-gnu/libc.so.6	1174256	37	0	13	0	0	0	0	0	0	0	0
-        17	         4	      5744	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
-        18	        17	      5776	    1	      0	               [Loop at line 28 in main]	/home/marco99/hpc/project/HPC/mat_mul	5744	82	5850	5	0	0	0	0	0	0	0	0
-        19	         4	      5776	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
-        20	         4	      5904	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
-        21	        20	      5936	    1	      0	               [Loop at line 39 in main]	/home/marco99/hpc/project/HPC/mat_mul	5904,6032	116,47	6079	8	0	0	0	0	0	0	0	0
-        22	        21	      5984	    1	      0	               [Loop at line 40 in main]	/home/marco99/hpc/project/HPC/mat_mul	5936,6032	84,47	5904	7	0	0	0	0	0	0	0	0
-        23	         4	      5996	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
-        24	         4	      5990	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
+         7	        16	      5782	    1	      0	               [Loop at line 29 in main]	/home/marco99/hpc/project/HPC/mat_mul	5776	21	5797	4	0	0	0	0	0	0	0	0
+         8	        16	      5776	    1	      0	               [Loop at line 29 in main]	/home/marco99/hpc/project/HPC/mat_mul	5776	21	5797	4	0	0	0	0	0	0	0	0
+         9	        21	      6002	    1	      0	               [Loop at line 41 in main]	/home/marco99/hpc/project/HPC/mat_mul	5984	27	6011	6	0	0	0	0	0	0	0	0
+        10	        21	      5990	    1	      0	               [Loop at line 41 in main]	/home/marco99/hpc/project/HPC/mat_mul	5984	27	6011	6	0	0	0	0	0	0	0	0
+        11	        21	      5996	    1	      0	               [Loop at line 41 in main]	/home/marco99/hpc/project/HPC/mat_mul	5984	27	6011	6	0	0	0	0	0	0	0	0
+        12	        21	      5984	    1	      0	               [Loop at line 41 in main]	/home/marco99/hpc/project/HPC/mat_mul	5984	27	6011	6	0	0	0	0	0	0	0	0
+        13	        20	      5958	    1	      0	               [Loop at line 40 in main]	/home/marco99/hpc/project/HPC/mat_mul	5936,6032	84,47	5904	7	0	0	0	0	0	0	0	0
+        14	        20	      5968	    1	      0	               [Loop at line 40 in main]	/home/marco99/hpc/project/HPC/mat_mul	5936,6032	84,47	5904	7	0	0	0	0	0	0	0	0
+        15	         4	      5744	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
+        16	        15	      5776	    1	      0	               [Loop at line 28 in main]	/home/marco99/hpc/project/HPC/mat_mul	5744	82	5850	5	0	0	0	0	0	0	0	0
+        17	         4	      5782	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
+        18	         4	      5776	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
+        19	         4	      5904	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
+        20	        19	      5936	    1	      0	               [Loop at line 39 in main]	/home/marco99/hpc/project/HPC/mat_mul	5904,6032	116,47	6079	8	0	0	0	0	0	0	0	0
+        21	        20	      5984	    1	      0	               [Loop at line 40 in main]	/home/marco99/hpc/project/HPC/mat_mul	5936,6032	84,47	5904	7	0	0	0	0	0	0	0	0
+        22	         4	      6002	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
+        23	         4	      5990	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
+        24	         4	      5996	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
         25	         4	      5984	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
-        26	         4	      6002	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
-        27	         4	      5958	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
-        28	         4	      6006	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
-        29	         2	    171555	    0	      1	                  __libc_start_main_impl	/lib/x86_64-linux-gnu/libc.so.6	171456	328	0	10	0	0	0	0	0	0	0	0
-        30	         2	    171583	    0	      1	                  __libc_start_main_impl	/lib/x86_64-linux-gnu/libc.so.6	171456	328	0	10	0	0	0	0	0	0	0	0
-        31	        -1	         0	    0	      0	                [Unknown stack frame(s)]	n/a	0	0	0	15	0	0	0	0	0	0	0	0
+        26	         4	      5958	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
+        27	         4	      5968	    0	      0	                                    main	/home/marco99/hpc/project/HPC/mat_mul	5408	761	0	2	0	0	0	0	0	0	0	0
+        28	         2	    171555	    0	      1	                  __libc_start_main_impl	/lib/x86_64-linux-gnu/libc.so.6	171456	328	0	10	0	0	0	0	0	0	0	0
+        29	         2	    171583	    0	      1	                  __libc_start_main_impl	/lib/x86_64-linux-gnu/libc.so.6	171456	328	0	10	0	0	0	0	0	0	0	0
+        30	        -1	         0	    0	      0	                [Unknown stack frame(s)]	n/a	0	0	0	13	0	0	0	0	0	0	0	0

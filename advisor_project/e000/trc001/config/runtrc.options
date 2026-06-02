@@ -1,0 +1,14 @@
+-r
+/home/marco99/hpc/project/HPC/advisor_project/e000/trc001
+--return-app-exitcode
+--cs-mode=no-count-loops,no-count-flops,stl-profiling,stack-stitching
+--target-loops=n
+--count-flops
+--cs-file=/home/marco99/hpc/project/HPC/advisor_project/e000/callstacks.def
+--jit-profiling
+--benchmarks=dram,mcdram,cpu_cache,flop_peak,int,
+--target-gpu=none
+--app-working-dir=/home/marco99/hpc/project/HPC/.
+--
+./mat_mul
+2000

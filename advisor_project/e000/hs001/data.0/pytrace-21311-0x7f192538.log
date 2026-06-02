@@ -1,0 +1,13 @@
+
+21311 : 0x79a7f1f8d8f : 3 : logger_init :  LOG FILE OPENED (by collectunits.logger), level: 4
+21311 : 0x79a7f228e1e : 4 : pytrace_try_probe_python_functions :  Python version is detected as == 0x0
+21311 : 0x79a80215f5b : 4 : pytrace_try_probe_python_functions :  Python version is detected as == 0x0
+21311 : 0x79a822a31cb : 4 : pytrace_try_probe_python_functions :  Python version is detected as == 0x0
+21311 : 0x79a85ffc708 : 4 : pytrace_try_probe_python_functions :  Python version is detected as == 0x0
+21311 : 0x79aa05a8ba6 : 4 : pytrace_try_probe_python_functions :  Python version is detected as == 0x0
+21311 : 0x79aa13bbe02 : 4 : pytrace_try_probe_python_functions :  Python version is detected as == 0x0
+21311 : 0x79aa1a6a343 : 4 : pytrace_try_probe_python_functions :  Python version is detected as == 0x0
+21311 : 0x79aa1e04273 : 4 : pytrace_try_probe_python_functions :  Python version is detected as == 0x0
+21311 : 0x79aa25ac3c3 : 4 : pytrace_start_profiling :  [CALLED]
+21311 : 0x79f0f667c43 : 4 : pytrace_stop_profiling :  [CALLED]
+21311 : 0x79f0f67640c : 3 : logger_fini :  LOG FILE CLOSED (by collectunits.logger)
