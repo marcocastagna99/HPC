@@ -4,7 +4,7 @@
 
 
 ## Head Of the Analysis
-algorithm with cubical complexity O(N^3), 2n3 ops, 2n2 data
+algorithm with cubical complexity O(N^3), 2n^3 ops, 2n^2 data
 
 **Tools**: I used the icx compiler, the Intel one, and Intel Advisor GUI to perform the
 most of the analysis.
@@ -13,15 +13,16 @@ most of the analysis.
 - 12 core
 - 8 performance cores with hyperthreading up to 2
 - 4 efficiency 
-
+![alt text](snap/lstopo_home_workstation.png)
 
 advixe-gui
 
 to record time execution i decide to add OpenMP library.
 
 the source code present an optimization by design where the netested loops are inverted instead of the standard moltiplication formula,  as we saw in class
-this let us to exploit the cache line both with spatial and temporary locality, even we pass from a n^2 store operation to n^3, the rewritten algorithm let us to save read memory time avoiding cache miss increasing the perfomrance
-![alt text](image.png)
+this let us to exploit the cache line both with spatial and temporary locality, Although we pass from a n^2 store operation to n^3, the rewritten algorithm let us to save read memory time avoiding cache miss increasing the perfomrance
+
+![alt text](snap/matmulcache.png)
 
 
 
@@ -33,14 +34,18 @@ this let us to exploit the cache line both with spatial and temporary locality, 
 
 starting with a baseline approach i compiled with icx -g -O0 -xHost -fiopenmp -o matmul  mat_mul.c 
 and I analized the algortihm with **Data size** = 2000
--the execution time: 45.626744 seconds
+Computation time (N=2000): 25.603767 seconds
+and i decided to double the size of N with 5000
+where Computation time (N=5000): 390.003932 seconds
 
 
-the hotspot reside at row 41 (for (j = 0; j < n; ++j)): Questo singolo ciclo assorbe il 99.6% del tempo totale di esecuzione (49.352s su 49.529s totali).
+
+the hotspot reside at row 41 (for (j = 0; j < n; ++j)): Questo singolo ciclo assorbe il 99.6% del tempo totale di esecuzione (388.0s su 390s totali).
 
 compilando con -O0, il compilatore si è rifiutato di usare le istruzioni vettoriali AVX
-la macchina sta calcolando una singola moltiplicazione tra double per ogni ciclo di clock. Questo si riflette nel tempo di esecuzione gigantesco (~45 secondi per una matrice "piccola" da 2000x2000)
-![alt text](snap/image.png)
+la macchina sta calcolando una singola moltiplicazione tra double per ogni ciclo di clock. Questo si riflette nel tempo di esecuzione gigantesco (~390 secondi per una matrice "piccola" da 5000x5000)
+![alt text](./snap/roofline.png)
+![alt text](snap/hotspot.png)
 il pallino sta leggermente sopra la diagonale della dram
 arithmetic intensity = 0.017 Flop byte,
 teoricamente l'operazione
