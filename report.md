@@ -1,60 +1,53 @@
-# Matrix Multiplication Paralellization
+
+# Matrix Multiplication Parallelization
 
 *Author: Marco Castagna*
 
+## Head of the Analysis
 
-## Head Of the Analysis
-algorithm with cubical complexity O(N^3), 2n^3 ops, 2n^2 data
+The algorithm has a cubical time complexity of $O(N^3)$, requiring approximately $2N^3$ operations and dealing with an $O(N^2)$ data footprint.
 
-**Tools**: I used the icx compiler, the Intel one, and Intel Advisor GUI to perform the
-most of the analysis.
-**Machine**: SW2 Machine with Intel® Core™ i7-12700K Processor
- It has 20 processors:
-- 12 core
-- 8 performance cores with hyperthreading up to 2
-- 4 efficiency 
+**Tools:** I used the Intel C Compiler (`icx`) and the Intel Advisor GUI to perform most of the analysis.
+**Machine:** SW2 Machine equipped with an Intel® Core™ i7-12700K Processor. It has 20 logical processors:
+
+* 12 physical cores
+* 8 Performance cores with Hyper-Threading up to 2
+* 4 Efficiency cores
+
 ![alt text](snap/lstopo_home_workstation.png)
 
-advixe-gui
+To accurately record the execution time, I decided to utilize the high-precision timers provided by the OpenMP library (`omp_get_wtime`).
 
-to record time execution i decide to add OpenMP library.
+The source code features a design optimization where the nested loops are inverted compared to the standard mathematical matrix multiplication formula. As discussed in class, this loop order (`i-k-j`) allows us to exploit the cache lines through both spatial and temporal locality. Although this shifts the memory stores from $O(N^2)$ to $O(N^3)$, the rewritten algorithm significantly saves memory read time by avoiding cache misses, ultimately increasing performance.
 
-the source code present an optimization by design where the netested loops are inverted instead of the standard moltiplication formula,  as we saw in class
-this let us to exploit the cache line both with spatial and temporary locality, Although we pass from a n^2 store operation to n^3, the rewritten algorithm let us to save read memory time avoiding cache miss increasing the perfomrance
+*![(alt text)](snap/matmulcache.png)
 
-![alt text](snap/matmulcache.png)
+Tranquillo, facciamo ordine! Hai incollato una versione "ibrida" che si è persa per strada le due correzioni "da pro" che abbiamo fatto guardando bene le immagini (quella sull'`Int64` e quella sulla Cache L3 vs DRAM).
 
+Per non farti impazzire col copia-incolla, ho preso **tutto** il blocco della sezione "Hotspot Identification", l'ho unito, limato e ho inserito tutte le correzioni definitive.
 
+Questo è il testo **finale e completo** che puoi prendere e incollare direttamente nel tuo report, senza doverci più pensare:
 
+---
 
+**Hotspot Identification**
 
+Starting with a baseline approach, I compiled the code disabling all optimizations (`icx -g -O0 -xHost -fiopenmp -o matmul mat_mul.c`) and analyzed the algorithm with **Data size** = 2000, resulting in a computation time of 25.60 seconds. I then decided to roughly double the size to $N=5000$, which yielded a computation time of 390.00 seconds.
 
+The hotspot resides at row 41 (`for (j = 0; j < n; ++j)`): this single loop consumes 99.6% of the total execution time (388.0s out of the 390s total).
 
-**hotspot identification**
+By compiling with `-O0`, the compiler refused to use AVX vector instructions. Furthermore, as clearly captured by Intel Advisor (which flags the loop with **`Int64`** traits instead of Double Precision), the machine is spending a massive amount of scalar clock cycles computing array indices and pointer arithmetic rather than the actual floating-point math. This massive overhead is reflected in the gigantic execution time (~390 seconds for a $5000 \times 5000$ matrix).
 
-starting with a baseline approach i compiled with icx -g -O0 -xHost -fiopenmp -o matmul  mat_mul.c 
-and I analized the algortihm with **Data size** = 2000
-Computation time (N=2000): 25.603767 seconds
-and i decided to double the size of N with 5000
-where Computation time (N=5000): 390.003932 seconds
-
-
-
-the hotspot reside at row 41 (for (j = 0; j < n; ++j)): Questo singolo ciclo assorbe il 99.6% del tempo totale di esecuzione (388.0s su 390s totali).
-
-compilando con -O0, il compilatore si è rifiutato di usare le istruzioni vettoriali AVX
-la macchina sta calcolando una singola moltiplicazione tra double per ogni ciclo di clock. Questo si riflette nel tempo di esecuzione gigantesco (~390 secondi per una matrice "piccola" da 5000x5000)
-![alt text](./snap/roofline.png)
+![alt text](snap/roofline.png)
 ![alt text](snap/hotspot.png)
-il pallino sta leggermente sopra la diagonale della dram
-arithmetic intensity = 0.017 Flop byte,
-teoricamente l'operazione
-c = c + a * b dovrebbe avere un'intensità di $2 \text{ FLOP} / 32 \text{ Byte} = 0.0625$. Il fatto che il valore sia ancora più basso (0.017) è colpa del flag -O0: il compilatore non sta tenendo le variabili i, j, k, a e b nei registri veloci, ma le sta ricaricando dalla memoria (stack) a ogni singola iterazione del ciclo
 
-l'algoritmo naive è fortemente limitato dalla memoria (Memory Bound). Il Roofline Model posiziona l'hotspot principale (il ciclo più interno) sulla diagonale della DRAM Bandwidth, con un'intensità aritmetica di appena 0.017 FLOP/Byte. A causa dell'assenza di vettorizzazione (elaborazione puramente Scalare), il codice impiega oltre 45 secondi già per una matrice N=2000, dimostrando quanto l'accesso inefficiente alla memoria e la mancata allocazione dei registri penalizzino l'algoritmo originale
+The naive algorithm is heavily Memory Bound, but with an important architectural nuance. The Roofline Model places the main hotspot just below the **L3 Cache Bandwidth** diagonal (achieving an effective bandwidth of ~37.8 GB/s), rather than falling all the way down to the DRAM limit. With an arithmetic intensity of just 0.017 FLOP/Byte, the lack of register allocation caused by the `-O0` flag is evident. Theoretically, the core operation `c[i][j] += a[i][k] * b[k][j]` should have an intensity of $2 \text{ FLOP} / 32 \text{ Byte} = 0.0625$. This massive drop is a direct consequence of the compiler reloading loop variables and array elements from the memory stack at every single iteration. However, because the loop sequence is optimized (`i-k-j`), the memory access pattern exhibits excellent spatial locality. This contiguous access allows the CPU's hardware prefetcher to effectively pull data from the DRAM into the L3 cache ahead of time. Consequently, the execution is not bottlenecked by the bare DRAM latency, but rather by the L3 bandwidth and the purely scalar instructions.
 
+---
 
+**Vectorizzation**
+For the vectorization i decide to use level 3
 
+icx -g -O3 -xHost -fiopenmp -qopt-report=3 -o matmul mat_mul.c
 
-
-
+Computation time (N=5000): 63.727352 seconds
