@@ -20,17 +20,11 @@ To accurately record the execution time, I decided to utilize the high-precision
 
 The source code features a design optimization where the nested loops are inverted compared to the standard mathematical matrix multiplication formula. As discussed in class, this loop order (`i-k-j`) allows us to exploit the cache lines through both spatial and temporal locality. Although this shifts the memory stores from $O(N^2)$ to $O(N^3)$, the rewritten algorithm significantly saves memory read time by avoiding cache misses, ultimately increasing performance.
 
-*![(alt text)](snap/matmulcache.png)
+![(alt text)](snap/matmulcache.png)
 
-Tranquillo, facciamo ordine! Hai incollato una versione "ibrida" che si è persa per strada le due correzioni "da pro" che abbiamo fatto guardando bene le immagini (quella sull'`Int64` e quella sulla Cache L3 vs DRAM).
 
-Per non farti impazzire col copia-incolla, ho preso **tutto** il blocco della sezione "Hotspot Identification", l'ho unito, limato e ho inserito tutte le correzioni definitive.
 
-Questo è il testo **finale e completo** che puoi prendere e incollare direttamente nel tuo report, senza doverci più pensare:
-
----
-
-**Hotspot Identification**
+## **Hotspot Identification**
 
 Starting with a baseline approach, I compiled the code disabling all optimizations (`icx -g -O0 -xHost -fiopenmp -o matmul mat_mul.c`) and analyzed the algorithm with **Data size** = 2000, resulting in a computation time of 25.60 seconds. I then decided to roughly double the size to $N=5000$, which yielded a computation time of 390.00 seconds.
 
@@ -43,11 +37,30 @@ By compiling with `-O0`, the compiler refused to use AVX vector instructions. Fu
 
 The naive algorithm is heavily Memory Bound, but with an important architectural nuance. The Roofline Model places the main hotspot just below the **L3 Cache Bandwidth** diagonal (achieving an effective bandwidth of ~37.8 GB/s), rather than falling all the way down to the DRAM limit. With an arithmetic intensity of just 0.017 FLOP/Byte, the lack of register allocation caused by the `-O0` flag is evident. Theoretically, the core operation `c[i][j] += a[i][k] * b[k][j]` should have an intensity of $2 \text{ FLOP} / 32 \text{ Byte} = 0.0625$. This massive drop is a direct consequence of the compiler reloading loop variables and array elements from the memory stack at every single iteration. However, because the loop sequence is optimized (`i-k-j`), the memory access pattern exhibits excellent spatial locality. This contiguous access allows the CPU's hardware prefetcher to effectively pull data from the DRAM into the L3 cache ahead of time. Consequently, the execution is not bottlenecked by the bare DRAM latency, but rather by the L3 bandwidth and the purely scalar instructions.
 
+
+
 ---
 
-**Vectorizzation**
-For the vectorization i decide to use level 3
+## Vectorization Analysis and Best Sequential Time
 
-icx -g -O3 -xHost -fiopenmp -qopt-report=3 -o matmul mat_mul.c
+To fix the memory bottleneck and the slow scalar execution from the baseline, I used the compiler's advanced optimizations for the SW2 machine's architecture.
 
-Computation time (N=5000): 63.727352 seconds
+**Compiling line:** `icx -g -O3 -xHost -fiopenmp -qopt-report=3 -o matmul mat_mul.c`
+**Data size:** RESOLUTION = 5000
+**Time taken:** 68.62 sec
+
+Using the `-O3` and `-xHost` flags reduced the execution time significantly. To see exactly what the compiler did, I checked the vectorization report (`-qopt-report=3`). Because the nested loops in our code are inverted (`i-k-j`), there are no data dependencies, allowing for perfect vectorization. The `mat_mul.optrpt` file confirmed that the innermost loop (`for j = 0; j < n; ++j`) was successfully vectorized. The compiler used a vector length of 4 (`vector length 4`), which means it packed four 64-bit double-precision variables into 256-bit AVX2 registers.
+
+![alt text](snap/roofline_vect.png)
+
+Running Intel Advisor on this optimized program confirms the compiler's report and shows a completely transformed Roofline Model:
+
+- **Instruction Set and FMA:** The hotspot changed from scalar `Int64` arithmetic to vectorized operations using **FMA** (Fused Multiply-Add). The CPU now performs the addition and multiplication together in a single hardware step.
+- **Arithmetic Intensity:** The intensity increased from 0.017 FLOP/Byte to **0.083 FLOP/Byte**. This proves the compiler placed the variables into fast CPU registers, preventing slow memory reloads.
+- **Performance Bound:** The hotspot moved much higher on the graph, reaching **3.692 GFLOPS** (up from 0.644 GFLOPS). This shifts the bottleneck away from memory latency and closer to the actual compute limits of the architecture.
+
+
+
+---
+
+## Best Sequential Time
