@@ -1,24 +1,24 @@
 Begin optimization report for: main
 
-LOOP BEGIN at mat_mul.c (28, 5)
+LOOP BEGIN at mat_mul.c (27, 5)
 <Predicate Optimized v1>
-    remark #25422: Invariant Condition at line 29 hoisted out of this loop
+    remark #25422: Invariant Condition at line 28 hoisted out of this loop
 
-    LOOP BEGIN at mat_mul.c (29, 9)
+    LOOP BEGIN at mat_mul.c (28, 9)
         remark #25260: Dead loop optimized away
     LOOP END
 LOOP END
 
-LOOP BEGIN at mat_mul.c (28, 5)
-<Predicate Optimized v2, split from line 29>
+LOOP BEGIN at mat_mul.c (27, 5)
+<Predicate Optimized v2, split from line 28>
     remark #25452: Poor spatial locality detected in memref(s). 
     remark #15541: loop was not vectorized: outer loop is not an auto-vectorization candidate.
 
-    LOOP BEGIN at mat_mul.c (29, 9)
+    LOOP BEGIN at mat_mul.c (28, 9)
         remark #15300: LOOP WAS VECTORIZED
         remark #15305: vectorization support: vector length 4
-        remark #15389: vectorization support: unmasked unaligned unit stride store: a [ /home/marcox/Documents/HPC/mat_mul.c (30, 13) ] 
-        remark #15389: vectorization support: unmasked unaligned unit stride store: b [ /home/marcox/Documents/HPC/mat_mul.c (31, 13) ] 
+        remark #15389: vectorization support: unmasked unaligned unit stride store: a [ /home/marcox/Documents/HPC/mat_mul.c (29, 13) ] 
+        remark #15389: vectorization support: unmasked unaligned unit stride store: b [ /home/marcox/Documents/HPC/mat_mul.c (30, 13) ] 
         remark #15475: --- begin vector loop cost summary ---
         remark #15476: scalar cost: 5.000000 
         remark #15477: vector cost: 2.187500 
@@ -30,34 +30,34 @@ LOOP BEGIN at mat_mul.c (28, 5)
         remark #15474: --- end vector loop memory reference summary ---
     LOOP END
 
-    LOOP BEGIN at mat_mul.c (29, 9)
+    LOOP BEGIN at mat_mul.c (28, 9)
     <Remainder loop for vectorization>
     LOOP END
 LOOP END
 
-LOOP BEGIN at mat_mul.c (39, 5)
+LOOP BEGIN at mat_mul.c (38, 5)
 <Predicate Optimized v1>
-    remark #25422: Invariant Condition at line 40 hoisted out of this loop
+    remark #25422: Invariant Condition at line 39 hoisted out of this loop
 
-    LOOP BEGIN at mat_mul.c (40, 9)
+    LOOP BEGIN at mat_mul.c (39, 9)
         remark #25260: Dead loop optimized away
     LOOP END
 LOOP END
 
-LOOP BEGIN at mat_mul.c (39, 5)
-<Predicate Optimized v2, split from line 40>
+LOOP BEGIN at mat_mul.c (38, 5)
+<Predicate Optimized v2, split from line 39>
     remark #25452: Poor spatial locality detected in memref(s). 
     remark #15541: loop was not vectorized: outer loop is not an auto-vectorization candidate.
 
-    LOOP BEGIN at mat_mul.c (40, 9)
+    LOOP BEGIN at mat_mul.c (39, 9)
         remark #15541: loop was not vectorized: outer loop is not an auto-vectorization candidate.
 
-        LOOP BEGIN at mat_mul.c (41, 13)
+        LOOP BEGIN at mat_mul.c (40, 13)
             remark #15300: LOOP WAS VECTORIZED
             remark #15305: vectorization support: vector length 4
-            remark #15389: vectorization support: unmasked unaligned unit stride load: b [ /home/marcox/Documents/HPC/mat_mul.c (42, 38) ] 
-            remark #15389: vectorization support: unmasked unaligned unit stride load: c [ /home/marcox/Documents/HPC/mat_mul.c (42, 25) ] 
-            remark #15389: vectorization support: unmasked unaligned unit stride store: c [ /home/marcox/Documents/HPC/mat_mul.c (42, 17) ] 
+            remark #15389: vectorization support: unmasked unaligned unit stride load: b [ /home/marcox/Documents/HPC/mat_mul.c (41, 38) ] 
+            remark #15389: vectorization support: unmasked unaligned unit stride load: c [ /home/marcox/Documents/HPC/mat_mul.c (41, 25) ] 
+            remark #15389: vectorization support: unmasked unaligned unit stride store: c [ /home/marcox/Documents/HPC/mat_mul.c (41, 17) ] 
             remark #15475: --- begin vector loop cost summary ---
             remark #15476: scalar cost: 9.000000 
             remark #15477: vector cost: 3.187500 
@@ -70,7 +70,7 @@ LOOP BEGIN at mat_mul.c (39, 5)
             remark #15474: --- end vector loop memory reference summary ---
         LOOP END
 
-        LOOP BEGIN at mat_mul.c (41, 13)
+        LOOP BEGIN at mat_mul.c (40, 13)
         <Remainder loop for vectorization>
         LOOP END
     LOOP END
@@ -92,47 +92,47 @@ DEAD STATIC FUNC: atoi
 DEAD STATIC FUNC: llvm.ssa.copy.i64
 
 COMPILE FUNC: main
-   -> EXTERN: puts mat_mul.c(8,9)
-   -> EXTERN: printf mat_mul.c(9,9)
-   -> INLINE: atoi mat_mul.c(13,13) (10<=487)
+   -> EXTERN: puts mat_mul.c(7,9)
+   -> EXTERN: printf mat_mul.c(8,9)
+   -> INLINE: atoi mat_mul.c(12,13) (10<=487)
       -> EXTERN: strtol stdlib.h(487,16)
+   -> EXTERN: malloc mat_mul.c(17,22)
    -> EXTERN: malloc mat_mul.c(18,22)
    -> EXTERN: malloc mat_mul.c(19,22)
-   -> EXTERN: malloc mat_mul.c(20,22)
-   -> EXTERN: printf mat_mul.c(23,9)
-   -> EXTERN: omp_get_wtime mat_mul.c(36,25)
-   -> EXTERN: omp_get_wtime mat_mul.c(47,23)
-   -> EXTERN: printf mat_mul.c(48,5)
+   -> EXTERN: printf mat_mul.c(22,9)
+   -> EXTERN: omp_get_wtime mat_mul.c(35,25)
+   -> EXTERN: omp_get_wtime mat_mul.c(46,23)
+   -> EXTERN: printf mat_mul.c(47,5)
+   -> EXTERN: free mat_mul.c(71,5)
    -> EXTERN: free mat_mul.c(72,5)
    -> EXTERN: free mat_mul.c(73,5)
-   -> EXTERN: free mat_mul.c(74,5)
-   -> EXTERN: omp_get_wtime mat_mul.c(36,25)
+   -> EXTERN: omp_get_wtime mat_mul.c(35,25)
    -> DELETE: llvm.ssa.copy.i64
-   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(29,29)
-   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(28,25)
+   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(28,29)
+   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(27,25)
    -> DELETE: llvm.ssa.copy.i64
-   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(41,32)
+   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(40,32)
    -> DELETE: llvm.ssa.copy.i64
-   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(40,29)
-   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(39,24)
-   -> llvm.memset.p0.i64 mat_mul.c(32,21)
+   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(39,29)
+   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(38,24)
+   -> llvm.memset.p0.i64 mat_mul.c(31,21)
 
 ---- End Inlining Report ------
 Register allocation report for: main
 FUNCTION BEGIN
  9 reloads 8 spills 
- LOOP1 BEGIN at (mat_mul.c:28:5)
-  LOOP2 BEGIN at (mat_mul.c:29:9)
+ LOOP1 BEGIN at (mat_mul.c:27:5)
+  LOOP2 BEGIN at (mat_mul.c:28:9)
   LOOP2 END
-  LOOP2 BEGIN at (mat_mul.c:29:9)
+  LOOP2 BEGIN at (mat_mul.c:28:9)
   LOOP2 END
  LOOP1 END
- LOOP1 BEGIN at (mat_mul.c:39:5)
+ LOOP1 BEGIN at (mat_mul.c:38:5)
   1 reloads 
-  LOOP2 BEGIN at (mat_mul.c:40:9)
-   LOOP3 BEGIN at (mat_mul.c:41:13)
+  LOOP2 BEGIN at (mat_mul.c:39:9)
+   LOOP3 BEGIN at (mat_mul.c:40:13)
    LOOP3 END
-   LOOP3 BEGIN at (mat_mul.c:41:13)
+   LOOP3 BEGIN at (mat_mul.c:40:13)
    LOOP3 END
   LOOP2 END
  LOOP1 END

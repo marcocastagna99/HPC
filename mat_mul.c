@@ -3,7 +3,6 @@
 #include <omp.h>
 
 int main(int argc, char **argv) {
-    // 1. Dynamic reading of N from command line
     if (argc < 2) {
         printf("Error: specify the dimension N.\n");
         printf("Usage: %s <N>\n", argv[0]);

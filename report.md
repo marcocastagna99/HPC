@@ -30,7 +30,7 @@ Starting with a baseline approach, I compiled the code disabling all optimizatio
 
 The hotspot resides at row 41 (`for (j = 0; j < n; ++j)`): this single loop consumes 99.6% of the total execution time (388.0s out of the 390s total).
 
-By compiling with `-O0`, the compiler refused to use AVX vector instructions. Furthermore, as clearly captured by Intel Advisor (which flags the loop with **`Int64`** traits instead of Double Precision), the machine is spending a massive amount of scalar clock cycles computing array indices and pointer arithmetic rather than the actual floating-point math. This massive overhead is reflected in the gigantic execution time (~390 seconds for a $5000 \times 5000$ matrix).
+By compiling with `-O0`, the compiler refused to use AVX vector instructions. Furthermore, as clearly captured by Intel Advisor (which flags the loop with **`Int64`** traits instead of Double Precision), the machine is spending a massive amount of scalar clock cycles computing array indices and pointer arithmetic rather than the actual floating-point math. This massive overhead is reflected in the huge execution time (~390 seconds for a $5000 \times 5000$ matrix).
 
 ![alt text](snap/roofline.png)
 ![alt text](snap/hotspot.png)
@@ -64,3 +64,27 @@ Running Intel Advisor on this optimized program confirms the compiler's report a
 ---
 
 ## Best Sequential Time
+
+After setting a strong baseline with `-O3` and `-xHost`, I tested advanced compiler flags to maximize sequential performance:
+
+* **`-xHost`**: Tells the compiler to use the best instructions for the specific CPU running the code (enabling AVX2/FMA).
+* **`-ffast-math`**: Relaxes strict floating-point rules, allowing the compiler to reorder math operations for faster execution.
+* **`-ipo` (Interprocedural Optimization)**: Analyzes the whole program at once to optimize how data flows between functions.
+* **`-fno-alias`**: Tells the compiler that the arrays (`a`, `b`, `c`) do not overlap in memory. This removes slow safety checks.
+
+Using all these flags together (`icx -g -O3 -xHost -fiopenmp -ipo -ffast-math -fno-alias`) resulted in our **Peak Sequential Time** of **[Inserisci qui il tempo finale] seconds**. This shows that removing strict memory and math constraints allows the CPU to run at its maximum speed.
+
+icx -g -O3 -xHost -fiopenmp -o matmul mat_mul.c
+72.359393 seconds
+
+icx -g -O3 -xHost -fiopenmp -ffast-math -o matmul mat_mul.c
+71.966849 seconds
+
+icx -g -O3 -xHost -fiopenmp -ipo -o matmul mat_mul.c
+70.703261 seconds
+
+icx -g -O3 -xHost -fiopenmp -fno-alias -o matmul mat_mul.c
+71.526865 seconds
+
+icx -g -O3 -xHost -fiopenmp -ipo -ffast-math -fno-alias -o matmul mat_mul.c
+71.514240 seconds
