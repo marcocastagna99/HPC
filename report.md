@@ -63,7 +63,7 @@ Running Intel Advisor on this optimized program confirms the compiler's report a
 
 ---
 
-## Best Sequential Time
+## Advanced Compiler Optimizations and Best Sequential Time
 
 After setting a strong baseline with `-O3` and `-xHost`, I tested advanced compiler flags to maximize sequential performance:
 
@@ -72,19 +72,35 @@ After setting a strong baseline with `-O3` and `-xHost`, I tested advanced compi
 * **`-ipo` (Interprocedural Optimization)**: Analyzes the whole program at once to optimize how data flows between functions.
 * **`-fno-alias`**: Tells the compiler that the arrays (`a`, `b`, `c`) do not overlap in memory. This removes slow safety checks.
 
-Using all these flags together (`icx -g -O3 -xHost -fiopenmp -ipo -ffast-math -fno-alias`) resulted in our **Peak Sequential Time** of **[Inserisci qui il tempo finale] seconds**. This shows that removing strict memory and math constraints allows the CPU to run at its maximum speed.
+To measure the impact of these flags, I ran the algorithm with $N=5000$ using different combinations:
 
-icx -g -O3 -xHost -fiopenmp -o matmul mat_mul.c
-72.359393 seconds
+| Compiler Flags | Execution Time |
+| --- | --- |
+| `-O3 -xHost` (Baseline) | 72.359393 seconds |
+| `-O3 -xHost -ffast-math` | 71.966849 seconds |
+| `-O3 -xHost -ipo` | 70.703261 seconds |
+| `-O3 -xHost -fno-alias` | 71.526865 seconds |
+| `-O3 -xHost -ipo -ffast-math -fno-alias` | 71.514240 seconds |
 
-icx -g -O3 -xHost -fiopenmp -ffast-math -o matmul mat_mul.c
-71.966849 seconds
+By exploiting these optimization flags, I achieved a further reduction in the hotspot execution time. I also checked the new Roofline Model for the fully optimized version:
+![alt text](snap/compiler-optimization.png)
+The graph provides visual proof that the hardware is utilized more efficiently, with the GFLOPS increasing accordingly. Because this configuration extracts the maximum compute power from a single core, I decided to use -ipo execution time of **70.70 seconds** as our **Best Sequential Time ($T_1$)**.
 
-icx -g -O3 -xHost -fiopenmp -ipo -o matmul mat_mul.c
-70.703261 seconds
+---
+## OpenMP
 
-icx -g -O3 -xHost -fiopenmp -fno-alias -o matmul mat_mul.c
-71.526865 seconds
+#pragma omp parallel for private(j, k) schedule(dynamic) dynamic scheduling : 27.032384 seconds
+#pragma omp parallel for private(j, k) schedule(static) static scheduling: 31.561300 seconds
 
-icx -g -O3 -xHost -fiopenmp -ipo -ffast-math -fno-alias -o matmul mat_mul.c
-71.514240 seconds
+static con default(none) shared(a, b, c, n) private(j, k)
+34.768416 seconds
+dynamic con default(none) shared(a, b, c, n) private(j, k)
+29.145954 seconds
+
+
+con solo 4 thread e static scheduler 19.030195 seconds
+
+4 thread e dynamic
+17.642768 seconds
+
+![alt text](snap/roofline_parallell.png)
