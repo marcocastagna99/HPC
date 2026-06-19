@@ -26,16 +26,15 @@ The source code features a design optimization where the nested loops are invert
 
 ## **Hotspot Identification**
 
-Starting with a baseline approach, I compiled the code disabling all optimizations (`icx -g -O0 -xHost -fiopenmp -o matmul mat_mul.c`) and analyzed the algorithm with **Data size** = 2000, resulting in a computation time of 14.401241 seconds. I then decided to roughly double the size to $N=5000$, which yielded a computation time of 390.00 seconds.
+Starting with a baseline approach, I compiled the code disabling all optimizations (`icx -g -O0 -xHost -fiopenmp -o matmul mat_mul.c`) and analyzed the algorithm with **Data size** = 2000, resulting in a computation time of 14.401241 seconds. I then decided to roughly double the size to $N=5000$, which yielded a computation time of 227.614839
+The hotspot resides at row 40 (`for (j = 0; j < n; ++j)`): this single loop consumes 99.9% of the total execution time (227.353s out of the 227.61s total).
 
-The hotspot resides at row 41 (`for (j = 0; j < n; ++j)`): this single loop consumes 99.6% of the total execution time (388.0s out of the 390s total).
+By compiling with `-O0`, the compiler refused to use AVX vector instructions. Furthermore, as clearly captured by Intel Advisor (which flags the loop with **`Int64`** traits instead of Double Precision), the machine is spending a massive amount of scalar clock cycles computing array indices and pointer arithmetic rather than the actual floating-point math. This massive overhead is reflected in the huge execution time (~227 seconds for a $5000 \times 5000$ matrix).
 
-By compiling with `-O0`, the compiler refused to use AVX vector instructions. Furthermore, as clearly captured by Intel Advisor (which flags the loop with **`Int64`** traits instead of Double Precision), the machine is spending a massive amount of scalar clock cycles computing array indices and pointer arithmetic rather than the actual floating-point math. This massive overhead is reflected in the huge execution time (~390 seconds for a $5000 \times 5000$ matrix).
+![alt text](snap/roofline.png)
+![alt text](snap/hotspot.png)
 
-![alt text](snap/sw2_roofline_hotspot.png)
-![alt text](snap/sw2_hotspot.png)
-
-The naive algorithm is heavily Memory Bound, but with an important architectural nuance. The Roofline Model places the main hotspot just below the **L3 Cache Bandwidth** diagonal (achieving an effective bandwidth of ~37.8 GB/s), rather than falling all the way down to the DRAM limit. With an arithmetic intensity of just 0.017 FLOP/Byte, the lack of register allocation caused by the `-O0` flag is evident. Theoretically, the core operation `c[i][j] += a[i][k] * b[k][j]` should have an intensity of $2 \text{ FLOP} / 32 \text{ Byte} = 0.0625$. This massive drop is a direct consequence of the compiler reloading loop variables and array elements from the memory stack at every single iteration. However, because the loop sequence is optimized (`i-k-j`), the memory access pattern exhibits excellent spatial locality. This contiguous access allows the CPU's hardware prefetcher to effectively pull data from the DRAM into the L3 cache ahead of time. Consequently, the execution is not bottlenecked by the bare DRAM latency, but rather by the L3 bandwidth and the purely scalar instructions.
+The naive algorithm is heavily Memory Bound, but with an important architectural nuance. The Roofline Model places the main hotspot just below the **L3 Cache Bandwidth** diagonal (hotspot performance 1.1Gflops while l3 cache at the same aritmethic intensity achieve 1.13 GFLOPS with  an effective bandwidth of ~67.78 GB/s), rather than falling all the way down to the DRAM limit. With an arithmetic intensity of just 0.017 FLOP/Byte, the lack of register allocation caused by the `-O0` flag is evident. Theoretically, the core operation `c[i][j] += a[i][k] * b[k][j]` should have an intensity of $2 \text{ FLOP} / 32 \text{ Byte} = 0.0625$. This massive drop is a direct consequence of the compiler reloading loop variables and array elements from the memory stack at every single iteration. However, because the loop sequence is optimized (`i-k-j`), the memory access pattern exhibits excellent spatial locality. This contiguous access allows the CPU's hardware prefetcher to effectively pull data from the DRAM into the L3 cache ahead of time. Consequently, the execution is not bottlenecked by the bare DRAM latency, but rather by the L3 bandwidth and the purely scalar instructions.
 
 
 
@@ -47,7 +46,7 @@ To fix the memory bottleneck and the slow scalar execution from the baseline, I 
 
 **Compiling line:** `icx -g -O3 -xHost -fiopenmp -qopt-report=3 -o matmul mat_mul.c`
 **Data size:** RESOLUTION = 5000
-**Time taken:** 68.62 sec
+**Time taken:** 9.547438 seconds
 
 Using the `-O3` and `-xHost` flags reduced the execution time significantly. To see exactly what the compiler did, I checked the vectorization report (`-qopt-report=3`). Because the nested loops in our code are inverted (`i-k-j`), there are no data dependencies, allowing for perfect vectorization. The `mat_mul.optrpt` file confirmed that the innermost loop (`for j = 0; j < n; ++j`) was successfully vectorized. The compiler used a vector length of 4 (`vector length 4`), which means it packed four 64-bit double-precision variables into 256-bit AVX2 registers.
 

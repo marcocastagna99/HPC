@@ -1,0 +1,4991 @@
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: '/usr/include/stdlib.h', Line: 364, Column: 16 }
+Function:        atoi
+Args:
+  - Callee:          strtol
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          atoi
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 363, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: '/usr/include/stdlib.h', Line: 364, Column: 16 }
+Function:        atoi
+Args:
+  - Callee:          strtol
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          atoi
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 363, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 7, Column: 9 }
+Function:        main
+Args:
+  - Callee:          puts
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 8, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 17, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 18, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 19, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 22, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 35, Column: 25 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 46, Column: 23 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 47, Column: 5 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 71, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 72, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 73, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 7, Column: 9 }
+Function:        main
+Args:
+  - Callee:          puts
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 8, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 17, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 18, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 19, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 22, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 35, Column: 25 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 46, Column: 23 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 47, Column: 5 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 71, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 72, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 73, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Passed
+Pass:            inline
+Name:            Inlined
+DebugLoc:        { File: mat_mul.c, Line: 12, Column: 13 }
+Function:        main
+Args:
+  - String:          ''''
+  - Callee:          atoi
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 363, Column: 0 }
+  - String:          ''' inlined into '''
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ''''
+  - String:          ' with '
+  - String:          '(cost='
+  - Cost:            '10'
+  - String:          ', threshold='
+  - Threshold:       '487'
+  - String:          ')'
+  - String:          ' at callsite '
+  - String:          main
+  - String:          ':'
+  - Line:            '7'
+  - String:          ':'
+  - Column:          '13'
+  - String:          ';'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 7, Column: 9 }
+Function:        main
+Args:
+  - Callee:          puts
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 8, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: '/usr/include/stdlib.h', Line: 364, Column: 16 }
+Function:        main
+Args:
+  - Callee:          strtol
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 17, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 18, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 19, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 22, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 35, Column: 25 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 46, Column: 23 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 47, Column: 5 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 71, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 72, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 73, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 7, Column: 9 }
+Function:        main
+Args:
+  - Callee:          puts
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 8, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: '/usr/include/stdlib.h', Line: 364, Column: 16 }
+Function:        main
+Args:
+  - Callee:          strtol
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 17, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 18, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 19, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 22, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 35, Column: 25 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 46, Column: 23 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 47, Column: 5 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 71, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 72, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul.c, Line: 73, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 29, Column: 13 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+    DebugLoc:        { File: mat_mul.c, Line: 29, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 29, Column: 13 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 29, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 29, Column: 13 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul.c, Line: 29, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 30, Column: 13 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul.c, Line: 30, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 31, Column: 13 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul.c, Line: 31, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 28, Column: 23 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 28, Column: 23 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 17 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 40, Column: 27 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 40, Column: 27 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 17 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 39, Column: 23 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 39, Column: 23 }
+...
+--- !Passed
+Pass:            loop-idiom
+Name:            ProcessLoopStridedStore
+DebugLoc:        { File: mat_mul.c, Line: 31, Column: 21 }
+Function:        main
+Args:
+  - String:          'Transformed loop-strided store in '
+  - Function:        main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' function into a call to '
+  - NewFunction:     llvm.memset.p0.i64
+  - String:          '() intrinsic'
+  - FromBlock:       ''
+  - ToBlock:         ''
+...
+--- !Passed
+Pass:            loop-idiom
+Name:            ProcessLoopStridedStore
+DebugLoc:        { File: mat_mul.c, Line: 31, Column: 21 }
+Function:        main
+Args:
+  - String:          'Transformed loop-strided store in '
+  - Function:        main
+    DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+  - String:          ' function into a call to '
+  - NewFunction:     llvm.memset.p0.i64
+  - String:          '() intrinsic'
+  - FromBlock:       ''
+  - ToBlock:         ''
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul.c, Line: 8, Column: 35 }
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: mat_mul.c, Line: 7, Column: 9 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul.c, Line: 8, Column: 35 }
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: mat_mul.c, Line: 7, Column: 9 }
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Passed
+Pass:            slp-vectorizer
+Name:            VectorizedHorizontalReduction
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'Vectorized horizontal reduction with cost '
+  - Cost:            '-14'
+  - String:          ' and with tree size '
+  - TreeSize:        '6'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotPossible
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: vectorization was impossible'
+  - String:          ' with available vectorization factors'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul.c, Line: 21, Column: 10 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotPossible
+DebugLoc:        { File: mat_mul.c, Line: 17, Column: 29 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: vectorization was impossible'
+  - String:          ' with available vectorization factors'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotPossible
+DebugLoc:        { File: mat_mul.c, Line: 17, Column: 29 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: vectorization was impossible'
+  - String:          ' with available vectorization factors'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotPossible
+DebugLoc:        { File: mat_mul.c, Line: 17, Column: 29 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: vectorization was impossible'
+  - String:          ' with available vectorization factors'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Passed
+Pass:            loop-unroll
+Name:            PartialUnrolled
+DebugLoc:        { File: mat_mul.c, Line: 27, Column: 5 }
+Function:        main
+Args:
+  - String:          'unrolled loop by a factor of '
+  - UnrollCount:     '2'
+  - String:          ' with run-time trip count'
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 29, Column: 21 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 29, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 29, Column: 21 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 29, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 29, Column: 21 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 29, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 29, Column: 21 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 29, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 29, Column: 21 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 29, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 29, Column: 21 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 29, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            and
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            and
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shufflevector
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shufflevector
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shufflevector
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shufflevector
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shufflevector
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shufflevector
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shufflevector
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shufflevector
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 40, Column: 27 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 40, Column: 27 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            and
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            insertelement
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shufflevector
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 40, Column: 27 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 40, Column: 27 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            and
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            lshr
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 40, Column: 27 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 40, Column: 27 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            and
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            and
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 40, Column: 27 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 40, Column: 27 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            and
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            lshr
+    DebugLoc:        { File: mat_mul.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            and
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: mat_mul.c, Line: 41, Column: 28 }
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul.c, Line: 40, Column: 13 }
+Function:        main
+Args:
+  - NumVRCopies:     '2'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '5.768576e+07'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul.c, Line: 39, Column: 9 }
+Function:        main
+Args:
+  - NumSpills:       '1'
+  - String:          ' spills '
+  - TotalSpillsCost: '1.311040e+06'
+  - String:          ' total spills cost '
+  - NumReloads:      '7'
+  - String:          ' reloads '
+  - TotalReloadsCost: '9.177281e+06'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '2'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '2.130440e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '3'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '5.850516e+07'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul.c, Line: 39, Column: 9 }
+Function:        main
+Args:
+  - NumFoldedReloads: '2'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '2.130440e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '1'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '8.194001e+05'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul.c, Line: 38, Column: 5 }
+Function:        main
+Args:
+  - NumSpills:       '3'
+  - String:          ' spills '
+  - TotalSpillsCost: '1.433950e+06'
+  - String:          ' total spills cost '
+  - NumReloads:      '13'
+  - String:          ' reloads '
+  - TotalReloadsCost: '9.505041e+06'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '10'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '4.629610e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '6'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '5.940650e+07'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul.c, Line: 39, Column: 9 }
+Function:        main
+Args:
+  - NumReloads:      '2'
+  - String:          ' reloads '
+  - TotalReloadsCost: '2.130440e+06'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '2'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '2.130440e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '1'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '8.194001e+05'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul.c, Line: 39, Column: 9 }
+Function:        main
+Args:
+  - NumFoldedReloads: '2'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '2.130440e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '1'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '8.194001e+05'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul.c, Line: 38, Column: 5 }
+Function:        main
+Args:
+  - NumReloads:      '7'
+  - String:          ' reloads '
+  - TotalReloadsCost: '2.376260e+06'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '9'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '4.588640e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '4'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '1.720740e+06'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul.c, Line: 40, Column: 13 }
+Function:        main
+Args:
+  - NumSpills:       '9'
+  - String:          ' spills '
+  - TotalSpillsCost: '1.462117e+06'
+  - String:          ' total spills cost '
+  - NumFoldedSpills: '3'
+  - String:          ' folded spills '
+  - TotalFoldedSpillsCost: '1.536375e+04'
+  - String:          ' total folded spills cost '
+  - NumReloads:      '27'
+  - String:          ' reloads '
+  - TotalReloadsCost: '1.190179e+07'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '20'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '9.223372e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '14'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '6.114261e+07'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul.c, Line: 39, Column: 9 }
+Function:        main
+Args:
+  - NumSpills:       '21'
+  - String:          ' spills '
+  - TotalSpillsCost: '1.464038e+06'
+  - String:          ' total spills cost '
+  - NumFoldedSpills: '3'
+  - String:          ' folded spills '
+  - TotalFoldedSpillsCost: '1.536375e+04'
+  - String:          ' total folded spills cost '
+  - NumReloads:      '33'
+  - String:          ' reloads '
+  - TotalReloadsCost: '1.190275e+07'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '23'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '9.223852e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '17'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '6.114309e+07'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul.c, Line: 38, Column: 5 }
+Function:        main
+Args:
+  - NumSpills:       '25'
+  - String:          ' spills '
+  - TotalSpillsCost: '1.464058e+06'
+  - String:          ' total spills cost '
+  - NumFoldedSpills: '3'
+  - String:          ' folded spills '
+  - TotalFoldedSpillsCost: '1.536375e+04'
+  - String:          ' total folded spills cost '
+  - NumReloads:      '36'
+  - String:          ' reloads '
+  - TotalReloadsCost: '1.190277e+07'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '25'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '9.223862e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '21'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '6.114311e+07'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul.c, Line: 27, Column: 5 }
+Function:        main
+Args:
+  - NumVRCopies:     '2'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '3.904762e+00'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            SpillReloadCopies
+DebugLoc:        { File: mat_mul.c, Line: 5, Column: 1 }
+Function:        main
+Args:
+  - NumSpills:       '38'
+  - String:          ' spills '
+  - TotalSpillsCost: '1.464060e+06'
+  - String:          ' total spills cost '
+  - NumFoldedSpills: '3'
+  - String:          ' folded spills '
+  - TotalFoldedSpillsCost: '1.536375e+04'
+  - String:          ' total folded spills cost '
+  - NumReloads:      '46'
+  - String:          ' reloads '
+  - TotalReloadsCost: '1.190277e+07'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '27'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '9.223862e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '49'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '6.114312e+07'
+  - String:          ' total copies cost '
+  - String:          generated in function
+...
+--- !Analysis
+Pass:            prologepilog
+Name:            StackSize
+DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+Function:        main
+Args:
+  - NumStackBytes:   '360'
+  - String:          ' stack bytes in function'
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '14'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '7'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '19'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '17'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '16'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '7'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '8'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '21'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '7'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '17'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '10'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '36'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '11'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '23'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '7'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '7'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '15'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '20'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '40'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '9'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '7'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '8'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '11'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '7'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '15'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '20'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '60'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '14'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '8'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionCount
+DebugLoc:        { File: mat_mul.c, Line: 5, Column: 0 }
+Function:        main
+Args:
+  - NumInstructions: '647'
+  - String:          ' instructions in function'
+...

@@ -1,32 +1,35 @@
-Begin optimization report for: main
+Global optimization report for : main
 
 LOOP BEGIN at mat_mul.c (27, 5)
-<Predicate Optimized v1>
-    remark #25422: Invariant Condition at line 28 hoisted out of this loop
-
-    LOOP BEGIN at mat_mul.c (28, 9)
-        remark #25260: Dead loop optimized away
-    LOOP END
-LOOP END
-
-LOOP BEGIN at mat_mul.c (27, 5)
-<Predicate Optimized v2, split from line 28>
-    remark #25452: Poor spatial locality detected in memref(s). 
-    remark #15541: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+    remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
 
     LOOP BEGIN at mat_mul.c (28, 9)
         remark #15300: LOOP WAS VECTORIZED
         remark #15305: vectorization support: vector length 4
-        remark #15389: vectorization support: unmasked unaligned unit stride store: a [ /home/marcox/Documents/HPC/mat_mul.c (29, 13) ] 
-        remark #15389: vectorization support: unmasked unaligned unit stride store: b [ /home/marcox/Documents/HPC/mat_mul.c (30, 13) ] 
         remark #15475: --- begin vector loop cost summary ---
         remark #15476: scalar cost: 5.000000 
         remark #15477: vector cost: 2.187500 
         remark #15478: estimated potential speedup: 2.234375 
         remark #15309: vectorization support: normalized vectorization overhead 0.906250
+        remark #15482: vectorized math library calls: 0 
+        remark #15484: vector function calls: 0 
+        remark #15485: serialized function calls: 0
         remark #15488: --- end vector loop cost summary ---
         remark #15447: --- begin vector loop memory reference summary ---
+        remark #15450: unmasked unaligned unit stride loads: 0 
         remark #15451: unmasked unaligned unit stride stores: 2 
+        remark #15456: masked unaligned unit stride loads: 0 
+        remark #15457: masked unaligned unit stride stores: 0 
+        remark #15458: masked indexed (or gather) loads: 0 
+        remark #15459: masked indexed (or scatter) stores: 0 
+        remark #15462: unmasked indexed (or gather) loads: 0 
+        remark #15463: unmasked indexed (or scatter) stores: 0 
+        remark #15554: Unmasked VLS-optimized loads (each part of the group counted separately): 0
+        remark #15555: Masked VLS-optimized loads (each part of the group counted separately): 0
+        remark #15556: Unmasked VLS-optimized stores (each part of the group counted separately): 0
+        remark #15557: Masked VLS-optimized stores (each part of the group counted separately): 0
+        remark #15497: vector compress: 0 
+        remark #15498: vector expand: 0 
         remark #15474: --- end vector loop memory reference summary ---
     LOOP END
 
@@ -36,48 +39,104 @@ LOOP BEGIN at mat_mul.c (27, 5)
 LOOP END
 
 LOOP BEGIN at mat_mul.c (38, 5)
-<Predicate Optimized v1>
-    remark #25422: Invariant Condition at line 39 hoisted out of this loop
+    remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
 
     LOOP BEGIN at mat_mul.c (39, 9)
-        remark #25260: Dead loop optimized away
-    LOOP END
-LOOP END
-
-LOOP BEGIN at mat_mul.c (38, 5)
-<Predicate Optimized v2, split from line 39>
-    remark #25452: Poor spatial locality detected in memref(s). 
-    remark #15541: loop was not vectorized: outer loop is not an auto-vectorization candidate.
-
-    LOOP BEGIN at mat_mul.c (39, 9)
-        remark #15541: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+        remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
 
         LOOP BEGIN at mat_mul.c (40, 13)
-            remark #15300: LOOP WAS VECTORIZED
-            remark #15305: vectorization support: vector length 4
-            remark #15389: vectorization support: unmasked unaligned unit stride load: b [ /home/marcox/Documents/HPC/mat_mul.c (41, 38) ] 
-            remark #15389: vectorization support: unmasked unaligned unit stride load: c [ /home/marcox/Documents/HPC/mat_mul.c (41, 25) ] 
-            remark #15389: vectorization support: unmasked unaligned unit stride store: c [ /home/marcox/Documents/HPC/mat_mul.c (41, 17) ] 
-            remark #15475: --- begin vector loop cost summary ---
-            remark #15476: scalar cost: 9.000000 
-            remark #15477: vector cost: 3.187500 
-            remark #15478: estimated potential speedup: 2.765625 
-            remark #15309: vectorization support: normalized vectorization overhead 0.625000
-            remark #15488: --- end vector loop cost summary ---
-            remark #15447: --- begin vector loop memory reference summary ---
-            remark #15450: unmasked unaligned unit stride loads: 2 
-            remark #15451: unmasked unaligned unit stride stores: 1 
-            remark #15474: --- end vector loop memory reference summary ---
-        LOOP END
+            remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
 
-        LOOP BEGIN at mat_mul.c (40, 13)
-        <Remainder loop for vectorization>
+            LOOP BEGIN at mat_mul.c (38, 5)
+                remark #25566: blocked by 64
+                remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                LOOP BEGIN at mat_mul.c (39, 9)
+                    remark #25566: blocked by 64
+                    remark #25540: Loop unrolled and jammed by 8
+                    remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                    LOOP BEGIN at mat_mul.c (40, 13)
+                        remark #25566: blocked by 64
+                        remark #25563: Load hoisted out of the loop
+                        remark #15300: LOOP WAS VECTORIZED
+                        remark #15305: vectorization support: vector length 4
+                        remark #15475: --- begin vector loop cost summary ---
+                        remark #15476: scalar cost: 51.000000 
+                        remark #15477: vector cost: 15.000000 
+                        remark #15478: estimated potential speedup: 3.390625 
+                        remark #15309: vectorization support: normalized vectorization overhead 0.125000
+                        remark #15482: vectorized math library calls: 0 
+                        remark #15484: vector function calls: 0 
+                        remark #15485: serialized function calls: 0
+                        remark #15488: --- end vector loop cost summary ---
+                        remark #15447: --- begin vector loop memory reference summary ---
+                        remark #15450: unmasked unaligned unit stride loads: 16 
+                        remark #15451: unmasked unaligned unit stride stores: 8 
+                        remark #15456: masked unaligned unit stride loads: 0 
+                        remark #15457: masked unaligned unit stride stores: 0 
+                        remark #15458: masked indexed (or gather) loads: 0 
+                        remark #15459: masked indexed (or scatter) stores: 0 
+                        remark #15462: unmasked indexed (or gather) loads: 0 
+                        remark #15463: unmasked indexed (or scatter) stores: 0 
+                        remark #15554: Unmasked VLS-optimized loads (each part of the group counted separately): 0
+                        remark #15555: Masked VLS-optimized loads (each part of the group counted separately): 0
+                        remark #15556: Unmasked VLS-optimized stores (each part of the group counted separately): 0
+                        remark #15557: Masked VLS-optimized stores (each part of the group counted separately): 0
+                        remark #15497: vector compress: 0 
+                        remark #15498: vector expand: 0 
+                        remark #15474: --- end vector loop memory reference summary ---
+                        remark #25583: Number of Array Refs Scalar Replaced In Loop: 14
+                    LOOP END
+
+                    LOOP BEGIN at mat_mul.c (40, 13)
+                    <Remainder loop for vectorization>
+                        remark #25583: Number of Array Refs Scalar Replaced In Loop: 14
+                    LOOP END
+                LOOP END
+
+                LOOP BEGIN at mat_mul.c (39, 9)
+                <Remainder loop>
+                    remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                    LOOP BEGIN at mat_mul.c (40, 13)
+                        remark #15300: LOOP WAS VECTORIZED
+                        remark #15305: vectorization support: vector length 4
+                        remark #15475: --- begin vector loop cost summary ---
+                        remark #15476: scalar cost: 9.000000 
+                        remark #15477: vector cost: 3.187500 
+                        remark #15478: estimated potential speedup: 2.781250 
+                        remark #15309: vectorization support: normalized vectorization overhead 0.625000
+                        remark #15482: vectorized math library calls: 0 
+                        remark #15484: vector function calls: 0 
+                        remark #15485: serialized function calls: 0
+                        remark #15488: --- end vector loop cost summary ---
+                        remark #15447: --- begin vector loop memory reference summary ---
+                        remark #15450: unmasked unaligned unit stride loads: 2 
+                        remark #15451: unmasked unaligned unit stride stores: 1 
+                        remark #15456: masked unaligned unit stride loads: 0 
+                        remark #15457: masked unaligned unit stride stores: 0 
+                        remark #15458: masked indexed (or gather) loads: 0 
+                        remark #15459: masked indexed (or scatter) stores: 0 
+                        remark #15462: unmasked indexed (or gather) loads: 0 
+                        remark #15463: unmasked indexed (or scatter) stores: 0 
+                        remark #15554: Unmasked VLS-optimized loads (each part of the group counted separately): 0
+                        remark #15555: Masked VLS-optimized loads (each part of the group counted separately): 0
+                        remark #15556: Unmasked VLS-optimized stores (each part of the group counted separately): 0
+                        remark #15557: Masked VLS-optimized stores (each part of the group counted separately): 0
+                        remark #15497: vector compress: 0 
+                        remark #15498: vector expand: 0 
+                        remark #15474: --- end vector loop memory reference summary ---
+                    LOOP END
+
+                    LOOP BEGIN at mat_mul.c (40, 13)
+                    <Remainder loop for vectorization>
+                    LOOP END
+                LOOP END
+            LOOP END
         LOOP END
     LOOP END
 LOOP END
-=================================================================
-
-Begin optimization report for: atoi
 =================================================================
 
 ---- Begin Inlining Report ----
@@ -89,66 +148,25 @@ Option Values:
 
 DEAD STATIC FUNC: atoi
 
-DEAD STATIC FUNC: llvm.ssa.copy.i64
-
 COMPILE FUNC: main
-   -> EXTERN: puts mat_mul.c(7,9)
-   -> EXTERN: printf mat_mul.c(8,9)
-   -> INLINE: atoi mat_mul.c(12,13) (10<=487)
-      -> EXTERN: strtol stdlib.h(487,16)
-   -> EXTERN: malloc mat_mul.c(17,22)
-   -> EXTERN: malloc mat_mul.c(18,22)
-   -> EXTERN: malloc mat_mul.c(19,22)
-   -> EXTERN: printf mat_mul.c(22,9)
-   -> EXTERN: omp_get_wtime mat_mul.c(35,25)
-   -> EXTERN: omp_get_wtime mat_mul.c(46,23)
-   -> EXTERN: printf mat_mul.c(47,5)
-   -> EXTERN: free mat_mul.c(71,5)
-   -> EXTERN: free mat_mul.c(72,5)
-   -> EXTERN: free mat_mul.c(73,5)
-   -> EXTERN: omp_get_wtime mat_mul.c(35,25)
-   -> DELETE: llvm.ssa.copy.i64
-   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(28,29)
-   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(27,25)
-   -> DELETE: llvm.ssa.copy.i64
-   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(40,32)
-   -> DELETE: llvm.ssa.copy.i64
-   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(39,29)
-   -> DELETE: llvm.ssa.copy.i64 mat_mul.c(38,24)
-   -> llvm.memset.p0.i64 mat_mul.c(31,21)
+   -> DELETE: printf mat_mul.c (7,9)
+   -> EXTERN: printf mat_mul.c (8,9)
+   -> INLINE: atoi mat_mul.c (12,13) (10<=487)
+      -> EXTERN: strtol mat_mul.c (364,16)
+   -> EXTERN: malloc mat_mul.c (17,22)
+   -> EXTERN: malloc mat_mul.c (18,22)
+   -> EXTERN: malloc mat_mul.c (19,22)
+   -> EXTERN: printf mat_mul.c (22,9)
+   -> EXTERN: omp_get_wtime mat_mul.c (35,25)
+   -> EXTERN: omp_get_wtime mat_mul.c (46,23)
+   -> EXTERN: printf mat_mul.c (47,5)
+   -> EXTERN: free mat_mul.c (71,5)
+   -> EXTERN: free mat_mul.c (72,5)
+   -> EXTERN: free mat_mul.c (73,5)
+   -> EXTERN: puts mat_mul.c (7,9)
+   -> EXTERN: omp_get_wtime mat_mul.c (35,25)
+   -> llvm.memset.p0.i64 mat_mul.c (31,21)
+   -> llvm.masked.gather.v8f64.v8p0 mat_mul.c (41,38)
+   -> llvm.vector.reduce.fadd.v8f64 mat_mul.c (41,25)
 
 ---- End Inlining Report ------
-Register allocation report for: main
-FUNCTION BEGIN
- 9 reloads 8 spills 
- LOOP1 BEGIN at (mat_mul.c:27:5)
-  LOOP2 BEGIN at (mat_mul.c:28:9)
-  LOOP2 END
-  LOOP2 BEGIN at (mat_mul.c:28:9)
-  LOOP2 END
- LOOP1 END
- LOOP1 BEGIN at (mat_mul.c:38:5)
-  1 reloads 
-  LOOP2 BEGIN at (mat_mul.c:39:9)
-   LOOP3 BEGIN at (mat_mul.c:40:13)
-   LOOP3 END
-   LOOP3 BEGIN at (mat_mul.c:40:13)
-   LOOP3 END
-  LOOP2 END
- LOOP1 END
-
-Hardware registers used
- Reserved : 4 [ rsp ssp rip mxcsr  ]
- Available : 18 [ r10 r11 zmm4 zmm5 zmm6 zmm7 zmm8 zmm9 zmm10 zmm11 zmm12 zmm13 zmm14 zmm15 k0_k1 k2_k3 k4_k5 k6_k7  ]
- Callee Saved : 6 [ rbp rbx r12 r13 r14 r15  ]
- Assigned : 18 [ eflags rax rbp rbx rcx rdi rdx rsi r8 r9 r12 r13 r14 r15 zmm0 zmm1 zmm2 zmm3  ]
-
-Routine stack 
- Variables : 96 Bytes
-   Read Count : 10
-   Write Count : 8
- Spills : 112 Bytes
-   Read Count : 10
-   Write Count : 8
-
-FUNCTION END
