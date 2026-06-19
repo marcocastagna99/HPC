@@ -1,0 +1,212 @@
+Global optimization report for : main
+
+LOOP BEGIN at mat_mul_parallel.c (27, 5)
+    remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+    LOOP BEGIN at mat_mul_parallel.c (28, 9)
+        remark #15300: LOOP WAS VECTORIZED
+        remark #15305: vectorization support: vector length 4
+        remark #15475: --- begin vector loop cost summary ---
+        remark #15476: scalar cost: 5.000000 
+        remark #15477: vector cost: 2.187500 
+        remark #15478: estimated potential speedup: 2.234375 
+        remark #15309: vectorization support: normalized vectorization overhead 0.906250
+        remark #15482: vectorized math library calls: 0 
+        remark #15484: vector function calls: 0 
+        remark #15485: serialized function calls: 0
+        remark #15488: --- end vector loop cost summary ---
+        remark #15447: --- begin vector loop memory reference summary ---
+        remark #15450: unmasked unaligned unit stride loads: 0 
+        remark #15451: unmasked unaligned unit stride stores: 2 
+        remark #15456: masked unaligned unit stride loads: 0 
+        remark #15457: masked unaligned unit stride stores: 0 
+        remark #15458: masked indexed (or gather) loads: 0 
+        remark #15459: masked indexed (or scatter) stores: 0 
+        remark #15462: unmasked indexed (or gather) loads: 0 
+        remark #15463: unmasked indexed (or scatter) stores: 0 
+        remark #15554: Unmasked VLS-optimized loads (each part of the group counted separately): 0
+        remark #15555: Masked VLS-optimized loads (each part of the group counted separately): 0
+        remark #15556: Unmasked VLS-optimized stores (each part of the group counted separately): 0
+        remark #15557: Masked VLS-optimized stores (each part of the group counted separately): 0
+        remark #15497: vector compress: 0 
+        remark #15498: vector expand: 0 
+        remark #15474: --- end vector loop memory reference summary ---
+    LOOP END
+
+    LOOP BEGIN at mat_mul_parallel.c (28, 9)
+    <Remainder loop for vectorization>
+    LOOP END
+LOOP END
+=================================================================
+
+Global optimization report for : main.extracted
+=================================================================
+
+Global optimization report for : main.extracted.9
+
+LOOP BEGIN at mat_mul_parallel.c (46, 5)
+    remark #15521: Loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at mat_mul_parallel.c (46, 5)
+
+    LOOP BEGIN at mat_mul_parallel.c (46, 5)
+        remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+        LOOP BEGIN at mat_mul_parallel.c (48, 9)
+            remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+            LOOP BEGIN at mat_mul_parallel.c (49, 13)
+                remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                LOOP BEGIN at mat_mul_parallel.c (46, 5)
+                    remark #25566: blocked by 64
+                    remark #25540: Loop unrolled and jammed by 4
+                    remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                    LOOP BEGIN at mat_mul_parallel.c (48, 9)
+                        remark #25566: blocked by 64
+                        remark #25540: Loop unrolled and jammed by 4
+                        remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                        LOOP BEGIN at mat_mul_parallel.c (49, 13)
+                            remark #25566: blocked by 64
+                            remark #25563: Load hoisted out of the loop
+                            remark #15344: Loop was not vectorized: vector dependence prevents vectorization
+                            remark #15346: vector dependence: assumed ANTI dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed FLOW dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed OUTPUT dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed ANTI dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed ANTI dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed FLOW dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed OUTPUT dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed FLOW dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed OUTPUT dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed ANTI dependence between (50:25) and (50:25) 
+                            remark #25583: Number of Array Refs Scalar Replaced In Loop: 12
+                        LOOP END
+                    LOOP END
+
+                    LOOP BEGIN at mat_mul_parallel.c (48, 9)
+                    <Remainder loop>
+                        remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                        LOOP BEGIN at mat_mul_parallel.c (49, 13)
+                            remark #15344: Loop was not vectorized: vector dependence prevents vectorization
+                            remark #15346: vector dependence: assumed ANTI dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed FLOW dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed OUTPUT dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed ANTI dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed ANTI dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed FLOW dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed OUTPUT dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed FLOW dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed OUTPUT dependence between (50:25) and (50:25) 
+                            remark #15346: vector dependence: assumed ANTI dependence between (50:25) and (50:25) 
+                            remark #25583: Number of Array Refs Scalar Replaced In Loop: 3
+                        LOOP END
+                    LOOP END
+                LOOP END
+
+                LOOP BEGIN at mat_mul_parallel.c (46, 5)
+                <Remainder loop>
+                    remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                    LOOP BEGIN at mat_mul_parallel.c (48, 9)
+                        remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                        LOOP BEGIN at mat_mul_parallel.c (49, 13)
+                            remark #15300: LOOP WAS VECTORIZED
+                            remark #15305: vectorization support: vector length 4
+                            remark #15475: --- begin vector loop cost summary ---
+                            remark #15476: scalar cost: 9.000000 
+                            remark #15477: vector cost: 3.187500 
+                            remark #15478: estimated potential speedup: 2.781250 
+                            remark #15309: vectorization support: normalized vectorization overhead 0.625000
+                            remark #15482: vectorized math library calls: 0 
+                            remark #15484: vector function calls: 0 
+                            remark #15485: serialized function calls: 0
+                            remark #15488: --- end vector loop cost summary ---
+                            remark #15447: --- begin vector loop memory reference summary ---
+                            remark #15450: unmasked unaligned unit stride loads: 2 
+                            remark #15451: unmasked unaligned unit stride stores: 1 
+                            remark #15456: masked unaligned unit stride loads: 0 
+                            remark #15457: masked unaligned unit stride stores: 0 
+                            remark #15458: masked indexed (or gather) loads: 0 
+                            remark #15459: masked indexed (or scatter) stores: 0 
+                            remark #15462: unmasked indexed (or gather) loads: 0 
+                            remark #15463: unmasked indexed (or scatter) stores: 0 
+                            remark #15554: Unmasked VLS-optimized loads (each part of the group counted separately): 0
+                            remark #15555: Masked VLS-optimized loads (each part of the group counted separately): 0
+                            remark #15556: Unmasked VLS-optimized stores (each part of the group counted separately): 0
+                            remark #15557: Masked VLS-optimized stores (each part of the group counted separately): 0
+                            remark #15497: vector compress: 0 
+                            remark #15498: vector expand: 0 
+                            remark #15474: --- end vector loop memory reference summary ---
+                        LOOP END
+
+                        LOOP BEGIN at mat_mul_parallel.c (49, 13)
+                        <Remainder loop for vectorization>
+                        LOOP END
+                    LOOP END
+                LOOP END
+            LOOP END
+        LOOP END
+    LOOP END
+LOOP END
+=================================================================
+
+---- Begin Inlining Report ----
+Option Values:
+  inline-threshold: 225
+  inlinehint-threshold: 325
+  inlinecold-threshold: 45
+  inlineoptsize-threshold: 15
+
+DEAD STATIC FUNC: atoi
+
+DEAD STATIC FUNC: llvm.directive.region.entry
+
+DEAD STATIC FUNC: llvm.directive.region.exit
+
+COMPILE FUNC: main
+   -> DELETE: printf mat_mul_parallel.c (7,9)
+   -> EXTERN: printf mat_mul_parallel.c (8,9)
+   -> INLINE: atoi mat_mul_parallel.c (12,13) (10<=487)
+      -> EXTERN: strtol mat_mul_parallel.c (364,16)
+   -> EXTERN: malloc mat_mul_parallel.c (17,22)
+   -> EXTERN: malloc mat_mul_parallel.c (18,22)
+   -> EXTERN: malloc mat_mul_parallel.c (19,22)
+   -> EXTERN: printf mat_mul_parallel.c (22,9)
+   -> DELETE: llvm.directive.region.entry mat_mul_parallel.c (34,5)
+   -> DELETE: __kmpc_masked mat_mul_parallel.c
+   -> DELETE: omp_get_num_threads mat_mul_parallel.c (38,48)
+   -> DELETE: printf mat_mul_parallel.c (38,9)
+   -> DELETE: __kmpc_end_masked mat_mul_parallel.c
+   -> DELETE: llvm.directive.region.exit mat_mul_parallel.c (34,5)
+   -> EXTERN: omp_get_wtime mat_mul_parallel.c (40,25)
+   -> DELETE: llvm.directive.region.entry mat_mul_parallel.c (46,5)
+   -> DELETE: llvm.directive.region.exit mat_mul_parallel.c (46,5)
+   -> EXTERN: omp_get_wtime mat_mul_parallel.c (55,23)
+   -> EXTERN: printf mat_mul_parallel.c (56,5)
+   -> EXTERN: free mat_mul_parallel.c (80,5)
+   -> EXTERN: free mat_mul_parallel.c (81,5)
+   -> EXTERN: free mat_mul_parallel.c (82,5)
+   -> EXTERN: puts mat_mul_parallel.c (7,9)
+   -> EXTERN: __kmpc_fork_call mat_mul_parallel.c (34,5)
+   -> EXTERN: __kmpc_fork_call mat_mul_parallel.c (46,5)
+   -> llvm.memset.p0.i64 mat_mul_parallel.c (31,21)
+
+COMPILE FUNC: main.extracted.9
+   -> EXTERN: __kmpc_dispatch_init_4 mat_mul_parallel.c
+   -> EXTERN: __kmpc_dispatch_next_4 mat_mul_parallel.c
+   -> EXTERN: __kmpc_dispatch_next_4 mat_mul_parallel.c
+   -> EXTERN: __kmpc_dispatch_next_4 mat_mul_parallel.c
+
+COMPILE FUNC: main.extracted
+   -> EXTERN: __kmpc_masked mat_mul_parallel.c
+   -> EXTERN: omp_get_num_threads mat_mul_parallel.c (38,48)
+   -> EXTERN: printf mat_mul_parallel.c (38,9)
+   -> EXTERN: __kmpc_end_masked mat_mul_parallel.c
+
+---- End Inlining Report ------

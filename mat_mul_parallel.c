@@ -35,14 +35,15 @@ int main(int argc, char **argv) {
     {
         // Viene eseguito solo dal thread "capo" (il master, ID 0)
         #pragma omp master
-        printf("Sto usando %d thread OpenMP\n", omp_get_num_threads());
+        printf("I'm using %d OpenMP Thread\n", omp_get_num_threads());
     }
     double start_time = omp_get_wtime();
 
     // Hotspot (The innermost loop on 'j' favors cache access patterns)
     //#pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic)
     //#pragma omp parallel for private(j, k) schedule(dynamic)
-    #pragma omp parallel for private(j, k) schedule(dynamic)
+    //#pragma omp parallel for private(j, k) schedule(static)
+    #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic)
     for (i = 0; i < n; ++i) {
         for (k = 0; k < n; k++) {
             for (j = 0; j < n; ++j) {

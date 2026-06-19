@@ -78,15 +78,15 @@ To measure the impact of these flags, I ran the algorithm with $N=10000$ using d
 | `-O3 -xHost -ipo -ffast-math -fno-alias` | 82.712974 seconds |
  
 
-### Analysis of the Results
+**Analysis of the Results**
 
 Increasing the matrix dimension to $N=10000$ means each matrix takes up roughly 800 MB, resulting in about 2.4 GB of total RAM usage. At this massive scale, the baseline `-O3 -xHost` configuration provided the best sequential time.
 
 Breaking down the lack of improvement from the advanced flags:
 
-1. **`-ipo`:** This flag did not improve performance because all our core logic resides exclusively within the `main` function, making interprocedural optimization completely unnecessary.
-2. **`-ffast-math`:** Since our algorithm only relies on a basic multiply-add operation, there are no complex mathematical functions (like square roots or transcendentals) for the compiler to simplify or "cheat" on. The hardware FMA is already doing the absolute minimum work possible.
-3. **`-fno-alias`:** This flag tells the compiler the matrices do not overlap. However, the compiler is already smart enough to generate clean, vectorized AVX2 code. Removing the microscopic safety check for memory overlap saves an insignificant amount of time compared to the massive 2.4 GB memory transfer.
+**`-ipo`:** This flag did not improve performance because all our core logic resides exclusively within the `main` function, making the optimization completely unnecessary.
+**`-ffast-math`:** Since our algorithm only relies on a basic multiply-add operation, there are no complex mathematical functions (like square roots or transcendentals) for the compiler to simplify or "cheat" on. The hardware FMA is already doing the absolute minimum work possible.
+**`-fno-alias`:** This flag tells the compiler the matrices do not overlap. However, the compiler is already smart enough to generate clean, vectorized AVX2 code. Removing the microscopic safety check for memory overlap saves an insignificant amount of time compared to the massive 2.4 GB memory transfer.
 
 Therefore, the baseline compilation command (`icx -g -O3 -xHost -fiopenmp -o matmul mat_mul.c`) perfectly applies vectorization without over-complicating the memory access, yielding our **Best Sequential Time of 76.06 seconds**.
 
@@ -109,9 +109,31 @@ con solo 4 thread e static scheduler 19.030195 seconds
 4 thread e dynamic
 17.642768 seconds
 
+sw2 results:
+I'm using 20 OpenMP Thread
+Computation time (N=10000): 36.141804 seconds
+subito a d occchio mi sorge uno scettisismo avere 20 thread e passare da 76 secondi sequenzale in 36 secondi, c'e poco speed up
+
+avendo una architettura ibrida (core differenti) ho scelto lo scheduler dinamico
+
+
+
+
+
+
 ![alt text](snap/roofline_parallell.png)
+
+
+
+
+
+
+
+
+
 
 
 
 comandi utili 
 scrot -s screenshot.png
+advixe-gui

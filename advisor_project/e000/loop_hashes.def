@@ -1,6 +1,12 @@
 # hash file version: 3
-1	4	/home/marco99/hpc/project/HPC/mat_mul	5776	5797	/home/marco99/hpc/project/HPC/mat_mul.c	29	21	e8836e963d1ba9c60d35753e8b440646	1	1	0	0	0
-2	5	/home/marco99/hpc/project/HPC/mat_mul	5744	5850	/home/marco99/hpc/project/HPC/mat_mul.c	28	82	e8836e963d1ba9c60d35753e8b440646	0	1	0	0	0
-3	6	/home/marco99/hpc/project/HPC/mat_mul	5984	6011	/home/marco99/hpc/project/HPC/mat_mul.c	41	27	e8836e963d1ba9c60d35753e8b440646	0	1	0	0	0
-4	7	/home/marco99/hpc/project/HPC/mat_mul	5936	5904	/home/marco99/hpc/project/HPC/mat_mul.c	40	131	e8836e963d1ba9c60d35753e8b440646	1	1	0	0	0
-5	8	/home/marco99/hpc/project/HPC/mat_mul	5904	6079	/home/marco99/hpc/project/HPC/mat_mul.c	39	163	e8836e963d1ba9c60d35753e8b440646	0	1	0	0	0
+6	6	/VM/stud/S4700984/HPC/matmul_p	5984	6005	/home/stud/S4700984/HPC/mat_mul_parallel.c	28	21	46441f5da8092fcf09853be17d70107e	1	1	0	0	0
+7	7	/VM/stud/S4700984/HPC/matmul_p	5888	6061	/home/stud/S4700984/HPC/mat_mul_parallel.c	6	149	46441f5da8092fcf09853be17d70107e	0	1	0	0	0
+8	8	/VM/stud/S4700984/HPC/matmul_p	5920	5942	/home/stud/S4700984/HPC/mat_mul_parallel.c	28	22	46441f5da8092fcf09853be17d70107e	1	1	0	0	0
+9	9	/VM/stud/S4700984/HPC/matmul_p	8144	8171	/home/stud/S4700984/HPC/mat_mul_parallel.c	49	27	46441f5da8092fcf09853be17d70107e	0	1	0	0	0
+10	11	/VM/stud/S4700984/HPC/matmul_p	8096	8048	/home/stud/S4700984/HPC/mat_mul_parallel.c	46	132	46441f5da8092fcf09853be17d70107e	1	1	0	0	0
+11	12	/VM/stud/S4700984/HPC/matmul_p	8048	7744	/home/stud/S4700984/HPC/mat_mul_parallel.c	48	177	46441f5da8092fcf09853be17d70107e	0	1	0	0	0
+12	13	/VM/stud/S4700984/HPC/matmul_p	7744	7360	/home/stud/S4700984/HPC/mat_mul_parallel.c	46	1510	46441f5da8092fcf09853be17d70107e	0	1	0	0	0
+13	14	/VM/stud/S4700984/HPC/matmul_p	7360	7056	/home/stud/S4700984/HPC/mat_mul_parallel.c	46	1884	46441f5da8092fcf09853be17d70107e	0	1	0	0	0
+14	15	/VM/stud/S4700984/HPC/matmul_p	7056	6848	/home/stud/S4700984/HPC/mat_mul_parallel.c	46	2176	46441f5da8092fcf09853be17d70107e	0	1	0	0	0
+15	16	/VM/stud/S4700984/HPC/matmul_p	6848	9352	/home/stud/S4700984/HPC/mat_mul_parallel.c	46	2374	46441f5da8092fcf09853be17d70107e	0	1	0	0	0
+16	94	/VM/stud/S4700984/HPC/matmul_p	5920	5942,6005	/home/stud/S4700984/HPC/mat_mul_parallel.c	28	43	46441f5da8092fcf09853be17d70107e	1	1	0	0	0
