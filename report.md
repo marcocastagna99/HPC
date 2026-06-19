@@ -59,28 +59,40 @@ Running Intel Advisor on this optimized program confirms the report and shows a 
 
 ## Advanced Compiler Optimizations and Best Sequential Time
 
-After setting a strong baseline with `-O3` and `-xHost`, I tested advanced compiler flags to maximize sequential performance:
+After setting a strong baseline with `-O3` and `-xHost`, I decide to increase the problem size from N 5000 to 10000 and
+ test the advanced compiler flags to maximize sequential performance:
 
 * **`-xHost`**: Tells the compiler to use the best instructions for the specific CPU running the code (enabling AVX2/FMA).
 * **`-ffast-math`**: Relaxes strict floating-point rules, allowing the compiler to reorder math operations for faster execution.
 * **`-ipo` (Interprocedural Optimization)**: Analyzes the whole program at once to optimize how data flows between functions.
 * **`-fno-alias`**: Tells the compiler that the arrays (`a`, `b`, `c`) do not overlap in memory. This removes slow safety checks.
 
-To measure the impact of these flags, I ran the algorithm with $N=5000$ using different combinations:
+To measure the impact of these flags, I ran the algorithm with $N=10000$ using different combinations:
 
 | Compiler Flags | Execution Time |
 | --- | --- |
-| `-O3 -xHost` (Baseline) | 72.359393 seconds |
-| `-O3 -xHost -ffast-math` | 71.966849 seconds |
-| `-O3 -xHost -ipo` | 70.703261 seconds |
-| `-O3 -xHost -fno-alias` | 71.526865 seconds |
-| `-O3 -xHost -ipo -ffast-math -fno-alias` | 71.514240 seconds |
+| `-O3 -xHost` (Baseline) | 76.069008 seconds |
+| `-O3 -xHost -ffast-math` | 77.634956 seconds |
+| `-O3 -xHost -ipo` | 79.276426 seconds |
+| `-O3 -xHost -fno-alias` | 77.424665 seconds |
+| `-O3 -xHost -ipo -ffast-math -fno-alias` | 82.712974 seconds |
+ 
 
-By exploiting these optimization flags, I achieved a further reduction in the hotspot execution time. I also checked the new Roofline Model for the fully optimized version:
-![alt text](snap/compiler-optimization.png)
-The graph provides visual proof that the hardware is utilized more efficiently, with the GFLOPS increasing accordingly. Because this configuration extracts the maximum compute power from a single core, I decided to use -ipo execution time of **70.70 seconds** as our **Best Sequential Time ($T_1$)**.
+### Analysis of the Results
+
+Increasing the matrix dimension to $N=10000$ means each matrix takes up roughly 800 MB, resulting in about 2.4 GB of total RAM usage. At this massive scale, the baseline `-O3 -xHost` configuration provided the best sequential time.
+
+Breaking down the lack of improvement from the advanced flags:
+
+1. **`-ipo`:** This flag did not improve performance because all our core logic resides exclusively within the `main` function, making interprocedural optimization completely unnecessary.
+2. **`-ffast-math`:** Since our algorithm only relies on a basic multiply-add operation, there are no complex mathematical functions (like square roots or transcendentals) for the compiler to simplify or "cheat" on. The hardware FMA is already doing the absolute minimum work possible.
+3. **`-fno-alias`:** This flag tells the compiler the matrices do not overlap. However, the compiler is already smart enough to generate clean, vectorized AVX2 code. Removing the microscopic safety check for memory overlap saves an insignificant amount of time compared to the massive 2.4 GB memory transfer.
+
+Therefore, the baseline compilation command (`icx -g -O3 -xHost -fiopenmp -o matmul mat_mul.c`) perfectly applies vectorization without over-complicating the memory access, yielding our **Best Sequential Time of 76.06 seconds**.
 
 ---
+
+
 ## OpenMP
 
 #pragma omp parallel for private(j, k) schedule(dynamic) dynamic scheduling : 27.032384 seconds
