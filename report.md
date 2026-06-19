@@ -111,11 +111,14 @@ con solo 4 thread e static scheduler 19.030195 seconds
 17.642768 seconds
 
 sw2 results:
+avendo una architettura ibrida (core differenti) ho scelto lo scheduler dinamico
 I'm using 20 OpenMP Thread
 Computation time (N=10000): 36.141804 seconds
 subito a d occchio mi sorge uno scettisismo avere 20 thread e passare da 76 secondi sequenzale in 36 secondi, c'e poco speed up
+e guardando il roofline sorgono alcuni spunti:
 
-avendo una architettura ibrida (core differenti) ho scelto lo scheduler dinamico
+
+
 
 
 
