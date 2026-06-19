@@ -50,6 +50,7 @@ To fix the memory bottleneck and the slow scalar execution from the baseline, I 
 Using the `-O3` and `-xHost` flags reduced the execution time by a factor of ~24x. To understand this massive speedup, I analyzed the vectorization report (`-qopt-report=3`). Because the nested loops are perfectly arranged (`i-k-j`) to respect spatial locality, the compiler successfully vectorized the innermost loop (`j`). The code was compiled using **AVX2** instructions with a physical vector length of 4 (packing four 64-bit `double` variables into a 256-bit register). Furthermore, the compiler applied aggressive **Loop Unrolling** (processing 8 elements per iteration) to keep the execution units fully saturated.
 
 Running Intel Advisor on this optimized program confirms the report and shows a completely transformed Roofline Model:
+![alt text](snap/sw2_roofline_5000_vect.png)
 
 * **Instruction Set and FMA:** The hotspot transitioned from slow *Scalar Float64* execution to *Vectorized AVX2*. Crucially, it now leverages **FMA** (Fused Multiply-Add) hardware units, performing addition and multiplication simultaneously in a single hardware step.
 * **Arithmetic Intensity:** The L1 Arithmetic Intensity improved significantly to **0.200 FLOP/Byte**. This proves that the variables are being efficiently reused within the fast CPU registers and L1 cache, drastically reducing the slow memory reloads.
@@ -121,7 +122,7 @@ avendo una architettura ibrida (core differenti) ho scelto lo scheduler dinamico
 
 
 
-![alt text](snap/roofline_parallell.png)
+
 
 
 
