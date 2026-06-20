@@ -1,0 +1,8 @@
+--- THREADS = 1 ---
+I'm using 1 OpenMP Thread
+Computation time (N=15000): 679.534806 seconds
+
+--- THREADS = 2 ---
+I'm using 2 OpenMP Thread
+Computation time (N=15000): 360.803298 seconds
+

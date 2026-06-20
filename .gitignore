@@ -32,9 +32,9 @@ advisor_project/
 # =========================
 # Output Dati e Log
 # =========================
-*.log
+#*.log
 *.dat
-*.csv
+#*.csv
 
 # =========================
 # Editor di testo e OS
