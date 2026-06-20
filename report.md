@@ -97,7 +97,7 @@ Therefore, the baseline compilation command (`icx -g -O3 -xHost -fiopenmp -o mat
 ## OpenMP
 
 
-ho deciso di inserire  #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic) dei 3 cicli for nel primo
+ho deciso di inserire  #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic) nel primo dei 3 cicli for 
 #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic)
     for (i = 0; i < n; ++i) {
         for (k = 0; k < n; k++) {
@@ -106,54 +106,89 @@ ho deciso di inserire  #pragma omp parallel for default(none) shared(a, b, c, n)
             }
         }
     }
-quindi i thread si suddividono l'esecuzionee di quel ciclo, n/threads
-quindi ogni thread che esegue una sola iterazione i, esegue i due cicli sottostanti interamente quindi nxn iterazioni
-, ho sceltò così in modo da evitare race condition e dare ad ogni thread la possibilità di eseguire in pace la sua poerzione di dati
+quindi i thread si suddividono l'esecuzionee di quel ciclo,
+quindi ogni thread che esegue una sola iterazione `i` del primo for, esegue i due cicli sottostanti interamente quindi nxn iterazioni
+, ho sceltò così in modo da evitare race condition e dare ad ogni thread la possibilità di eseguire in pace la sua porzione di dati
 avendo una architettura ibrida (core differenti) ho scelto lo scheduler dinamico
 ma se avessi usato lo scheduler statico
-avrei ad esempio se N=10k ogni thread  10000 / 20 = 500 iterazioni i del primo fo, ma usando lo scheduler dinamico quidni dando il potere della scelta allo scheduler non sarà esatamente distribuito egualmente su tutti ma man mano ogni thread prende i blocchi quando è disponibile, avendo alla fine distribuione simile , infatti  ho sperimentato verie volte eseguendo lo stesso codice ma con scheduler statico, notando che  notando che l'esecuzioni con scheduler dinamico sono sempre leggermente piu brevi, facendomi pensare che si crea questo overhead nei core piu lenti e con cache piu piccola,
-con n=10k
+avrei ad esempio se N=10k ogni thread  10000 / 20 = 500 iterazioni `i` del primo for, ma usando lo scheduler dinamico quidni dando il potere della scelta allo scheduler non sarà esatamente distribuito così egualmente su tutti ma man mano ogni thread prende i blocchi quando è disponibile, avendo aperò alla fine distribuione probabilemnte simile , infatti  ho sperimentato verie volte eseguendo lo stesso codice ma con scheduler statico, notando che che l'esecuzioni con scheduler dinamico sono sempre leggermente piu brevi, facendomi pensare che si crea questo load imbalance/overhead nei core piu lenti e con cache piu piccola,
+ad esempio con n=10k
 static
 39.768416 seconds
 dynamic
 34.145954 seconds
 
 
-risultati e analisi
+### risultati e analisi
 avendo
 Computation time (N=10000): 36.141804 seconds
-subito a d occchio mi sorge dubbio: avere 20 thread e passare da 76 secondi sequenzale in 36 secondi, noto subito che c'e poco speed up
+subito ad occchio mi sorge dubbio: sono molto scettico ad avere 20 thread e passare da 76 secondi sequenzale in 36 secondi, noto subito che c'e poco speed up
 e guardando il roofline sorgono alcuni ulteriori dubbi:
 
 ![alt text](snap/sw2_10k_parallel_roofline.png)
-sembra la situazione iniziale in cui si dipende da quanto la memoria è veloce ha dare i dati
-ma non è che la divisione  del lavoro iniziale è sbagliata?
-non dovrei essere in un problema di false sharing, prprio perchè ogni thread non si tocca, potrebbe essere un numa effect? la risposta cè che l'architettura del pc non ha diverse memorie ram separate per ogni cpu quindi non dovrebbe essere un problema, 
+sembra la situazione iniziale in cui si dipende da quanto la memoria è veloce a dare i dati
+ma non è che la suddivisione del lavoro iniziale è sbagliata? ragionando
+non dovrei avere in un problema di false sharing, prprio perchè ogni thread non si tocca avendo la propria porzioni di tati, potrebbe essere un numa effect? la risposta cè che l'architettura del pc non ha diverse memorie ram separate per ogni cpu quindi non dovrebbe essere un problema proprio prchè la ram è la stessa
 
-c'è comunque  un problema di cache miss
+c'è comunque  un problema di cache miss...
 sappiamo che
-Compulsory Miss: La prima volta che leggi un dato. (Inevitabile).
-
-conflict misses: Quello causato dal False Sharing. (scartato).
-
+Compulsory Miss: La prima volta che leggi un dato. (Inevitabile),
+conflict misses: Quello causato dal False Sharing. (scartato),
 Capacity Miss: (IL PROBLEMA).
 
-facendo due calcoli con n=10000, ogni thread con una sola iterazione i, esegue 10000x10000
+facendo due calcoli con n=10000, ogni thread con una sola iterazione i :
 per esempio thread 0 prende i=0
-e deve eseguire gli altri due cicli interi (k e j da 0 a 9999).
+deve eseguire gli altri due cicli interi (k e j da 0 a 9999).
 La formula matematica è: c[0][j] += a[0][k] * b[k][j]
-per calcolare la riga c il threde dha bisogno
+per calcolare la riga c il thred ha bisogno
 della riga 0 di A: Sono 10.000 elementi double. Pesano circa 80 KB. Nessun problema, entrano comodamente nella Cache L1 o L2 del core
 poi però la formula richiede di scorrere b[k][j] questo significa deve sorrere **LA MATRICE B** per intero! 10000x10000 pesa 800 MB. che da solo riempe l1d, l2 e tutta l3(condivisa)
 
-c'è tanta potenza di calcolo, ma tante richieste in coda da parte dei thread letteramente bloccano la ram, ogni thread ha bisogno una quantita di dati che non entra in cache e quindi non si sfrutta bene il parllelismo andano a chiedere in ram tutti simultaneamente.
-#siamo quindi in una situzione dove la troppa quantita di dati non entrano in cache e che quindi non venga sfruttato il parallelismo#
+c'è tanta potenza di calcolo, ma tante richieste in coda da parte dei thread letteramente bloccano la ram, ogni thread ha bisogno una quantita di dati che non entra in cache e quindi non si sfrutta bene il parllelismo andano a chiedere in ram tutti simultaneamente e sovrascrivendo continuamente la chache l3 condivisa.
+passano il 90% del loro tempo fermi, in attesa che il bus di memoria, completamente intasato, consegni i dati dalla RAM
 
-una soluzione nota è quella di riscrivere l'algoritmo, dividere meglio i blocchi, applicare soluzioni come loop tiling, Cache-Aware Architecture (The GotoBLAS approach) paper menzionato nelle slide, e Cache-Oblivious Algorithms.
+una soluzione nota è quella di riscrivere l'algoritmo, dividere meglio i blocchi piuy piccoli, applicare soluzioni come loop tiling, Cache-Aware Architecture (The GotoBLAS approach) paper menzionato nelle slide, e Cache-Oblivious Algorithms.
 a questo punto ho deciso di applicare il loop tiling anninando dei cicli e dividento i blocchi piu piccoli afficnhe non si rpiemano subito le cache, ovviemente non è la suluzione definitiva, ci sono molti modi piu precisi per aumentare la perfomance, il mio obbiettivo è quello di rompere questo Memory Wall che si è creato con l'algoritmo classico    
 
+#pragma omp parallel for default(none) shared(a, b, c, n, BLOCK_SIZE) schedule(dynamic)
+    for (int i = 0; i < n; i += BLOCK_SIZE) {
+        for (int k = 0; k < n; k += BLOCK_SIZE) {
+            for (int j = 0; j < n; j += BLOCK_SIZE) {
+                
+                // CALCOLO DEI BORDI 
+                // per esempio N=10000 non è perfettamente divisibile per 64, agli angoli 
+                // della matrice l'ultimo blocco sarà "mozzato". Questo evita i Segmentation Fault.
+                int i_end = (i + BLOCK_SIZE > n) ? n : i + BLOCK_SIZE;
+                int k_end = (k + BLOCK_SIZE > n) ? n : k + BLOCK_SIZE;
+                int j_end = (j + BLOCK_SIZE > n) ? n : j + BLOCK_SIZE;
+
+                // --- INIZIO DEL MICRO-MONDO (Dentro il blocco in Cache) ---
+                for (int ii = i; ii < i_end; ++ii) {
+                    for (int kk = k; kk < k_end; ++kk) {
+                        
+                        // Questo ciclo verrà vettorializzato in AVX2/FMA dal compilatore
+                        for (int jj = j; jj < j_end; ++jj) {
+                            c[ii][jj] += a[ii][kk] * b[kk][jj];
+                        }
+                        
+                    }
+                }
+in questo modo ogni thread non riempe la cache del core e non intasa la l3, apsettando che la ram gli dia i dati.
 
 
+### analisi
+
+
+
+
+
+
+
+
+
+
+
+## scalabilità
 
 
 
