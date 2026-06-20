@@ -95,9 +95,10 @@ Therefore, the baseline compilation command (`icx -g -O3 -xHost -fiopenmp -o mat
 
 
 ## OpenMP
-
+icx -g -O3 -xHost -fiopenmp -o matmul_p mat_mul_parallel.c
 
 ho deciso di inserire  #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic) nel primo dei 3 cicli for 
+```c
 #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic)
     for (i = 0; i < n; ++i) {
         for (k = 0; k < n; k++) {
@@ -106,6 +107,7 @@ ho deciso di inserire  #pragma omp parallel for default(none) shared(a, b, c, n)
             }
         }
     }
+```
 quindi i thread si suddividono l'esecuzionee di quel ciclo,
 quindi ogni thread che esegue una sola iterazione `i` del primo for, esegue i due cicli sottostanti interamente quindi nxn iterazioni
 , ho sceltò così in modo da evitare race condition e dare ad ogni thread la possibilità di eseguire in pace la sua porzione di dati
@@ -149,7 +151,7 @@ passano il 90% del loro tempo fermi, in attesa che il bus di memoria, completame
 
 una soluzione nota è quella di riscrivere l'algoritmo, dividere meglio i blocchi piuy piccoli, applicare soluzioni come loop tiling, Cache-Aware Architecture (The GotoBLAS approach) paper menzionato nelle slide, e Cache-Oblivious Algorithms.
 a questo punto ho deciso di applicare il loop tiling anninando dei cicli e dividento i blocchi piu piccoli afficnhe non si rpiemano subito le cache, ovviemente non è la suluzione definitiva, ci sono molti modi piu precisi per aumentare la perfomance, il mio obbiettivo è quello di rompere questo Memory Wall che si è creato con l'algoritmo classico    
-
+```c
 #pragma omp parallel for default(none) shared(a, b, c, n, BLOCK_SIZE) schedule(dynamic)
     for (int i = 0; i < n; i += BLOCK_SIZE) {
         for (int k = 0; k < n; k += BLOCK_SIZE) {
@@ -173,18 +175,27 @@ a questo punto ho deciso di applicare il loop tiling anninando dei cicli e divid
                         
                     }
                 }
+```
 in questo modo ogni thread non riempe la cache del core e non intasa la l3, apsettando che la ram gli dia i dati.
 
 
-### analisi
+### risultati
+sbalorditivo
+sul mio i7 6700
+single core vettorizzato xhost 03 etc ./matmul 10000
+Computation time (N=10000): 573.019573 seconds
+con algoritmo originale parallelo 
+./matmul_p 10000
+I'm using 8 OpenMP Thread
+Computation time (N=10000): 329.788830 seconds
 
+con alogirtmo parallelo otttimizzato blocchi da 64
+Computation time (N=10000): 51.348811 seconds
 
+ora vedo un vantaggio nell'tilizzo del parallelismo rispetto a prima
 
-
-
-
-
-
+investighiamo come l'algoritmo ora scala bene per dimensioni di 5k, 10k 15k
+e per il numero di thread in termin di speed up ed efficiency
 
 
 

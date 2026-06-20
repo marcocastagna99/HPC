@@ -12,8 +12,8 @@ int main(int argc, char **argv) {
     int n = atoi(argv[1]);
     int i, j, k;
 
-    // Allocation of contiguous 2D arrays using Variable Length Arrays (VLA)
-    // This is optimal for Spatial Locality
+
+    
     double (*a)[n] = malloc(sizeof(double[n][n]));
     double (*b)[n] = malloc(sizeof(double[n][n]));
     double (*c)[n] = malloc(sizeof(double[n][n]));
@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    // Initialization (Outside the measurement timer)
+
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
             a[i][j] = 2.0;
@@ -33,12 +33,13 @@ int main(int argc, char **argv) {
     }
     #pragma omp parallel
     {
-        // Viene eseguito solo dal thread "capo" (il master, ID 0)
+        
         #pragma omp master
         printf("I'm using %d OpenMP Thread\n", omp_get_num_threads());
     }
-   /* double start_time = omp_get_wtime();
-
+    /*
+    double start_time = omp_get_wtime();
+   
     // Hotspot (The innermost loop on 'j' favors cache access patterns)
     //#pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic)
     //#pragma omp parallel for private(j, k) schedule(dynamic)
@@ -50,10 +51,11 @@ int main(int argc, char **argv) {
                 c[i][j] += a[i][k] * b[k][j];
             }
         }
-    } */
+    }
    
    // Definisci la dimensione del blocco (aggiungilo in cima al file o qui)
     // 64 o 128 sono i "magic numbers" ideali per la Cache L2 dei processori moderni
+    //*/
     int BLOCK_SIZE = 64; 
 
     double start_time = omp_get_wtime();
@@ -90,8 +92,6 @@ int main(int argc, char **argv) {
         }
     }
 
-    double run_time = omp_get_wtime() - start_time;
-    printf("Computation time (N=%d, BLOCK=%d): %f seconds\n", n, BLOCK_SIZE, run_time);
     
 
     double run_time = omp_get_wtime() - start_time;

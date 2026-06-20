@@ -12,8 +12,6 @@ int main(int argc, char **argv) {
     int n = atoi(argv[1]);
     int i, j, k;
 
-    // Allocation of contiguous 2D arrays using Variable Length Arrays (VLA)
-    // This is optimal for Spatial Locality
     double (*a)[n] = malloc(sizeof(double[n][n]));
     double (*b)[n] = malloc(sizeof(double[n][n]));
     double (*c)[n] = malloc(sizeof(double[n][n]));
@@ -22,8 +20,6 @@ int main(int argc, char **argv) {
         printf("Memory allocation error for N=%d\n", n);
         return 1;
     }
-
-    // Initialization (Outside the measurement timer)
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
             a[i][j] = 2.0;
@@ -33,8 +29,7 @@ int main(int argc, char **argv) {
     }
 
     double start_time = omp_get_wtime();
-
-    // Hotspot (The innermost loop on 'j' favors cache access patterns)
+    
     for (i = 0; i < n; ++i) {
         for (k = 0; k < n; k++) {
             for (j = 0; j < n; ++j) {
@@ -46,7 +41,6 @@ int main(int argc, char **argv) {
     double run_time = omp_get_wtime() - start_time;
     printf("Computation time (N=%d): %f seconds\n", n, run_time);
 
-    // 2. Conditional file writing based on the DEBUG flag
     #ifdef DEBUG
     FILE *f = fopen("mat-res.txt", "w");
     if (!f) {
@@ -56,7 +50,6 @@ int main(int argc, char **argv) {
 
     fprintf(f, "%d\n\n", n); 
     
-    // Limit printing to avoid massive files (e.g., max 1000x1000)
     int print_limit = (n < 1000) ? n : 1000; 
     
     for (int i = 0; i < print_limit; i++) {
