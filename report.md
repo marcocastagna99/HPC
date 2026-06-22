@@ -86,8 +86,8 @@ Increasing the matrix dimension to $N=10000$ means each matrix takes up roughly 
 Breaking down the lack of improvement from the advanced flags:
 
 **`-ipo`:** This flag did not improve performance because all our core logic resides exclusively within the `main` function, making the optimization completely unnecessary.
-**`-ffast-math`:** Since our algorithm only relies on a basic multiply-add operation, there are no complex mathematical functions (like square roots or transcendentals) for the compiler to simplify or "cheat" on. The hardware FMA is already doing the absolute minimum work possible.
-**`-fno-alias`:** This flag tells the compiler the matrices do not overlap. However, the compiler is already smart enough to generate clean, vectorized AVX2 code. Removing the microscopic safety check for memory overlap saves an insignificant amount of time compared to the massive 2.4 GB memory transfer.
+**`-ffast-math`:** Since our algorithm only relies on a basic multiply-add operation, there are no complex mathematical functions (like square roots or transcendentals like Nepero or Pi) for the compiler to simplify or "cheat" on. The hardware FMA is already doing the absolute minimum work possible.
+**`-fno-alias`:** This flag tells the compiler the matrices do not overlap. However, the compiler is already smart enough to generate clean, vectorized AVX2 code.
 
 Therefore, the baseline compilation command (`icx -g -O3 -xHost -fiopenmp -o matmul mat_mul.c`) perfectly applies vectorization without over-complicating the memory access, yielding our **Best Sequential Time of 76.06 seconds**.
 
