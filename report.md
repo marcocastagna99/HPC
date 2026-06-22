@@ -129,7 +129,7 @@ e guardando il roofline sorgono alcuni ulteriori dubbi:
 
 ![alt text](snap/sw2_10k_parallel_roofline.png)
 sembra la situazione iniziale in cui si dipende da quanto la memoria è veloce a dare i dati
-ma non è che la suddivisione del lavoro iniziale è sbagliata? ragionando
+potrebbe essere un false sharing? ragionando
 non dovrei avere in un problema di false sharing, prprio perchè ogni thread non si tocca avendo la propria porzioni di tati, potrebbe essere un numa effect? la risposta cè che l'architettura del pc non ha diverse memorie ram separate per ogni cpu quindi non dovrebbe essere un problema proprio prchè la ram è la stessa
 
 c'è comunque  un problema di cache miss...
@@ -150,7 +150,7 @@ c'è tanta potenza di calcolo, ma tante richieste in coda da parte dei thread le
 passano il 90% del loro tempo fermi, in attesa che il bus di memoria, completamente intasato, consegni i dati dalla RAM
 
 una soluzione nota è quella di riscrivere l'algoritmo, dividere meglio i blocchi dei dati in modo che entrino in cache, applicare soluzioni come loop tiling, Cache-Aware Architecture (The GotoBLAS approach)e Cache-Oblivious Algorithms paper menzionati nelle slide.
-a questo punto ho deciso di applicare il loop tiling anninando dei cicli e dividento i blocchi piu piccoli afficnhe non si rpiemano subito le cache, ma sopratutto aumentando molto di piu la grana, dando la possibilità di sfruttare al meglio la performance dei core, dando quindi non piu circa 500 blocchi ad ognuno ma circa 157 se n=10k,ovviemente non è la suluzione definitiva, ci sono molti modi piu precisi per aumentare la perfomance, il mio obbiettivo è quello di rompere questo Memory Wall che si è creato con l'algoritmo classico    
+a questo punto ho deciso di applicare il loop tiling anninando dei cicli e dividento i blocchi delimitati afficnhe non si rpiemano subito le cache, ma sopratutto aumentando molto di piu la grana, dando la possibilità di sfruttare al meglio la performance dei core, dando quindi non piu circa 500 blocchi ad ognuno ma circa 157 se n=10k,ovviemente non è la suluzione definitiva, ci sono molti modi piu precisi per aumentare la perfomance, il mio obbiettivo è quello di rompere questo Memory Wall che si è creato con l'algoritmo classico    
 ```c
 #pragma omp parallel for default(none) shared(a, b, c, n, BLOCK_SIZE) schedule(dynamic)
     for (int i = 0; i < n; i += BLOCK_SIZE) {
