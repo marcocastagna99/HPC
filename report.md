@@ -149,7 +149,7 @@ poi però la formula richiede di scorrere b[k][j] questo significa deve sorrere 
 c'è tanta potenza di calcolo, ma tante richieste in coda da parte dei thread letteramente bloccano la ram, ogni thread ha bisogno una quantita di dati che non entra in cache e quindi non si sfrutta bene il parllelismo andano a chiedere in ram tutti simultaneamente e sovrascrivendo continuamente la chache l3 condivisa.
 passano il 90% del loro tempo fermi, in attesa che il bus di memoria, completamente intasato, consegni i dati dalla RAM
 
-una soluzione nota è quella di riscrivere l'algoritmo, dividere meglio i blocchi in modo che entrino in cache, applicare soluzioni come loop tiling, Cache-Aware Architecture (The GotoBLAS approach)e Cache-Oblivious Algorithms paper menzionati nelle slide.
+una soluzione nota è quella di riscrivere l'algoritmo, dividere meglio i blocchi dei dati in modo che entrino in cache, applicare soluzioni come loop tiling, Cache-Aware Architecture (The GotoBLAS approach)e Cache-Oblivious Algorithms paper menzionati nelle slide.
 a questo punto ho deciso di applicare il loop tiling anninando dei cicli e dividento i blocchi piu piccoli afficnhe non si rpiemano subito le cache, ma sopratutto aumentando molto di piu la grana, dando la possibilità di sfruttare al meglio la performance dei core, dando quindi non piu circa 500 blocchi ad ognuno ma circa 157 se n=10k,ovviemente non è la suluzione definitiva, ci sono molti modi piu precisi per aumentare la perfomance, il mio obbiettivo è quello di rompere questo Memory Wall che si è creato con l'algoritmo classico    
 ```c
 #pragma omp parallel for default(none) shared(a, b, c, n, BLOCK_SIZE) schedule(dynamic)
