@@ -177,6 +177,22 @@ a questo punto ho deciso di applicare il loop tiling anninando dei cicli e divid
                 }
 ```
 in questo modo ogni thread non riempe la cache del core e non intasa la l3, apsettando che la ram gli dia i dati.
+Seguendo **PCAM Methodology** (Partitioning, Communication, Agglomeration, Mapping) vista nel corso, inifne possiamo dire che l'algoritmo è stato sviluppato
+
+### 1. Partitioning (Partizionamento)
+ Ho applicato quella che le slide chiamano *Domain decomposition*. Invece di guardare alle matrici come a un unico blocco monolitico da $10000 \times 10000$, ho partizionato il dominio dei dati introducendo i cicli interni. Quindi diviso lo spazio in "mattonelle" microscopiche da $64 \times 64$ elementi, che rappresentano l'unità fondamentale del calcolo.
+
+### 2. Communication (Comunicazione)
+
+L'algoritmo è stato progettato puntando alla situazione ideale: *No need for communications*. Come indicano le slide, si tratta di problemi che possono essere scomposti ed eseguiti in parallelo senza quasi alcun bisogno di condividere dati tra i task. Assegnando a ogni thread una striscia orizzontale indipendente della matrice C, ho evitato qualsiasi collisione. Non c'è stato uso di `lock`, `barrier` , né operazioni collettive costose come le `reduction`. Ogni thread lavora nel totale isolamento della sua Cache.
+
+### 3. Agglomeration (Agglomerazione)
+
+ Non ho dato in pasto a OpenMP i singoli quadratini $64 \times 64$ (che avrebbero generato una granularità troppo fine e un overhead di comunicazione mostruoso ). Invece ho **agglomerato** il lavoro posizionando il `#pragma omp parallel for` solo sul ciclo più esterno `i`. Così facendo, ho impachettato intere "strisce" da 64 righe per 10.000 colonne in un singolo maxi-task. Questo garantisce un altissimo rapporto tra calcolo e comunicazione, permettendo al thread di macinare calcoli per decine di secondi senza mai fermarsi (coarse grain) .
+
+### 4. Mapping (Mappatura)
+Delegato il compito allo scheduler, approccio master-slave/worker paradigm , usando  `schedule(dynamic)` con OpenMp
+
 
 
 ### risultati
