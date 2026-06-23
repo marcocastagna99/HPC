@@ -34,6 +34,7 @@ By compiling with `-O0`, the compiler is forced to generate naive scalar instruc
 
 ![alt text](snap/sw2_roofline_hotspot.png)
 ![alt text](snap/sw2_hotspot.png)
+![alt text](snap/assembly.png)
 
 
 
