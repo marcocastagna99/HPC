@@ -129,6 +129,7 @@ e guardando il roofline sorgono alcuni ulteriori dubbi:
 
 ![alt text](snap/sw2_10k_parallel_roofline.png)
 sembra la situazione iniziale in cui si dipende da quanto la memoria è veloce a dare i dati
+
 potrebbe essere un false sharing? ragionando
 non dovrei avere in un problema di false sharing, prprio perchè ogni thread non si tocca avendo la propria porzioni di tati, potrebbe essere un numa effect? la risposta cè che l'architettura del pc non ha diverse memorie ram separate per ogni cpu quindi non dovrebbe essere un problema proprio prchè la ram è la stessa
 
@@ -142,15 +143,15 @@ facendo due calcoli con n=10000, ogni thread con una sola iterazione i :
 per esempio thread 0 prende i=0
 deve eseguire gli altri due cicli interi (k e j da 0 a 9999).
 La formula matematica è: c[0][j] += a[0][k] * b[k][j]
-per calcolare la riga c il thred ha bisogno
+per calcolare la riga c il thread ha bisogno
 della riga 0 di A: Sono 10.000 elementi double. Pesano circa 80 KB. Nessun problema, entrano comodamente nella Cache L1 o L2 del core
 poi però la formula richiede di scorrere b[k][j] questo significa deve sorrere **LA MATRICE B** per intero! 10000x10000 pesa 800 MB. che da solo riempe l1d, l2 e tutta l3(condivisa)
 
 c'è tanta potenza di calcolo, ma tante richieste in coda da parte dei thread letteramente bloccano la ram, ogni thread ha bisogno una quantita di dati che non entra in cache e quindi non si sfrutta bene il parllelismo andano a chiedere in ram tutti simultaneamente e sovrascrivendo continuamente la chache l3 condivisa.
 passano il 90% del loro tempo fermi, in attesa che il bus di memoria, completamente intasato, consegni i dati dalla RAM
 
-una soluzione nota è quella di riscrivere l'algoritmo, dividere meglio i blocchi dei dati in modo che entrino in cache, applicare soluzioni come loop tiling, Cache-Aware Architecture (The GotoBLAS approach)e Cache-Oblivious Algorithms paper menzionati nelle slide.
-a questo punto ho deciso di applicare il loop tiling anninando dei cicli e dividento i blocchi delimitati afficnhe non si rpiemano subito le cache, ma sopratutto aumentando molto di piu la grana, dando la possibilità di sfruttare al meglio la performance dei core, dando quindi non piu circa 500 blocchi ad ognuno ma circa 157 se n=10k,ovviemente non è la suluzione definitiva, ci sono molti modi piu precisi per aumentare la perfomance, il mio obbiettivo è quello di rompere questo Memory Wall che si è creato con l'algoritmo classico    
+una soluzione nota è quella di riscrivere l'algoritmo, dividere meglio i blocchi dei dati in modo che entrino in cache, applicare soluzioni come loop tiling, Cache-Aware Architecture (The GotoBLAS approach), Cache-Oblivious Algorithms come i due paper menzionati nelle slide.
+a questo punto ho deciso di applicare il loop tiling anninando dei cicli e dividento i blocchi delimitati afficnhè non si rpiempa subito le cache, ma sopratutto aumentando molto di piu la grana, dando la possibilità di sfruttare al meglio la performance dei core, non è la suluzione definitiva, ci sono molti modi piu precisi per aumentare la perfomance, il mio obbiettivo è quello di rompere questo Memory Wall che si è creato con l'algoritmo classico    
 ```c
 #pragma omp parallel for default(none) shared(a, b, c, n, BLOCK_SIZE) schedule(dynamic)
     for (int i = 0; i < n; i += BLOCK_SIZE) {
