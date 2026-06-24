@@ -45,6 +45,7 @@ However, since the loop sequence is optimized (i-k-j), the memory access is cont
 ![alt text](snap/codeAnalytics.png)
 
 Figure X: Assembly code compiled with -O0. The highlighted memory instructions (using the %rbp base pointer) show that loop counters and array pointers are continuously reloaded from the stack. This explains why memory instructions make up 53% of the total execution overhead.
+
 ---
 
 ## Vectorization Analysis and Best Sequential Time
