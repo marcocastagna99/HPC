@@ -34,13 +34,17 @@ By compiling with `-O0`, the compiler is forced to generate naive scalar instruc
 
 ![alt text](snap/sw2_roofline_hotspot.png)
 ![alt text](snap/sw2_hotspot.png)
+
+The unoptimized algorithm is heavily memory-bound, but the Roofline Model reveals an interesting detail: the main hotspot sits just below the L3 Cache Bandwidth limit (~67.78 GB/s and 1.13 GFLOPS), instead of dropping down to the slower DRAM limit.
+
+The arithmetic intensity is very low (only 0.017 FLOP/Byte), compared to the theoretical value of 0.0625 (2 FLOPs / 32 Bytes) for the core operation c[i][j] += a[i][k] * b[k][j]. This drop happens because the -O0 flag disables register allocation. As a result, the compiler is forced to constantly reload loop variables and array pointers from the memory stack during every iteration.
+
+However, since the loop sequence is optimized (i-k-j), the memory access is contiguous (good spatial locality). This allows the CPU's hardware prefetcher to bring data from the RAM into the L3 cache ahead of time. Because of this, the execution is bottlenecked by the L3 cache bandwidth and the use of scalar instructions, rather than the slow DRAM latency.
+
 ![alt text](snap/assembly.png)
 ![alt text](snap/codeAnalytics.png)
 
-
-
-The naive algorithm is heavily Memory Bound, but with an important architectural nuance. The Roofline Model places the main hotspot just below the **L3 Cache Bandwidth** diagonal (almoast achieving 1.13 GFLOPS with an effective bandwidth of ~67.78 GB/s), rather than falling all the way down to the DRAM limit. With an arithmetic intensity of just 0.017 FLOP/Byte, the lack of register allocation caused by the `-O0` flag is evident. Theoretically, the core operation `c[i][j] += a[i][k] * b[k][j]` should have an intensity of $2 \text{ FLOP} / 32 \text{ Byte} = 0.0625$. Figure X: Assembly code generated with -O0. The highlighted instructions (e.g., memory accesses relative to the base pointer %rbp) demonstrate the continuous reloading of loop counters and array pointers from the memory stack, corroborating the 53% memory instruction mix overhead. This massive drop is a direct consequence of the compiler reloading loop variables and array elements from the memory stack at every single iteration. However, because the loop sequence is optimized (`i-k-j`), the memory access pattern exhibits excellent spatial locality. This contiguous access allows the CPU's hardware prefetcher to effectively pull data from the DRAM into the L3 cache ahead of time. Consequently, the execution is not bottlenecked by the bare DRAM latency, but rather by the L3 bandwidth and the purely scalar instructions.
-
+Figure X: Assembly code compiled with -O0. The highlighted memory instructions (using the %rbp base pointer) show that loop counters and array pointers are continuously reloaded from the stack. This explains why memory instructions make up 53% of the total execution overhead.
 ---
 
 ## Vectorization Analysis and Best Sequential Time
