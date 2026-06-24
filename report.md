@@ -226,12 +226,12 @@ e per il numero di thread in termin di speed up ed efficiency
 
 
 ## scalabilità
+grafici generati dal benchmark.sh
 
 
 
 
-
-
+## CUDA
 
 
 
