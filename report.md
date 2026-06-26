@@ -251,9 +251,12 @@ Quindi, non decidi "la dimensione logica dei dati", ma decidi la geometria dei t
 ![alt text](snap/image.png)
 
 
+concetto grid stride quand i dati sono enormi e si creano tanti blocchi, o thread  si suddividono gli elementi di tutti i blocchi, 
+importatne non creare blocchi piu gorssi dei valore segnato dalla gpu (max thread x block)
 
+Un blocco è indivisibile. Quando l'hardware deve eseguire un blocco, deve assegnarlo per intero a un singolo SM. Non può prendere un blocco, tagliarlo a metà e darne un pezzo all'SM 1 e un pezzo all'SM 2
 
-
+un blocco deve stare nel SM e ci rimane finche i thread non finiscono il lavoro
 
 
 comandi utili 
