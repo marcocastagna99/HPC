@@ -258,6 +258,11 @@ Un blocco è indivisibile. Quando l'hardware deve eseguire un blocco, deve asseg
 
 un blocco deve stare nel SM e ci rimane finche i thread non finiscono il lavoro
 
+warp divergence: se i thread del warp divergono e fanno coe diverse dagli altri il warp non puo sdoppiarsi e quindi vengono eseguiti in modo sequenziale!!!!!
+
+
+
+
 
 comandi utili 
 scrot -s screenshot.png

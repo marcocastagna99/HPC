@@ -1,4 +1,3 @@
-# --- Variables ---
 CC = icx
 CFLAGS = -g -O3 -xHost -fiopenmp
 DEBUG_FLAGS = -DDEBUG
@@ -6,7 +5,6 @@ DEBUG_FLAGS = -DDEBUG
 TARGET = mat_mul_p
 DEBUG_TARGET = mat_mul_debug
 
-# --- Rules ---
 all: $(TARGET)
 
 $(TARGET): mat_mul_parallel.c
