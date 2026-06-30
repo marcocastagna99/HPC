@@ -1,14 +1,6 @@
 # hash file version: 3
-17	4	/VM/stud/S4700984/HPC/matmul	5888	5908	/home/stud/S4700984/HPC/mat_mul.c	28	20	3cf6f6336e4153477060e9b0619d03bb	1	1	0	0	0
-18	5	/VM/stud/S4700984/HPC/matmul	5856	6032	/home/stud/S4700984/HPC/mat_mul.c	6	149	3cf6f6336e4153477060e9b0619d03bb	0	1	0	0	0
-19	6	/VM/stud/S4700984/HPC/matmul	5952	5973	/home/stud/S4700984/HPC/mat_mul.c	28	21	3cf6f6336e4153477060e9b0619d03bb	1	1	0	0	0
-20	7	/VM/stud/S4700984/HPC/matmul	7312	7410	/home/stud/S4700984/HPC/mat_mul.c	40	98	3cf6f6336e4153477060e9b0619d03bb	0	1	0	0	0
-21	8	/VM/stud/S4700984/HPC/matmul	7168	6945	/home/stud/S4700984/HPC/mat_mul.c	6	468	3cf6f6336e4153477060e9b0619d03bb	1	1	0	0	0
-22	9	/VM/stud/S4700984/HPC/matmul	6912	6688	/home/stud/S4700984/HPC/mat_mul.c	5	698	3cf6f6336e4153477060e9b0619d03bb	0	1	0	0	0
-23	10	/VM/stud/S4700984/HPC/matmul	6688	6448	/home/stud/S4700984/HPC/mat_mul.c	5	1843	3cf6f6336e4153477060e9b0619d03bb	0	1	0	0	0
-24	11	/VM/stud/S4700984/HPC/matmul	6448	6336	/home/stud/S4700984/HPC/mat_mul.c	5	2073	3cf6f6336e4153477060e9b0619d03bb	0	1	0	0	0
-25	12	/VM/stud/S4700984/HPC/matmul	6336	8629	/home/stud/S4700984/HPC/mat_mul.c	5	2182	3cf6f6336e4153477060e9b0619d03bb	0	1	0	0	0
-26	13	/VM/stud/S4700984/HPC/matmul	8000	7753	/home/stud/S4700984/HPC/mat_mul.c	5	614	3cf6f6336e4153477060e9b0619d03bb	1	1	0	0	0
-27	14	/VM/stud/S4700984/HPC/matmul	7712	6688	/home/stud/S4700984/HPC/mat_mul.c	5	872	3cf6f6336e4153477060e9b0619d03bb	0	1	0	0	0
-28	5998	/VM/stud/S4700984/HPC/matmul	6912	6688	/home/stud/S4700984/HPC/mat_mul.c	5	1570	3cf6f6336e4153477060e9b0619d03bb	0	1	0	0	0
-29	5999	/VM/stud/S4700984/HPC/matmul	5888	5908,5973	/home/stud/S4700984/HPC/mat_mul.c	28	41	3cf6f6336e4153477060e9b0619d03bb	1	1	0	0	0
+1	2	/home/nfs/S4700984/HPC/bin/matmul	4768	4910	/home/nfs/S4700984/HPC/mat_mul.c	24	142	74af240fba2c62f40a0aee75d1ccd2a0	0	1	0	0	0
+2	4	/home/nfs/S4700984/HPC/bin/matmul	4749	4929	/home/nfs/S4700984/HPC/mat_mul.c	23	180	74af240fba2c62f40a0aee75d1ccd2a0	0	1	0	0	0
+3	5	/home/nfs/S4700984/HPC/bin/matmul	4984	5111	/home/nfs/S4700984/HPC/mat_mul.c	35	127	74af240fba2c62f40a0aee75d1ccd2a0	0	1	0	0	0
+4	6	/home/nfs/S4700984/HPC/bin/matmul	4965	5130	/home/nfs/S4700984/HPC/mat_mul.c	34	165	74af240fba2c62f40a0aee75d1ccd2a0	0	1	0	0	0
+5	7	/home/nfs/S4700984/HPC/bin/matmul	4946	5149	/home/nfs/S4700984/HPC/mat_mul.c	33	203	74af240fba2c62f40a0aee75d1ccd2a0	0	1	0	0	0
