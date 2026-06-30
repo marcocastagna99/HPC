@@ -1,6 +1,12 @@
 # hash file version: 3
-1	2	/home/nfs/S4700984/HPC/bin/matmul	4768	4910	/home/nfs/S4700984/HPC/mat_mul.c	24	142	74af240fba2c62f40a0aee75d1ccd2a0	0	1	0	0	0
-2	4	/home/nfs/S4700984/HPC/bin/matmul	4749	4929	/home/nfs/S4700984/HPC/mat_mul.c	23	180	74af240fba2c62f40a0aee75d1ccd2a0	0	1	0	0	0
-3	5	/home/nfs/S4700984/HPC/bin/matmul	4984	5111	/home/nfs/S4700984/HPC/mat_mul.c	35	127	74af240fba2c62f40a0aee75d1ccd2a0	0	1	0	0	0
-4	6	/home/nfs/S4700984/HPC/bin/matmul	4965	5130	/home/nfs/S4700984/HPC/mat_mul.c	34	165	74af240fba2c62f40a0aee75d1ccd2a0	0	1	0	0	0
-5	7	/home/nfs/S4700984/HPC/bin/matmul	4946	5149	/home/nfs/S4700984/HPC/mat_mul.c	33	203	74af240fba2c62f40a0aee75d1ccd2a0	0	1	0	0	0
+16	6	/home/nfs/S4700984/HPC/bin/matmul_p	5984	6005	/home/nfs/S4700984/HPC/mat_mul_parallel.c	28	21	787ad07e7d92abd089f1882fa9833d7a	1	1	0	0	0
+17	8	/home/nfs/S4700984/HPC/bin/matmul_p	5888	6061	/home/nfs/S4700984/HPC/mat_mul_parallel.c	6	149	787ad07e7d92abd089f1882fa9833d7a	0	1	0	0	0
+18	9	/home/nfs/S4700984/HPC/bin/matmul_p	5920	5942	/home/nfs/S4700984/HPC/mat_mul_parallel.c	28	22	787ad07e7d92abd089f1882fa9833d7a	1	1	0	0	0
+19	10	/home/nfs/S4700984/HPC/bin/matmul_p	8144	8171	/home/nfs/S4700984/HPC/mat_mul_parallel.c	50	27	787ad07e7d92abd089f1882fa9833d7a	0	1	0	0	0
+20	12	/home/nfs/S4700984/HPC/bin/matmul_p	8096	8048	/home/nfs/S4700984/HPC/mat_mul_parallel.c	47	132	787ad07e7d92abd089f1882fa9833d7a	1	1	0	0	0
+21	13	/home/nfs/S4700984/HPC/bin/matmul_p	8048	7744	/home/nfs/S4700984/HPC/mat_mul_parallel.c	49	177	787ad07e7d92abd089f1882fa9833d7a	0	1	0	0	0
+22	14	/home/nfs/S4700984/HPC/bin/matmul_p	7744	7360	/home/nfs/S4700984/HPC/mat_mul_parallel.c	47	1510	787ad07e7d92abd089f1882fa9833d7a	0	1	0	0	0
+23	15	/home/nfs/S4700984/HPC/bin/matmul_p	7360	7056	/home/nfs/S4700984/HPC/mat_mul_parallel.c	47	1884	787ad07e7d92abd089f1882fa9833d7a	0	1	0	0	0
+24	16	/home/nfs/S4700984/HPC/bin/matmul_p	7056	6848	/home/nfs/S4700984/HPC/mat_mul_parallel.c	47	2176	787ad07e7d92abd089f1882fa9833d7a	0	1	0	0	0
+25	17	/home/nfs/S4700984/HPC/bin/matmul_p	6848	9352	/home/nfs/S4700984/HPC/mat_mul_parallel.c	47	2374	787ad07e7d92abd089f1882fa9833d7a	0	1	0	0	0
+26	96	/home/nfs/S4700984/HPC/bin/matmul_p	5920	5942,6005	/home/nfs/S4700984/HPC/mat_mul_parallel.c	28	43	787ad07e7d92abd089f1882fa9833d7a	1	1	0	0	0

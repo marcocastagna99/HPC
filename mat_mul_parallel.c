@@ -38,8 +38,8 @@ int main(int argc, char **argv) {
         printf("I'm using %d OpenMP Thread\n", omp_get_num_threads());
     }
     
-    double start_time = omp_get_wtime();
-   
+   // double start_time = omp_get_wtime();
+   /*
     // Hotspot (The innermost loop on 'j' favors cache access patterns)
     //#pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic)
     //#pragma omp parallel for private(j, k) schedule(dynamic)
@@ -55,8 +55,8 @@ int main(int argc, char **argv) {
    
    // Definisci la dimensione del blocco (aggiungilo in cima al file o qui)
     // 64 o 128 sono i "magic numbers" ideali per la Cache L2 dei processori moderni
-    /*
-    int BLOCK_SIZE = 64; 
+   */
+    int BLOCK_SIZE = 64;
 
     double start_time = omp_get_wtime();
 
@@ -90,7 +90,7 @@ int main(int argc, char **argv) {
 
             }
         }
-    }*/
+    }
 
     
 
