@@ -51,9 +51,9 @@ int main(int argc, char **argv) {
                 c[i][j] += a[i][k] * b[k][j];
             }
         }
-    }
+    }*/
    
-// Define the block size (add this at the top of the file or here)
+    // Define the block size (add this at the top of the file or here)
     // 64 or 128 are the ideal "magic numbers" for the L2 Cache of modern processors
     int BLOCK_SIZE = 64; 
 
