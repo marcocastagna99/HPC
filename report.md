@@ -262,6 +262,22 @@ warp divergence: se i thread del warp divergono e fanno coe diverse dagli altri 
 
 
 
+soluzione pensata:
+blocchi bidimensionali multipli del warp così vengono usati a pieno i warp, costruzione griglia di blocchi bidimensionale,
+pensare l'algoritmo che ogni thread calcola un solo elemento c quindi deve fare riga per colonna per quel elemento (e quindi deve sapere quale riga e quale colonna), scorrendo tutte le colonne di una data riga row, e tutte le righe ad una speficia colonna col, quindi somma di prodotto di riga per colonna, ma assegnando comunque ad ogni thread celle contigue di c facendo: calcolandosi per la propria pozione della griglia globale bidimensionale dei blocchi, quindi logicamente creo una griglia enorme grande quanto c, divisa in blocchi logici che verranno schedulati ai vari SM in parallelo, e ogni thread di quei blocchi hanno una posizione globale row e col in base a blockid.x* blockDim+ threadid.x e blockid.y* blockDim+ threadid.y. In questo modo ogni thread sa quale riga e quale colonna deve scorrere!
+cosa succede im memoria quando ad un warp di 32 thread gli viene dato un blocco, dto che il wapr è da 32 e il blocco da 256 elementi, bisona pensare tutto a 1D, e così un warp ha due righe di un blocco.  esempio warp 0, SM0, N=5000
+Thread da 0 a 15: Hanno ty = 0 (quindi row = 0) e tx da 0 a 15 (quindi col da 0 a 15).
+Thread da 16 a 31: Hanno ty = 1 (quindi row = 1) e tx da 0 a 15 (quindi col da 0 a 15).
+
+
+
+
+
+
+
+
+
+
 
 
 comandi utili 
