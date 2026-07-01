@@ -263,16 +263,38 @@ warp divergence: se i thread del warp divergono e fanno coe diverse dagli altri 
 
 
 soluzione pensata:
-blocchi bidimensionali multipli del warp così vengono usati a pieno i warp, costruzione griglia di blocchi bidimensionale,
-pensare l'algoritmo che ogni thread calcola un solo elemento c quindi deve fare riga per colonna per quel elemento (e quindi deve sapere quale riga e quale colonna), scorrendo tutte le colonne di una data riga row, e tutte le righe ad una speficia colonna col, quindi somma di prodotto di riga per colonna, ma assegnando comunque ad ogni thread celle contigue di c facendo: calcolandosi per la propria pozione della griglia globale bidimensionale dei blocchi, quindi logicamente creo una griglia enorme grande quanto c, divisa in blocchi logici che verranno schedulati ai vari SM in parallelo, e ogni thread di quei blocchi hanno una posizione globale row e col in base a blockid.x* blockDim+ threadid.x e blockid.y* blockDim+ threadid.y. In questo modo ogni thread sa quale riga e quale colonna deve scorrere!
-cosa succede im memoria quando ad un warp di 32 thread gli viene dato un blocco, dto che il wapr è da 32 e il blocco da 256 elementi, bisona pensare tutto a 1D, e così un warp ha due righe di un blocco.  esempio warp 0, SM0, N=5000
+blocchi bidimensionali multipli del warp così vengono usati a pieno i warp, costruzione griglia di blocchi bidimensionale (256 thread),
+pensare l'algoritmo che ogni thread calcola un solo elemento c quindi deve fare riga per colonna per quel elemento (e quindi deve sapere quale riga e quale colonna), scorrendo tutte le colonne di una data riga row, e tutte le righe ad una speficia colonna col, quindi somma di prodotto di riga per colonna, ma assegnando comunque ad ogni thread celle contigue per efficienza: calcolandosi per la propria pozione della griglia globale bidimensionale dei blocchi, quindi logicamente creo una griglia enorme grande quanto c, divisa in blocchi logici che verranno schedulati ai vari SM in parallelo, e ogni thread di quei blocchi hanno una posizione globale row e col in base a blockid.x* blockDim+ threadid.x e blockid.y* blockDim+ threadid.y. In questo modo ogni thread sa quale riga e quale colonna deve scorrere!
+cosa succede im memoria quando ad un warp di 32 thread gli viene dato un blocco, dato che il wapr è da 32 e il blocco da 256 elementi, bisona pensare tutto a 1D, e così un warp singolo prende due righe di un blocco.  esempio warp 0, SM0, N=5000
 Thread da 0 a 15: Hanno ty = 0 (quindi row = 0) e tx da 0 a 15 (quindi col da 0 a 15).
 Thread da 16 a 31: Hanno ty = 1 (quindi row = 1) e tx da 0 a 15 (quindi col da 0 a 15).
 
+L'impatto sulla Memoria:
+Quando questo Warp richiede i dati della matrice $B$ al ciclo $k=0$ (chiedendo gli indirizzi b[0...15]), i thread stanno chiedendo 16 indirizzi fisicamente contigui in memoria.
+Nonostante a livello algoritmico il singolo thread stia concettualmente "scendendo in verticale" saltando di N elementi ad ogni passo, il fatto che 16 thread lo facciano affiancati crea un pattern di lettura orizzontale. La GPU fonde queste 16 richieste adiacenti in un'unica operazione efficiente (Memory Coalescing), evitando il collasso delle prestazioni che si avrebbe su una CPU standard.
 
+La lettura della Matrice A (Broadcast):
+Allo stesso ciclo $k=0$, cosa chiedono gli stessi primi 16 thread per la matrice $A$? Poiché si trovano tutti sulla stessa riga (row=0), chiedono tutti esattamente lo stesso identico elemento: a[0].
+Invece di fare 16 letture identiche, l'hardware applica un meccanismo chiamato Broadcast: legge il numero una singola volta dalla memoria e lo "urla" simultaneamente a tutti i thread che lo hanno richiesto.
 
+4. I Limiti dell'Approccio Naive (Memory Wall)
 
+Se l'hardware è in grado di ottimizzare così bene le letture di $B$ (Coalescing) e di $A$ (Broadcast), per quale motivo l'algoritmo Naive è considerato inefficiente e si preferisce passare all'algoritmo Tiled?
 
+Il difetto fatale risiede nella ridondanza degli accessi su larga scala:
+
+Il Broadcast salva tempo per quel singolo Warp in quel preciso istante.
+
+Tuttavia, non appena il Blocco ha terminato i suoi calcoli, i dati letti vengono "dimenticati" dall'SM.
+
+Quando lo scheduler farà partire i Blocchi successivi per calcolare le restanti celle della riga di $C$, i nuovi thread dovranno accedere alla Global Memory per leggere di nuovo lo stesso identico elemento a[0].
+
+Su una matrice $N = 5000$, lo stesso identico numero a[0] verrà prelevato dalla lentissima VRAM esterna 5000 volte distinte. Questa immensa quantità di letture ripetute satura il bus PCIe e la banda passante della memoria (effetto Memory Wall), costringendo i velocissimi CUDA Cores a rimanere in attesa dei dati.
+L'algoritmo è, di fatto, pesantemente Memory-Bound, motivo per cui lo step successivo di ottimizzazione in CUDA consiste nell'usare la Shared Memory (Tiled approach) per fungere da cache manuale e bloccare queste letture ridondanti dalla VRAM.
+
+nel prodotto riga-per-colonna, per calcolare le celle di $C$ che stanno affiancate sulla stessa riga,  serve la stessa identica riga di $A$.Immaginando la primissima riga di blocchi della  Griglia (la fascia più in alto della matrice C).Per coprire i 5000 elementi di larghezza, hai messo in fila orizzontale 313 blocchi (dal Blocco 0 al Blocco 312).Cosa succede a questi blocchi?Il Blocco 0 (colonne da 0 a 15 di C): Inizia a lavorare. Per calcolare i suoi risultati, i suoi thread devono leggere le prime 16 righe di A (per intero, tutti i 5000 elementi di quelle righe!). Le leggono dalla Global Memory, fanno i calcoli, salvano in C.Appena il blocco finisce, i thread muoiono e i dati spariscono dalle piccolissime cache del Multiprocessore.Il Blocco 1 (colonne da 16 a 31 di C): Viene mandato in esecuzione. Indovina di cosa ha bisogno per calcolare i suoi risultati? Ha bisogno ESATTAMENTE delle prime 16 righe di A, per intero!Siccome il Blocco 0 le ha "cancellate" morendo, il Blocco 1 deve ri-chiedere alla lentissima Global Memory di mandargli di nuovo tutti i 5000 elementi di quelle 16 righe.Il Blocco 2, il Blocco 3... fino al Blocco 312:Tutti loro si trovano sulla fascia alta di C. E tutti loro, uno dopo l'altro, chiederanno alla Global Memory di mandargli le stesse identiche prime 16 righe di A.
+problema quindi di temporary locality per le dimensioni picocle delle cache
+cosa fare?
 
 
 
