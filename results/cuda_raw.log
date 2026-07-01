@@ -1,0 +1,45 @@
+=== N=5000, Block=8x8 ===
+BlockSize: 8x8
+H2D Time : 44.080097 ms
+Kernel Time : 1369.267212 ms
+D2H Time : 48.027615 ms
+=== N=5000, Block=16x16 ===
+BlockSize: 16x16
+H2D Time : 42.689919 ms
+Kernel Time : 1100.085938 ms
+D2H Time : 46.301823 ms
+=== N=5000, Block=32x32 ===
+BlockSize: 32x32
+H2D Time : 42.884224 ms
+Kernel Time : 1105.615479 ms
+D2H Time : 46.454624 ms
+=== N=10000, Block=8x8 ===
+BlockSize: 8x8
+H2D Time : 169.761765 ms
+Kernel Time : 9652.995117 ms
+D2H Time : 184.807678 ms
+=== N=10000, Block=16x16 ===
+BlockSize: 16x16
+H2D Time : 172.219650 ms
+Kernel Time : 8414.854492 ms
+D2H Time : 183.609497 ms
+=== N=10000, Block=32x32 ===
+BlockSize: 32x32
+H2D Time : 173.730042 ms
+Kernel Time : 8708.834961 ms
+D2H Time : 188.469116 ms
+=== N=15000, Block=8x8 ===
+BlockSize: 8x8
+H2D Time : 383.490814 ms
+Kernel Time : 34379.046875 ms
+D2H Time : 443.248596 ms
+=== N=15000, Block=16x16 ===
+BlockSize: 16x16
+H2D Time : 390.163818 ms
+Kernel Time : 30472.308594 ms
+D2H Time : 411.225647 ms
+=== N=15000, Block=32x32 ===
+BlockSize: 32x32
+H2D Time : 388.297638 ms
+Kernel Time : 29058.953125 ms
+D2H Time : 455.997650 ms

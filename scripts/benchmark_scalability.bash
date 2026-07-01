@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 # Load the Intel oneAPI environment
-# (Comment this out with '#' if you already source this in your ~/.bashrc)
+# (Comment this out with '#' if you already source this in  ~/.bashrc)
 source /opt/intel/oneapi/setvars.sh
 
 # Exit immediately if any command fails
 set -euo pipefail
 
 # --- Configuration ---
-COMPILED_FILE="bin/mat_mul_p"  # The compiled binary to run
-RESULTS_DIR="./results"
+COMPILED_FILE="../bin/mat_mul_p"  # The compiled binary to run
+RESULTS_DIR="../results"
 
 # Create a clean directory for all outputs
 mkdir -p "$RESULTS_DIR"
@@ -39,11 +39,11 @@ function compile(){
 
 compile
 
-# Definiamo gli array per le dimensioni e i thread
+# Define arrays for sizes and threads
 SIZES=(5000 10000 15000)
 THREADS=(1 2 4 8 12 16 20)
 
-# Creiamo il file CSV e scriviamo l'intestazione (Header)
+# Create the CSV file and write the header
 CSV_FILE="$RESULTS_DIR/scalability_data.csv"
 echo "N,Threads,Time_s" > "$CSV_FILE"
 
@@ -53,32 +53,32 @@ echo "Results will be saved in tabular format to: $CSV_FILE"
 for N in "${SIZES[@]}"; do
     title "Testing Matrix Size: N = $N"
     
-    # File di log grezzo opzionale per salvare tutto l'output
+    # Optional raw log file to save all output
     RAW_LOG="$RESULTS_DIR/raw_output_N${N}.log"
-    > "$RAW_LOG" # Pulisce il file se esiste già
+    > "$RAW_LOG" # Clear the file if it already exists
 
     for t in "${THREADS[@]}"; do
         export OMP_NUM_THREADS=$t
         
-        # Stampa a video per capire a che punto è lo script
+        # Print to screen to track script progress
         printf "Running N=%-5d with %-2d threads... " "$N" "$t"
         
-        # Esegue il programma e cattura l'output
+        # Execute the program and capture the output
         OUTPUT=$("$COMPILED_FILE" "$N")
         
-        # Salva l'output grezzo nel log
+        # Save raw output to the log
         echo "--- THREADS = $t ---" >> "$RAW_LOG"
         echo "$OUTPUT" >> "$RAW_LOG"
         echo "" >> "$RAW_LOG"
         
-        # Estrae SOLO il tempo (il numero con la virgola) usando awk
-        # Cerca la riga con "Computation time", poi prende il penultimo elemento prima di "seconds"
+        # Extract ONLY the time (the floating-point number) using awk
+        # Search for the "Computation time" line, then take the second-to-last element before "seconds"
         TIME=$(echo "$OUTPUT" | grep -i "Computation time" | awk '{print $(NF-1)}')
         
-        # Stampa a video il tempo trovato
+        # Print the found time to screen
         echo "${TIME}s"
         
-        # Salva i dati in formato tabellare CSV (Dimensione, Thread, Tempo)
+        # Save the data in tabular CSV format (Size, Threads, Time)
         echo "$N,$t,$TIME" >> "$CSV_FILE"
     done
 done

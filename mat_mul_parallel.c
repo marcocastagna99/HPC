@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
     //#pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic)
     //#pragma omp parallel for private(j, k) schedule(dynamic)
     //#pragma omp parallel for private(j, k) schedule(static)
-    #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(static)
+    #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic)
     for (i = 0; i < n; ++i) {
         for (k = 0; k < n; k++) {
             for (j = 0; j < n; ++j) {
@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
                 int k_end = (k + BLOCK_SIZE > n) ? n : k + BLOCK_SIZE;
                 int j_end = (j + BLOCK_SIZE > n) ? n : j + BLOCK_SIZE;
 
-                // ---Inside the Cache block ---
+                //Inside the Cache block 
                 for (int ii = i; ii < i_end; ++ii) {
                     for (int kk = k; kk < k_end; ++kk) {
                         
