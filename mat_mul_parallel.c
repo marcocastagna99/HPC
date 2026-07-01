@@ -53,49 +53,44 @@ int main(int argc, char **argv) {
         }
     }
    
-   // Definisci la dimensione del blocco (aggiungilo in cima al file o qui)
-    // 64 o 128 sono i "magic numbers" ideali per la Cache L2 dei processori moderni
-   */
-    int BLOCK_SIZE = 64;
+// Define the block size (add this at the top of the file or here)
+    // 64 or 128 are the ideal "magic numbers" for the L2 Cache of modern processors
+    int BLOCK_SIZE = 64; 
 
     double start_time = omp_get_wtime();
 
-    // OpenMP parallelizza solo il ciclo più esterno (distribuisce "strisce di blocchi" ai thread)
-    // NOTA: dichiarando le variabili 'int' direttamente dentro i for, OpenMP le 
-    // considera automaticamente 'private', rendendo il codice molto più pulito e sicuro.
+    // OpenMP parallelizes only the outermost loop (distributes "block strips" to threads)
+    // NOTE: declared 'int' variables directly inside the for loops makes OpenMP 
+    // automatically consider them 'private', making the code much cleaner and safer.
     #pragma omp parallel for default(none) shared(a, b, c, n, BLOCK_SIZE) schedule(dynamic)
     for (int i = 0; i < n; i += BLOCK_SIZE) {
         for (int k = 0; k < n; k += BLOCK_SIZE) {
             for (int j = 0; j < n; j += BLOCK_SIZE) {
                 
-                // CALCOLO DEI BORDI (Fondamentale!)
-                // Siccome N=10000 non è perfettamente divisibile per 64, agli angoli 
-                // della matrice l'ultimo blocco sarà "mozzato". Questo evita i Segmentation Fault.
+                // BOUNDARY COMPUTATION (Crucial!)
+                // Since N=10000 is not perfectly divisible by 64, the last block 
+                // at the matrix edges will be truncated. This prevents Segmentation Faults.
                 int i_end = (i + BLOCK_SIZE > n) ? n : i + BLOCK_SIZE;
                 int k_end = (k + BLOCK_SIZE > n) ? n : k + BLOCK_SIZE;
                 int j_end = (j + BLOCK_SIZE > n) ? n : j + BLOCK_SIZE;
 
-                // --- INIZIO DEL MICRO-MONDO (Dentro il blocco in Cache) ---
+                // ---Inside the Cache block ---
                 for (int ii = i; ii < i_end; ++ii) {
                     for (int kk = k; kk < k_end; ++kk) {
                         
-                        // Questo ciclo verrà vettorializzato in AVX2/FMA dal compilatore
+                        // This loop will be vectorized in AVX2/FMA by the compiler
                         for (int jj = j; jj < j_end; ++jj) {
                             c[ii][jj] += a[ii][kk] * b[kk][jj];
                         }
                         
                     }
                 }
-                // --- FINE DEL MICRO-MONDO ---
-
             }
         }
     }
 
-    
-
     double run_time = omp_get_wtime() - start_time;
-    printf("Computation time (N=%d): %f seconds\n", n, run_time);
+    printf("Computation time (N=%d, BLOCK=%d): %f seconds\n", n, BLOCK_SIZE, run_time);
 
     // 2. Conditional file writing based on the DEBUG flag
     #ifdef DEBUG
