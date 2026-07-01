@@ -37,14 +37,14 @@ int main(int argc, char **argv) {
         #pragma omp master
         printf("I'm using %d OpenMP Thread\n", omp_get_num_threads());
     }
-    
-   // double start_time = omp_get_wtime();
-   /*
+    /*
+    double start_time = omp_get_wtime();
+   
     // Hotspot (The innermost loop on 'j' favors cache access patterns)
     //#pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic)
     //#pragma omp parallel for private(j, k) schedule(dynamic)
     //#pragma omp parallel for private(j, k) schedule(static)
-    #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic)
+    #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(static)
     for (i = 0; i < n; ++i) {
         for (k = 0; k < n; k++) {
             for (j = 0; j < n; ++j) {
@@ -55,6 +55,7 @@ int main(int argc, char **argv) {
    
     // Define the block size (add this at the top of the file or here)
     // 64 or 128 are the ideal "magic numbers" for the L2 Cache of modern processors
+    
     int BLOCK_SIZE = 64; 
 
     double start_time = omp_get_wtime();
@@ -91,6 +92,7 @@ int main(int argc, char **argv) {
 
     double run_time = omp_get_wtime() - start_time;
     printf("Computation time (N=%d, BLOCK=%d): %f seconds\n", n, BLOCK_SIZE, run_time);
+    //printf("Computation time (N=%d: %f seconds\n)", n, run_time);
 
     // 2. Conditional file writing based on the DEBUG flag
     #ifdef DEBUG

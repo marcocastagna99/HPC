@@ -104,7 +104,7 @@ Therefore, the baseline compilation command (`icx -g -O3 -xHost -fiopenmp -o bin
 
 
 ## OpenMP
-icx -g -O3 -xHost -fiopenmp -o matmul_p mat_mul_parallel.c
+icx -g -O3 -xHost -fiopenmp -o bin/matmul_p mat_mul_parallel.c
 
 ho deciso di inserire  #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic) nel primo dei 3 cicli for 
 ```c
@@ -125,9 +125,9 @@ ma se avessi usato lo scheduler statico
 avrei ad esempio se N=10k ogni thread  10000 / 20 = 500 iterazioni `i` del primo for, ma usando lo scheduler dinamico quidni dando il potere della scelta allo scheduler non sarà esatamente distribuito così egualmente su tutti ma man mano ogni thread prende i blocchi quando è disponibile, avendo aperò alla fine distribuione probabilemnte simile , infatti  ho sperimentato verie volte eseguendo lo stesso codice ma con scheduler statico, notando che che l'esecuzioni con scheduler dinamico sono sempre leggermente piu brevi, facendomi pensare che si crea questo load imbalance/overhead nei core piu lenti e con cache piu piccola,
 ad esempio con n=10k
 static
-39.768416 seconds
+34.022240 seconds
 dynamic
-34.145954 seconds
+31.731761 seconds
 
 
 ### risultati e analisi
@@ -215,10 +215,16 @@ con algoritmo originale parallelo
 I'm using 8 OpenMP Thread
 Computation time (N=10000): 329.788830 seconds
 
-con alogirtmo parallelo otttimizzato blocchi da 64
+con alogirtmo parallelo otttimizzato blocchi da 64x64 4096
 Computation time (N=10000): 51.348811 seconds
 
 ora vedo un vantaggio nell'tilizzo del parallelismo rispetto a prima
+
+sul pc wk007 aula 210
+Computation time (N=10000, BLOCK=64): 8.602647 seconds
+
+
+
 
 investighiamo come l'algoritmo ora scala bene per dimensioni di 5k, 10k 15k
 e per il numero di thread in termin di speed up ed efficiency
