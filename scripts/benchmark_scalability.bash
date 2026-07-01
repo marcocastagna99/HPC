@@ -41,7 +41,7 @@ compile
 
 # Define arrays for sizes and threads
 SIZES=(5000 10000 15000)
-THREADS=(1 2 4 8 12 16 20)
+THREADS=(1 2 4 8 12 16 20 24 28)
 
 # Create the CSV file and write the header
 CSV_FILE="$RESULTS_DIR/scalability_data.csv"
