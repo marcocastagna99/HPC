@@ -81,11 +81,11 @@ To measure the impact of these flags, I ran the algorithm with $N=10000$ using d
 
 | Compiler Flags | Execution Time |
 | --- | --- |
-| `-O3 -xHost` (Baseline) | 76.069008 seconds |
-| `-O3 -xHost -ffast-math` | 77.634956 seconds |
-| `-O3 -xHost -ipo` | 79.276426 seconds |
-| `-O3 -xHost -fno-alias` | 77.424665 seconds |
-| `-O3 -xHost -ipo -ffast-math -fno-alias` | 82.712974 seconds |
+| `-O3 -xHost` (Baseline) | 76.061213 seconds seconds |
+| `-O3 -xHost -ffast-math` | 76.023915 seconds |
+| `-O3 -xHost -ipo` | 79.507378 seconds |
+| `-O3 -xHost -fno-alias` | 76.115624 seconds |
+| `-O3 -xHost -ipo -ffast-math -fno-alias` |  79.374703 seconds |
  
 
 **Analysis of the Results**
