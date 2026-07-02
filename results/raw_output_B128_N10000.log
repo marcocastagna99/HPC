@@ -22,3 +22,15 @@ Computation time (N=10000): 12.945035 seconds
 I'm using 16 OpenMP Thread
 Computation time (N=10000): 11.497413 seconds
 
+--- THREADS = 20 ---
+I'm using 20 OpenMP Thread
+Computation time (N=10000): 11.560084 seconds
+
+--- THREADS = 24 ---
+I'm using 24 OpenMP Thread
+Computation time (N=10000): 11.852666 seconds
+
+--- THREADS = 28 ---
+I'm using 28 OpenMP Thread
+Computation time (N=10000): 11.715960 seconds
+
