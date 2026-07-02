@@ -7,12 +7,12 @@ DEBUG_TARGET = mat_mul_debug
 
 all: $(TARGET)
 
-$(TARGET): mat_mul_parallel.c
-	$(CC) $(CFLAGS) -o $(TARGET) mat_mul_parallel.c
+$(TARGET): ../mat_mul_parallel.c
+	$(CC) $(CFLAGS) -o $(TARGET) ../mat_mul_parallel.c
 	@echo "Performance build complete: ./$(TARGET)"
 
-debug: mat_mul_parallel.c
-	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -o $(DEBUG_TARGET) mat_mul_parallel.c
+debug: ../mat_mul_parallel.c
+	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -o $(DEBUG_TARGET) ../mat_mul_parallel.c
 	@echo "Debug build complete: ./$(DEBUG_TARGET)"
 
 clean:

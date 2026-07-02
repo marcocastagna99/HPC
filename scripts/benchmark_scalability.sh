@@ -65,7 +65,7 @@ for N in "${SIZES[@]}"; do
         
         # Execute the program and capture the output
         OUTPUT=$("$COMPILED_FILE" "$N")
-        
+        sleep 15
         # Save raw output to the log
         echo "--- THREADS = $t ---" >> "$RAW_LOG"
         echo "$OUTPUT" >> "$RAW_LOG"

@@ -206,6 +206,7 @@ Delegato il compito allo scheduler, approccio master-slave/worker paradigm , usa
 
 
 ### risultati
+icx -g -O3 -xHost -fiopenmp -o bin/matmul_p_tiled  mat_mul_parallel.c
 sbalorditivo
 sul mio i7 6700
 single core vettorizzato xhost 03 etc ./matmul 10000

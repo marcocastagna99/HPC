@@ -1,28 +1,36 @@
 --- THREADS = 1 ---
 I'm using 1 OpenMP Thread
-Computation time (N=10000): 201.141333 seconds
+Computation time (N=10000): 121.171179 seconds
 
 --- THREADS = 2 ---
 I'm using 2 OpenMP Thread
-Computation time (N=10000): 102.906191 seconds
+Computation time (N=10000): 57.400460 seconds
 
 --- THREADS = 4 ---
 I'm using 4 OpenMP Thread
-Computation time (N=10000): 54.126886 seconds
+Computation time (N=10000): 31.067161 seconds
 
 --- THREADS = 8 ---
 I'm using 8 OpenMP Thread
-Computation time (N=10000): 52.536487 seconds
+Computation time (N=10000): 17.130046 seconds
 
 --- THREADS = 12 ---
 I'm using 12 OpenMP Thread
-Computation time (N=10000): 51.049405 seconds
+Computation time (N=10000): 13.308107 seconds
 
 --- THREADS = 16 ---
 I'm using 16 OpenMP Thread
-Computation time (N=10000): 54.739583 seconds
+Computation time (N=10000): 11.355559 seconds
 
 --- THREADS = 20 ---
 I'm using 20 OpenMP Thread
-Computation time (N=10000): 55.113862 seconds
+Computation time (N=10000): 11.584242 seconds
+
+--- THREADS = 24 ---
+I'm using 24 OpenMP Thread
+Computation time (N=10000): 11.802162 seconds
+
+--- THREADS = 28 ---
+I'm using 28 OpenMP Thread
+Computation time (N=10000): 11.679052 seconds
 

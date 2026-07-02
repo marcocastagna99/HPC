@@ -1,0 +1,3473 @@
+--- !Passed
+Pass:            openmp
+Name:            Region
+DebugLoc:        { File: mat_mul_parallel.c, Line: 37, Column: 9 }
+Function:        main
+Args:
+  - Construct:       masked
+  - String:          ' construct transformed'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: '/usr/include/stdlib.h', Line: 364, Column: 16 }
+Function:        atoi
+Args:
+  - Callee:          strtol
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          atoi
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 363, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: '/usr/include/stdlib.h', Line: 364, Column: 16 }
+Function:        atoi
+Args:
+  - Callee:          strtol
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          atoi
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 363, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 7, Column: 9 }
+Function:        main
+Args:
+  - Callee:          puts
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 8, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 17, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 18, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 19, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 22, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+Function:        main
+Args:
+  - Callee:          __kmpc_masked
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 38, Column: 48 }
+Function:        main
+Args:
+  - Callee:          omp_get_num_threads
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 38, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+Function:        main
+Args:
+  - Callee:          __kmpc_end_masked
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 61, Column: 25 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 94, Column: 23 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 95, Column: 5 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 120, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 121, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 122, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 7, Column: 9 }
+Function:        main
+Args:
+  - Callee:          puts
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 8, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 17, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 18, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 19, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 22, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+Function:        main
+Args:
+  - Callee:          __kmpc_masked
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 38, Column: 48 }
+Function:        main
+Args:
+  - Callee:          omp_get_num_threads
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 38, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+Function:        main
+Args:
+  - Callee:          __kmpc_end_masked
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 61, Column: 25 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 94, Column: 23 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 95, Column: 5 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 120, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 121, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 122, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Passed
+Pass:            inline
+Name:            Inlined
+DebugLoc:        { File: mat_mul_parallel.c, Line: 12, Column: 13 }
+Function:        main
+Args:
+  - String:          ''''
+  - Callee:          atoi
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 363, Column: 0 }
+  - String:          ''' inlined into '''
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ''''
+  - String:          ' with '
+  - String:          '(cost='
+  - Cost:            '10'
+  - String:          ', threshold='
+  - Threshold:       '487'
+  - String:          ')'
+  - String:          ' at callsite '
+  - String:          main
+  - String:          ':'
+  - Line:            '7'
+  - String:          ':'
+  - Column:          '13'
+  - String:          ';'
+...
+--- !Passed
+Pass:            openmp
+Name:            Region
+DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 5 }
+Function:        main.extracted
+Args:
+  - Construct:       parallel
+  - String:          ' construct transformed'
+...
+--- !Passed
+Pass:            openmp
+Name:            Region
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - Construct:       parallel loop
+  - String:          ' construct transformed'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+Function:        main.extracted.9
+Args:
+  - Callee:          __kmpc_dispatch_init_4
+  - String:          ' will not be inlined into '
+  - Caller:          main.extracted.9
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+Function:        main.extracted.9
+Args:
+  - Callee:          __kmpc_dispatch_next_4
+  - String:          ' will not be inlined into '
+  - Caller:          main.extracted.9
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+Function:        main.extracted.9
+Args:
+  - Callee:          __kmpc_dispatch_init_4
+  - String:          ' will not be inlined into '
+  - Caller:          main.extracted.9
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+Function:        main.extracted.9
+Args:
+  - Callee:          __kmpc_dispatch_next_4
+  - String:          ' will not be inlined into '
+  - Caller:          main.extracted.9
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            sext
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            sext
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 54 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 54 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 54 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 54 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 29 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 29 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 29 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 29 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 84, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            sub
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 84, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 84, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 84, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            sext
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 29 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 29 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 29 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 29 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 84, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            sub
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 84, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 80, Column: 41 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 80, Column: 41 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 84, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 84, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 84, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            sub
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 84, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 32 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 32 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 45 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 45 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 29 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            select
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 29 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 75, Column: 45 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 75, Column: 45 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 75, Column: 29 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            select
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 75, Column: 29 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 79, Column: 37 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 79, Column: 37 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 80, Column: 41 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 80, Column: 41 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 69, Column: 31 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 69, Column: 31 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 32 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 32 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 45 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 45 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 29 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            select
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 29 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 79, Column: 37 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 79, Column: 37 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 68, Column: 27 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 68, Column: 27 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 68, Column: 27 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 68, Column: 27 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+Function:        main.extracted
+Args:
+  - Callee:          __kmpc_masked
+  - String:          ' will not be inlined into '
+  - Caller:          main.extracted
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 38, Column: 48 }
+Function:        main.extracted
+Args:
+  - Callee:          omp_get_num_threads
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main.extracted
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 38, Column: 9 }
+Function:        main.extracted
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main.extracted
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+Function:        main.extracted
+Args:
+  - Callee:          __kmpc_end_masked
+  - String:          ' will not be inlined into '
+  - Caller:          main.extracted
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+Function:        main.extracted
+Args:
+  - Callee:          __kmpc_masked
+  - String:          ' will not be inlined into '
+  - Caller:          main.extracted
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 38, Column: 48 }
+Function:        main.extracted
+Args:
+  - Callee:          omp_get_num_threads
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main.extracted
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 38, Column: 9 }
+Function:        main.extracted
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main.extracted
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+Function:        main.extracted
+Args:
+  - Callee:          __kmpc_end_masked
+  - String:          ' will not be inlined into '
+  - Caller:          main.extracted
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 37, Column: 9 }
+Function:        main.extracted
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     load
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 37, Column: 9 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 38, Column: 9 }
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 7, Column: 9 }
+Function:        main
+Args:
+  - Callee:          puts
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 8, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: '/usr/include/stdlib.h', Line: 364, Column: 16 }
+Function:        main
+Args:
+  - Callee:          strtol
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 17, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 18, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 19, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 22, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 5 }
+Function:        main
+Args:
+  - Callee:          __kmpc_fork_call
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 61, Column: 25 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main
+Args:
+  - Callee:          __kmpc_fork_call
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 94, Column: 23 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 95, Column: 5 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 120, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 121, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 122, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 7, Column: 9 }
+Function:        main
+Args:
+  - Callee:          puts
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 8, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: '/usr/include/stdlib.h', Line: 364, Column: 16 }
+Function:        main
+Args:
+  - Callee:          strtol
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 17, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 18, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 19, Column: 22 }
+Function:        main
+Args:
+  - Callee:          malloc
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 22, Column: 9 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 5 }
+Function:        main
+Args:
+  - Callee:          __kmpc_fork_call
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 61, Column: 25 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main
+Args:
+  - Callee:          __kmpc_fork_call
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 94, Column: 23 }
+Function:        main
+Args:
+  - Callee:          omp_get_wtime
+    DebugLoc:        { File: '/opt/intel/oneapi/compiler/2023.2.1/linux/bin-llvm/../compiler/include/omp.h', 
+                       Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 95, Column: 5 }
+Function:        main
+Args:
+  - Callee:          printf
+    DebugLoc:        { File: '/usr/include/stdio.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 120, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 121, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: mat_mul_parallel.c, Line: 122, Column: 5 }
+Function:        main
+Args:
+  - Callee:          free
+    DebugLoc:        { File: '/usr/include/stdlib.h', Line: 0, Column: 0 }
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 13 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 13 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 13 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 30, Column: 13 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 30, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 31, Column: 13 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 31, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 28, Column: 23 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 28, Column: 23 }
+...
+--- !Passed
+Pass:            loop-idiom
+Name:            ProcessLoopStridedStore
+DebugLoc:        { File: mat_mul_parallel.c, Line: 31, Column: 21 }
+Function:        main
+Args:
+  - String:          'Transformed loop-strided store in '
+  - Function:        main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' function into a call to '
+  - NewFunction:     llvm.memset.p0.i64
+  - String:          '() intrinsic'
+  - FromBlock:       ''
+  - ToBlock:         ''
+...
+--- !Passed
+Pass:            loop-idiom
+Name:            ProcessLoopStridedStore
+DebugLoc:        { File: mat_mul_parallel.c, Line: 31, Column: 21 }
+Function:        main
+Args:
+  - String:          'Transformed loop-strided store in '
+  - Function:        main
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+  - String:          ' function into a call to '
+  - NewFunction:     llvm.memset.p0.i64
+  - String:          '() intrinsic'
+  - FromBlock:       ''
+  - ToBlock:         ''
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 8, Column: 35 }
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 7, Column: 9 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 8, Column: 35 }
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 7, Column: 9 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 37, Column: 9 }
+Function:        main.extracted
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     load
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 37, Column: 9 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     fence
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 37, Column: 9 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul_parallel.c, Line: 21, Column: 10 }
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotPossible
+DebugLoc:        { File: mat_mul_parallel.c, Line: 17, Column: 29 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: vectorization was impossible'
+  - String:          ' with available vectorization factors'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotPossible
+DebugLoc:        { File: mat_mul_parallel.c, Line: 17, Column: 29 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: vectorization was impossible'
+  - String:          ' with available vectorization factors'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotPossible
+DebugLoc:        { File: mat_mul_parallel.c, Line: 17, Column: 29 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: vectorization was impossible'
+  - String:          ' with available vectorization factors'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+Function:        main
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Passed
+Pass:            loop-unroll
+Name:            PartialUnrolled
+DebugLoc:        { File: mat_mul_parallel.c, Line: 27, Column: 5 }
+Function:        main
+Args:
+  - String:          'unrolled loop by a factor of '
+  - UnrollCount:     '2'
+  - String:          ' with run-time trip count'
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 21 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 21 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 21 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 21 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 21 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 21 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 29, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            and
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            and
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 6, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 6, Column: 9 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 6, Column: 9 }
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul_parallel.c, Line: 76, Column: 45 }
+Function:        main.extracted.9
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+DebugLoc:        { File: mat_mul_parallel.c, Line: 76, Column: 45 }
+Function:        main.extracted.9
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotPossible
+Function:        main.extracted.9
+Args:
+  - String:          'Cannot SLP vectorize list: vectorization was impossible'
+  - String:          ' with available vectorization factors'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+Function:        main.extracted.9
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+Function:        main.extracted.9
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotPossible
+DebugLoc:        { File: mat_mul_parallel.c, Line: 74, Column: 45 }
+Function:        main.extracted.9
+Args:
+  - String:          'Cannot SLP vectorize list: vectorization was impossible'
+  - String:          ' with available vectorization factors'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotBeneficial
+Function:        main.extracted.9
+Args:
+  - String:          'List vectorization was possible but not beneficial with cost '
+  - Cost:            '0'
+  - String:          ' >= '
+  - Treshold:        '0'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            NotPossible
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'Cannot SLP vectorize list: vectorization was impossible'
+  - String:          ' with available vectorization factors'
+...
+--- !Passed
+Pass:            TTI
+Name:            DontUnroll
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'advising against unrolling the loop because it contains a '
+  - Call:            call
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 52 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            insertelement
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 52 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 52 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            shufflevector
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 52 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            and
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            or
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            call
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            xor
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            and
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            or
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            call
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            xor
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            or
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            call
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            xor
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            or
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            call
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            xor
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            add
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 83, Column: 25 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+Function:        main.extracted.9
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: mat_mul_parallel.c, Line: 85, Column: 42 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul_parallel.c, Line: 27, Column: 5 }
+Function:        main
+Args:
+  - NumVRCopies:     '2'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '3.904762e+00'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            SpillReloadCopies
+DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 1 }
+Function:        main
+Args:
+  - NumSpills:       '4'
+  - String:          ' spills '
+  - TotalSpillsCost: '8.058608e-01'
+  - String:          ' total spills cost '
+  - NumReloads:      '3'
+  - String:          ' reloads '
+  - TotalReloadsCost: '5.567766e-01'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '2'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '4.029304e-01'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '27'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '1.191209e+01'
+  - String:          ' total copies cost '
+  - String:          generated in function
+...
+--- !Analysis
+Pass:            prologepilog
+Name:            StackSize
+DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+Function:        main
+Args:
+  - NumStackBytes:   '72'
+  - String:          ' stack bytes in function'
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '14'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '8'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '19'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '12'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '15'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '7'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '7'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '11'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '20'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '14'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '8'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionCount
+DebugLoc:        { File: mat_mul_parallel.c, Line: 5, Column: 0 }
+Function:        main
+Args:
+  - NumInstructions: '206'
+  - String:          ' instructions in function'
+...
+--- !Missed
+Pass:            regalloc
+Name:            SpillReloadCopies
+DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 1 }
+Function:        main.extracted
+Args:
+  - NumVRCopies:     '2'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '1.500000e+00'
+  - String:          ' total copies cost '
+  - String:          generated in function
+...
+--- !Analysis
+Pass:            prologepilog
+Name:            StackSize
+DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 0 }
+Function:        main.extracted
+Args:
+  - NumStackBytes:   '8'
+  - String:          ' stack bytes in function'
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        main.extracted
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '8'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 37, Column: 9 }
+Function:        main.extracted
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '9'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        main.extracted
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionCount
+DebugLoc:        { File: mat_mul_parallel.c, Line: 34, Column: 0 }
+Function:        main.extracted
+Args:
+  - NumInstructions: '21'
+  - String:          ' instructions in function'
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul_parallel.c, Line: 80, Column: 21 }
+Function:        main.extracted.9
+Args:
+  - NumVRCopies:     '1'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '3.439773e+07'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul_parallel.c, Line: 79, Column: 17 }
+Function:        main.extracted.9
+Args:
+  - NumSpills:       '1'
+  - String:          ' spills '
+  - TotalSpillsCost: '1.719886e+06'
+  - String:          ' total spills cost '
+  - NumReloads:      '3'
+  - String:          ' reloads '
+  - TotalReloadsCost: '5.159660e+06'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '1'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '1.719886e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '1'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '3.439773e+07'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul_parallel.c, Line: 69, Column: 13 }
+Function:        main.extracted.9
+Args:
+  - NumSpills:       '4'
+  - String:          ' spills '
+  - TotalSpillsCost: '2.364844e+06'
+  - String:          ' total spills cost '
+  - NumReloads:      '9'
+  - String:          ' reloads '
+  - TotalReloadsCost: '6.342081e+06'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '4'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '2.149858e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '4'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '3.488145e+07'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul_parallel.c, Line: 68, Column: 9 }
+Function:        main.extracted.9
+Args:
+  - NumSpills:       '6'
+  - String:          ' spills '
+  - TotalSpillsCost: '2.378280e+06'
+  - String:          ' total spills cost '
+  - NumReloads:      '11'
+  - String:          ' reloads '
+  - TotalReloadsCost: '6.355517e+06'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '4'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '2.149858e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '5'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '3.488817e+07'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - NumSpills:       '12'
+  - String:          ' spills '
+  - TotalSpillsCost: '2.379666e+06'
+  - String:          ' total spills cost '
+  - NumFoldedSpills: '1'
+  - String:          ' folded spills '
+  - TotalFoldedSpillsCost: '3.358333e+02'
+  - String:          ' total folded spills cost '
+  - NumReloads:      '13'
+  - String:          ' reloads '
+  - TotalReloadsCost: '6.356063e+06'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '6'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '2.150404e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '8'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '3.488893e+07'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReloadCopies
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - NumSpills:       '14'
+  - String:          ' spills '
+  - TotalSpillsCost: '2.379687e+06'
+  - String:          ' total spills cost '
+  - NumFoldedSpills: '1'
+  - String:          ' folded spills '
+  - TotalFoldedSpillsCost: '3.358333e+02'
+  - String:          ' total folded spills cost '
+  - NumReloads:      '14'
+  - String:          ' reloads '
+  - TotalReloadsCost: '6.356074e+06'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '6'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '2.150404e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '9'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '3.488894e+07'
+  - String:          ' total copies cost '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            SpillReloadCopies
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 1 }
+Function:        main.extracted.9
+Args:
+  - NumSpills:       '17'
+  - String:          ' spills '
+  - TotalSpillsCost: '2.379690e+06'
+  - String:          ' total spills cost '
+  - NumFoldedSpills: '1'
+  - String:          ' folded spills '
+  - TotalFoldedSpillsCost: '3.358333e+02'
+  - String:          ' total folded spills cost '
+  - NumReloads:      '14'
+  - String:          ' reloads '
+  - TotalReloadsCost: '6.356074e+06'
+  - String:          ' total reloads cost '
+  - NumFoldedReloads: '6'
+  - String:          ' folded reloads '
+  - TotalFoldedReloadsCost: '2.150404e+06'
+  - String:          ' total folded reloads cost '
+  - NumVRCopies:     '14'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '3.488894e+07'
+  - String:          ' total copies cost '
+  - String:          generated in function
+...
+--- !Analysis
+Pass:            prologepilog
+Name:            StackSize
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - NumStackBytes:   '184'
+  - String:          ' stack bytes in function'
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '34'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '10'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 5 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '22'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '18'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '8'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '14'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '7'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '9'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '8'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '11'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '4'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: mat_mul_parallel.c, Line: 0, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '9'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        main.extracted.9
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '8'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionCount
+DebugLoc:        { File: mat_mul_parallel.c, Line: 66, Column: 0 }
+Function:        main.extracted.9
+Args:
+  - NumInstructions: '202'
+  - String:          ' instructions in function'
+...
