@@ -22,6 +22,10 @@
   <packed_snapshot>
    <path type="string">/home/nfs/S4700984/HPC/snap</path>
   </packed_snapshot>
+  <per_group_workloads>
+   <tripcounts type="string">tripcounts</tripcounts>
+   <release type="string">release</release>
+  </per_group_workloads>
   <searchDirs>
    <searchCategory>
     <category type="u8_t">1</category>
@@ -796,10 +800,10 @@
        <result_directory.path type="string">/home/nfs/S4700984/HPC/advisor_project/r@@@{at}</result_directory.path>
        <launch.userapppath type="string">/home/nfs/S4700984/HPC/bin/matmul_p_tiled</launch.userapppath>
        <launch_app.app_to_launch type="string">/home/nfs/S4700984/HPC/bin/matmul_p_tiled</launch_app.app_to_launch>
-       <launch_app.app_parameters type="string">10000</launch_app.app_parameters>
        <launch_app.working_folder type="string"></launch_app.working_folder>
        <launch.userappworkdir type="string"></launch.userappworkdir>
        <launch_app.mpi_max_rank type="null"></launch_app.mpi_max_rank>
+       <launch_app.app_parameters type="string">10000 128</launch_app.app_parameters>
        <search_directories type="bag"/>
        <context>
         <contextValue>
@@ -959,10 +963,6 @@
     <localhost type="string">r@@@{at}</localhost>
    </result_pattern>
   </target_settings>
-  <per_group_workloads>
-   <tripcounts type="string">tripcounts</tripcounts>
-   <release type="string">release</release>
-  </per_group_workloads>
  </All_Configurations-All_Platforms>
  <contextValues type="bag"/>
 </root>

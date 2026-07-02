@@ -45,31 +45,78 @@ Global optimization report for : main.extracted
 Global optimization report for : main.extracted.9
 
 LOOP BEGIN at mat_mul_parallel.c (66, 5)
+    remark #15521: Loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at mat_mul_parallel.c (66, 5)
 
     LOOP BEGIN at mat_mul_parallel.c (66, 5)
-        remark: OpenMP: Outlined parallel loop
+        remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
 
         LOOP BEGIN at mat_mul_parallel.c (68, 9)
+            remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
 
             LOOP BEGIN at mat_mul_parallel.c (69, 13)
+            <Predicate Optimized v1>
+                remark #25423: Invariant If condition at line 80 hoisted out of this loop
+                remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
 
                 LOOP BEGIN at mat_mul_parallel.c (79, 17)
-                <Predicate Optimized v1>
-                    remark #25423: Invariant If condition at line 80 hoisted out of this loop
-                    remark #25423: Invariant If condition at line 83 hoisted out of this loop
                     remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
 
                     LOOP BEGIN at mat_mul_parallel.c (80, 21)
+                        remark #25540: Loop unrolled and jammed by 8
                         remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
 
                         LOOP BEGIN at mat_mul_parallel.c (83, 25)
-                            remark #15301: SIMD LOOP WAS VECTORIZED
-                            remark #15305: vectorization support: vector length 8
+                            remark #15300: LOOP WAS VECTORIZED
+                            remark #15305: vectorization support: vector length 4
+                            remark #15475: --- begin vector loop cost summary ---
+                            remark #15476: scalar cost: 51.000000 
+                            remark #15477: vector cost: 15.000000 
+                            remark #15478: estimated potential speedup: 3.312500 
+                            remark #15309: vectorization support: normalized vectorization overhead 0.125000
+                            remark #15482: vectorized math library calls: 0 
+                            remark #15484: vector function calls: 0 
+                            remark #15485: serialized function calls: 0
+                            remark #15488: --- end vector loop cost summary ---
+                            remark #15447: --- begin vector loop memory reference summary ---
+                            remark #15450: unmasked unaligned unit stride loads: 16 
+                            remark #15451: unmasked unaligned unit stride stores: 8 
+                            remark #15456: masked unaligned unit stride loads: 0 
+                            remark #15457: masked unaligned unit stride stores: 0 
+                            remark #15458: masked indexed (or gather) loads: 0 
+                            remark #15459: masked indexed (or scatter) stores: 0 
+                            remark #15462: unmasked indexed (or gather) loads: 0 
+                            remark #15463: unmasked indexed (or scatter) stores: 0 
+                            remark #15554: Unmasked VLS-optimized loads (each part of the group counted separately): 0
+                            remark #15555: Masked VLS-optimized loads (each part of the group counted separately): 0
+                            remark #15556: Unmasked VLS-optimized stores (each part of the group counted separately): 0
+                            remark #15557: Masked VLS-optimized stores (each part of the group counted separately): 0
+                            remark #15497: vector compress: 0 
+                            remark #15498: vector expand: 0 
+                            remark #15474: --- end vector loop memory reference summary ---
+                            remark #25583: Number of Array Refs Scalar Replaced In Loop: 14
+                        LOOP END
+
+                        LOOP BEGIN at mat_mul_parallel.c (83, 25)
+                        <Remainder loop for vectorization>
+                            remark #25583: Number of Array Refs Scalar Replaced In Loop: 14
+                        LOOP END
+                    LOOP END
+
+                    LOOP BEGIN at mat_mul_parallel.c (80, 21)
+                    <Remainder loop>
+                        remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                        LOOP BEGIN at mat_mul_parallel.c (83, 25)
+                            remark #15300: LOOP WAS VECTORIZED
+                            remark #15305: vectorization support: vector length 4
                             remark #15475: --- begin vector loop cost summary ---
                             remark #15476: scalar cost: 9.000000 
-                            remark #15477: vector cost: 2.812500 
-                            remark #15478: estimated potential speedup: 3.031250 
-                            remark #15309: vectorization support: normalized vectorization overhead 0.703125
+                            remark #15477: vector cost: 3.187500 
+                            remark #15478: estimated potential speedup: 2.750000 
+                            remark #15309: vectorization support: normalized vectorization overhead 0.625000
                             remark #15482: vectorized math library calls: 0 
                             remark #15484: vector function calls: 0 
                             remark #15485: serialized function calls: 0
@@ -97,12 +144,12 @@ LOOP BEGIN at mat_mul_parallel.c (66, 5)
                         LOOP END
                     LOOP END
                 LOOP END
+            LOOP END
+
+            LOOP BEGIN at mat_mul_parallel.c (69, 13)
+            <Predicate Optimized v2>
 
                 LOOP BEGIN at mat_mul_parallel.c (79, 17)
-                <Predicate Optimized v2>
-
-                    LOOP BEGIN at mat_mul_parallel.c (80, 21)
-                    LOOP END
                 LOOP END
             LOOP END
         LOOP END
@@ -140,14 +187,12 @@ COMPILE FUNC: main
    -> DELETE: llvm.directive.region.exit mat_mul_parallel.c (34,5)
    -> EXTERN: omp_get_wtime mat_mul_parallel.c (61,25)
    -> DELETE: llvm.directive.region.entry mat_mul_parallel.c (66,5)
-   -> DELETE: llvm.directive.region.entry mat_mul_parallel.c (83,25)
-   -> DELETE: llvm.directive.region.exit mat_mul_parallel.c (83,25)
    -> DELETE: llvm.directive.region.exit mat_mul_parallel.c (66,5)
-   -> EXTERN: omp_get_wtime mat_mul_parallel.c (94,23)
-   -> EXTERN: printf mat_mul_parallel.c (95,5)
+   -> EXTERN: omp_get_wtime mat_mul_parallel.c (93,23)
+   -> EXTERN: printf mat_mul_parallel.c (94,5)
+   -> EXTERN: free mat_mul_parallel.c (119,5)
    -> EXTERN: free mat_mul_parallel.c (120,5)
    -> EXTERN: free mat_mul_parallel.c (121,5)
-   -> EXTERN: free mat_mul_parallel.c (122,5)
    -> EXTERN: puts mat_mul_parallel.c (7,9)
    -> EXTERN: __kmpc_fork_call mat_mul_parallel.c (34,5)
    -> EXTERN: __kmpc_fork_call mat_mul_parallel.c (66,5)
@@ -156,13 +201,10 @@ COMPILE FUNC: main
 COMPILE FUNC: main.extracted.9
    -> EXTERN: __kmpc_dispatch_init_4 mat_mul_parallel.c
    -> EXTERN: __kmpc_dispatch_next_4 mat_mul_parallel.c
-   -> DELETE: llvm.directive.region.entry mat_mul_parallel.c (83,25)
-   -> DELETE: llvm.directive.region.exit mat_mul_parallel.c (83,25)
    -> EXTERN: __kmpc_dispatch_next_4 mat_mul_parallel.c
-   -> llvm.smin.i32 mat_mul_parallel.c (76,32)
-   -> llvm.umax.i32 mat_mul_parallel.c (76,32)
-   -> llvm.smax.i64 mat_mul_parallel.c (83,25)
-   -> llvm.smax.i64 mat_mul_parallel.c (83,25)
+   -> llvm.masked.gather.v8f64.v8p0 mat_mul_parallel.c (84,54)
+   -> llvm.vector.reduce.fadd.v8f64 mat_mul_parallel.c (84,39)
+   -> EXTERN: __kmpc_dispatch_next_4 mat_mul_parallel.c
 
 COMPILE FUNC: main.extracted
    -> EXTERN: __kmpc_masked mat_mul_parallel.c

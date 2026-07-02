@@ -3,17 +3,22 @@
 #include <omp.h>
 
 int main(int argc, char **argv) {
+    // Controllo minimo: serve almeno la dimensione N
     if (argc < 2) {
-        printf("Error: specify the dimension N.\n");
-        printf("Usage: %s <N>\n", argv[0]);
+        printf("Error: specify at least the dimension N.\n");
+        printf("Usage: %s <N> [BLOCK_SIZE]\n", argv[0]);
         return 1;
     }
     
     int n = atoi(argv[1]);
+
+    int BLOCK_SIZE = 64; 
+    if (argc >= 3) {
+        BLOCK_SIZE = atoi(argv[2]);
+    }
+
     int i, j, k;
 
-
-    
     double (*a)[n] = malloc(sizeof(double[n][n]));
     double (*b)[n] = malloc(sizeof(double[n][n]));
     double (*c)[n] = malloc(sizeof(double[n][n]));
@@ -56,7 +61,7 @@ int main(int argc, char **argv) {
     // Define the block size (add this at the top of the file or here)
     // 64 or 128 are the ideal "magic numbers" for the L2 Cache of modern processors
      
-    int BLOCK_SIZE = 64; 
+    //int BLOCK_SIZE = 64; 
 
     double start_time = omp_get_wtime();
 
