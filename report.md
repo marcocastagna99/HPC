@@ -13,8 +13,7 @@ The algorithm has a cubic time complexity of $O(N^3)$, requiring approximately $
 * 16 physical cores
 * 8 Performance cores with Hyper-Threading up to 2
 * 8 Efficiency cores
-
-![alt text](snap/lstopo_home_workstation.png)
+![alt text](snap/210_wk007_topology.png)
 
 To accurately record the execution time, I decided to utilize the high-precision timers provided by the OpenMP library (`omp_get_wtime`).
 
@@ -32,8 +31,8 @@ The hotspot resides at row 35 (`for (j = 0; j < n; ++j)`): this single loop cons
 
 By compiling with `-O0`, the compiler is forced to generate naive scalar instructions, completely bypassing the AVX vector capabilities. While Intel Advisor confirms the loop correctly processes **`Float64`** data, the massive execution time (~227 seconds) is driven by the total lack of register allocation. Without optimizations, the CPU is forced to reload loop indices and matrix elements from the memory hierarchy at every single iteration, executing one purely scalar addition and multiplication at a time.
 
-![alt text](snap/sw2_roofline_hotspot.png)
-![alt text](snap/sw2_hotspot.png)
+![alt text](snap/roofline_sequential_n5000.png)
+![alt text](snap/scalar_loop.png)
 
 The unoptimized algorithm is heavily memory-bound, but the Roofline Model reveals an interesting detail: the main hotspot sits just below the L3 Cache Bandwidth limit (~67.78 GB/s and 1.13 GFLOPS), instead of dropping down to the slower DRAM limit.
 
@@ -41,10 +40,12 @@ The arithmetic intensity is very low (only 0.017 FLOP/Byte), compared to the the
 
 However, since the loop sequence is optimized (i-k-j), the memory access is contiguous (good spatial locality). This allows the CPU's hardware prefetcher to bring data from the RAM into the L3 cache ahead of time. Because of this, the execution is bottlenecked by the L3 cache bandwidth and the use of scalar instructions, rather than the slow DRAM latency.
 
-![alt text](snap/assembly.png)
 ![alt text](snap/codeAnalytics.png)
+![alt text](snap/assembly.png)
 
-Figure X: Assembly code compiled with -O0. The highlighted memory instructions (using the %rbp base pointer) show that loop counters and array pointers are continuously reloaded from the stack. This explains why memory instructions make up 53% of the total execution overhead.
+Figure above shows the assembly code when we compile with -O0 (no optimization). We can see that the compiler does not use the CPU registers well. Instead, it constantly reloads loop variables and matrix pointers from the stack using the %rbp pointer.
+
+The biggest problem is at line 0x4013e4 with the instruction vmovsdq %xmm0, (%rax,%rcx,8). This instruction takes 89.392 seconds, which is 39.34% of the total execution time. It happens because the program saves the numbers into matrix C at every iteration, instead of keeping them inside a fast CPU register. Writing data to the main memory (RAM) is very slow and takes a lot of time. This is why memory operations represent 53% of the total performance loss.
 
 ---
 
@@ -59,11 +60,11 @@ To fix the memory bottleneck and the slow scalar execution from the baseline, I 
 Using the `-O3` and `-xHost` flags reduced the execution time by a factor of ~24x. To understand this massive speedup, I analyzed the vectorization report (`-qopt-report=3`). Because the nested loops are perfectly arranged (`i-k-j`) to respect spatial locality, the compiler successfully vectorized the innermost loop (`j`). The code was compiled using **AVX2** instructions with a physical vector length of 4 (packing four 64-bit `double` variables into a 256-bit register). Furthermore, the compiler applied aggressive **Loop Unrolling** (processing 8 elements per iteration) to keep the execution units fully saturated.
 
 Running Intel Advisor on this optimized program confirms the report and shows a completely transformed Roofline Model:
-![alt text](snap/sw2_roofline_5000_vect.png)
+![alt text](snap/210_roofline_n5000_vectorized.png)
 
 * **Instruction Set and FMA:** The hotspot transitioned from slow *Scalar Float64* execution to *Vectorized AVX2*. Crucially, it now leverages **FMA** (Fused Multiply-Add) hardware units, performing addition and multiplication simultaneously in a single hardware step.
 * **Arithmetic Intensity:** The L1 Arithmetic Intensity improved significantly to **0.200 FLOP/Byte**. This proves that the variables are being efficiently reused within the fast CPU registers and L1 cache, drastically reducing the slow memory reloads.
-* **Compute Performance:** The hotspot moved dramatically higher on the graph, peaking at **27.03 GFLOPS** (up from just 1.13 GFLOPS in the scalar baseline). This proves the bottleneck has shifted away from memory latency and is now fully exploiting the compute capabilities of the single physical core.
+* **Compute Performance:** The hotspot moved dramatically higher on the graph, peaking at **27.18 GFLOPS** (up from just 1.02 GFLOPS in the scalar baseline). This proves the bottleneck has shifted away from memory latency and is now fully exploiting the compute capabilities of the single physical core.
 
 ---
 
@@ -104,9 +105,21 @@ Therefore, the baseline compilation command (`icx -g -O3 -xHost -fiopenmp -o bin
 
 
 ## OpenMP
+Ecco la traduzione per la tua relazione. Ho mantenuto un inglese chiaro, lineare e corretto, perfetto per un livello B1/B2 accademico/tecnico, usando i giusti termini informatici (*race condition*, *load imbalance*, *workload*).
+
+---
+
+## OpenMP
+
+To compile the parallel version of the program, I used the following command:
+
+```bash
 icx -g -O3 -xHost -fiopenmp -o bin/matmul_p mat_mul_parallel.c
 
-ho deciso di inserire  #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic) nel primo dei 3 cicli for 
+```
+
+I decided to insert the directive `#pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic)` on the first of the three nested loops:
+
 ```c
 #pragma omp parallel for default(none) shared(a, b, c, n) private(j, k) schedule(dynamic)
     for (i = 0; i < n; ++i) {
@@ -116,69 +129,103 @@ ho deciso di inserire  #pragma omp parallel for default(none) shared(a, b, c, n)
             }
         }
     }
+
 ```
-quindi i thread si suddividono l'esecuzionee di quel ciclo,
-quindi ogni thread che esegue una sola iterazione `i` del primo for, esegue i due cicli sottostanti interamente quindi nxn iterazioni
-, ho sceltò così in modo da evitare race condition e dare ad ogni thread la possibilità di eseguire in pace la sua porzione di dati
-avendo una architettura ibrida (core differenti) ho scelto lo scheduler dinamico
-ma se avessi usato lo scheduler statico
-avrei ad esempio se N=10k ogni thread  10000 / 20 = 500 iterazioni `i` del primo for, ma usando lo scheduler dinamico quidni dando il potere della scelta allo scheduler non sarà esatamente distribuito così egualmente su tutti ma man mano ogni thread prende i blocchi quando è disponibile, avendo aperò alla fine distribuione probabilemnte simile , infatti  ho sperimentato verie volte eseguendo lo stesso codice ma con scheduler statico, notando che che l'esecuzioni con scheduler dinamico sono sempre leggermente piu brevi, facendomi pensare che si crea questo load imbalance/overhead nei core piu lenti e con cache piu piccola,
-ad esempio con n=10k
-static
-34.022240 seconds
-dynamic
-31.731761 seconds
+
+With this configuration, the threads divide the execution of the outermost loop (`i`). This means that every time a thread takes a single iteration `i` of the first loop, it runs the two inner loops entirely, which equals $N \times N$ iterations. I chose this approach to avoid **race conditions** and to allow each thread to process its portion of data without interference.
+
+Since the workstation has a **hybrid architecture** (with different types of cores), I selected the **dynamic scheduler**.
+
+If I had used the **static scheduler** with $N = 10000$ and 24 threads, the workload would be divided equally from the start: each thread would get exactly $10000 / 24 = ≈417$ iterations of the first loop. However, by using the dynamic scheduler, the workload division is managed at runtime by OpenMP. The distribution is not perfectly equal from the beginning; instead, each thread requests and processes a new block of work as soon as it becomes available.
+
+I experimented multiple times by running the exact same code with both scheduling policies. The results show that executions with the dynamic scheduler are always slightly faster. This indicates that the static scheduler creates a **load imbalance** and extra overhead on the efficiency cores, which have smaller caches.
+
+For example, with $N = 10000$:
+
+* **Static Scheduling:** 34.022240 seconds
+* **Dynamic Scheduling:** 31.731761 seconds
 
 
-### risultati e analisi
-avendo
-Computation time (N=10000): 36.141804 seconds
-subito ad occchio mi sorge dubbio: sono molto scettico ad avere 20 thread e passare da 76 secondi sequenzale in 36 secondi, noto subito che c'e poco speed up
-e guardando il roofline sorgono alcuni ulteriori dubbi:
+### Performance Analysis
 
-![alt text](snap/sw2_10k_parallel_roofline.png)
-sembra la situazione iniziale in cui si dipende da quanto la memoria è veloce a dare i dati
+With an execution time of **36.67 seconds** for $N = 10000$, a major doubt immediately arises. I am highly skeptical about using 24 threads and only dropping from 76 seconds (sequential) to 37 seconds (parallel). This represents a very poor speedup.
 
-potrebbe essere un false sharing? ragionando
-non dovrei avere in un problema di false sharing, prprio perchè ogni thread non si tocca avendo la propria porzioni di tati, potrebbe essere un numa effect? la risposta cè che l'architettura del pc non ha diverse memorie ram separate per ogni cpu quindi non dovrebbe essere un problema proprio prchè la ram è la stessa
+Looking at the Roofline model, further questions appear:
+![alt text](snap/210_n10000_roofline_first_test_parallel.png)
 
-c'è comunque  un problema di cache miss...
-sappiamo che
-Compulsory Miss: La prima volta che leggi un dato. (Inevitabile),
-conflict misses: Quello causato dal False Sharing. (scartato),
-Capacity Miss: (IL PROBLEMA).
+The system seems to be stuck in the exact same initial situation, where performance strictly depends on memory speed (**Memory-Bound**).
 
-facendo due calcoli con n=10000, ogni thread con una sola iterazione i :
-per esempio thread 0 prende i=0
-deve eseguire gli altri due cicli interi (k e j da 0 a 9999).
-La formula matematica è: c[0][j] += a[0][k] * b[k][j]
-per calcolare la riga c il thread ha bisogno
-della riga 0 di A: Sono 10.000 elementi double. Pesano circa 80 KB. Nessun problema, entrano comodamente nella Cache L1 o L2 del core
-poi però la formula richiede di scorrere b[k][j] questo significa deve sorrere **LA MATRICE B** per intero! 10000x10000 pesa 800 MB. che da solo riempe l1d, l2 e tutta l3(condivisa)
+#### Investigating the Bottleneck
 
-c'è tanta potenza di calcolo, ma tante richieste in coda da parte dei thread letteramente bloccano la ram, ogni thread ha bisogno una quantita di dati che non entra in cache e quindi non si sfrutta bene il parllelismo andano a chiedere in ram tutti simultaneamente e sovrascrivendo continuamente la chache l3 condivisa.
-passano il 90% del loro tempo fermi, in attesa che il bus di memoria, completamente intasato, consegni i dati dalla RAM
+* **Could this be caused by False Sharing?** Reasoning about the structure, false sharing should not be an issue here. Each thread works on its own independent row `i`, meaning threads do not overwrite or interfere with each other's data cache lines.
+* **Could it be a NUMA effect?** The answer is no. The workstation architecture does not feature separate RAM nodes for different sockets; the entire physical RAM is shared equally by all cores.
 
-una soluzione nota è quella di riscrivere l'algoritmo, dividere meglio i blocchi dei dati in modo che entrino in cache, applicare soluzioni come loop tiling, Cache-Aware Architecture (The GotoBLAS approach), Cache-Oblivious Algorithms come i due paper menzionati nelle slide.
-a questo punto ho deciso di applicare il loop tiling anninando dei cicli e dividento i blocchi delimitati afficnhè non si rpiempa subito le cache, ma sopratutto aumentando molto di piu la grana, dando la possibilità di sfruttare al meglio la performance dei core, non è la suluzione definitiva, ci sono molti modi piu precisi per aumentare la perfomance, il mio obbiettivo è quello di rompere questo Memory Wall che si è creato con l'algoritmo classico    
+Therefore, the real issue must be related to **cache misses**. We can classify cache misses into three categories:
+
+1. **Compulsory Misses:** Occur when data is read for the first time. These are unavoidable.
+2. **Conflict Misses:** Caused by mapping conflicts or False Sharing. (Exluded).
+3. **Capacity Misses:** This is the real problem.
+
+#### The Mathematical Proof of Cache Thrashing
+
+Let's analyze the memory footprint for $N = 10000$. Consider a single thread executing a single iteration of the outermost loop `i` (for example, Thread 0 handles `i = 0`). This thread must execute the remaining two nested loops ($k$ and $j$) entirely, from 0 to 9999.
+
+The core accumulation formula is:
+
+$$c[i][j] += a[i][k] * b[k][j]$$
+
+To calculate a single row of matrix $C$, the thread requires:
+
+ **Row `i` of Matrix $A$** that consists of 10,000 `double` elements, which take up about **80 KB**. It fits easily within the L1d or L2 cache of the core, but the formula require us also to iterate b[k][`j`] so the entire
+**Matrix $B$** from top to bottom. A $10000 \times 10000$ matrix of `double` values requires **800 MB** of memory.
+
+An 800 MB memory footprint completely floods the L1d, L2, and even the shared L3 cache of the processor.
+
+#### Conclusion
+
+While the CPU possesses massive computing power, the enormous volume of concurrent data requests completely chokes the memory bus. Every thread demands a quantity of data that cannot physically fit into its cache.
+
+As a result, parallelism is severely degraded because all 24 threads are forcing simultaneous access to the physical RAM, constantly overwriting the shared L3 cache (**Cache Thrashing**). The threads spend roughly 90% of their execution time idle, waiting for the completely saturated memory bus to deliver data from the RAM.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+una soluzione nota è quella di riscrivere l'algoritmo, dividere meglio i blocchi in modo che entrino in cache, applicare soluzioni come loop tiling, Cache-Aware Architecture (The GotoBLAS approach), Cache-Oblivious Algorithms come i due paper menzionati nelle slide.
+a questo punto ho deciso di applicare il loop tiling anninando dei cicli e dividento i blocchi delimitati afficnhè non si rpiempa subito le cache, ma sopratutto aumentando molto di piu la grana, dando la possibilità di sfruttare al meglio la performance dei core, non è la soluzione definitiva, sicuramente ci sono molti modi piu precisi per aumentare la perfomance, il mio obbiettivo è quello di rompere questo Memory Wall che si è creato con l'algoritmo classico    
 ```c
 #pragma omp parallel for default(none) shared(a, b, c, n, BLOCK_SIZE) schedule(dynamic)
     for (int i = 0; i < n; i += BLOCK_SIZE) {
         for (int k = 0; k < n; k += BLOCK_SIZE) {
             for (int j = 0; j < n; j += BLOCK_SIZE) {
                 
-                // CALCOLO DEI BORDI 
-                // per esempio N=10000 non è perfettamente divisibile per 64, agli angoli 
-                // della matrice l'ultimo blocco sarà "mozzato". Questo evita i Segmentation Fault.
+                // BOUNDARY COMPUTATION (Crucial!)
+                // Since N=10000 is not perfectly divisible by 64, the last block 
+                // at the matrix edges will be truncated. This prevents Segmentation Faults.
                 int i_end = (i + BLOCK_SIZE > n) ? n : i + BLOCK_SIZE;
                 int k_end = (k + BLOCK_SIZE > n) ? n : k + BLOCK_SIZE;
                 int j_end = (j + BLOCK_SIZE > n) ? n : j + BLOCK_SIZE;
 
-                // --- INIZIO DEL MICRO-MONDO (Dentro il blocco in Cache) ---
+                //Inside the Cache block 
                 for (int ii = i; ii < i_end; ++ii) {
                     for (int kk = k; kk < k_end; ++kk) {
-                        
-                        // Questo ciclo verrà vettorializzato in AVX2/FMA dal compilatore
+                        // This loop will be vectorized in AVX2/FMA by the compiler
                         for (int jj = j; jj < j_end; ++jj) {
                             c[ii][jj] += a[ii][kk] * b[kk][jj];
                         }
@@ -186,19 +233,18 @@ a questo punto ho deciso di applicare il loop tiling anninando dei cicli e divid
                     }
                 }
 ```
-in questo modo ogni thread non riempe la cache del core e non intasa la l3, apsettando che la ram gli dia i dati.
-Seguendo **PCAM Methodology** (Partitioning, Communication, Agglomeration, Mapping) vista nel corso, inifne possiamo dire che l'algoritmo è stato sviluppato
+Seguendo **PCAM Methodology** (Partitioning, Communication, Agglomeration, Mapping) vista nel corso
 
 ### 1. Partitioning (Partizionamento)
- Ho applicato quella che le slide chiamano *Domain decomposition*. Invece di guardare alle matrici come a un unico blocco monolitico da $10000 \times 10000$, ho partizionato il dominio dei dati introducendo i cicli interni. Quindi diviso lo spazio in "mattonelle" microscopiche da $64 \times 64$ elementi, che rappresentano l'unità fondamentale del calcolo.
+ Ho applicato quella la *Domain decomposition*. Invece di guardare alle matrici come a un unico blocco monolitico da $10000 \times 10000$, ho partizionato il dominio dei dati introducendo i cicli interni. Quindi diviso lo spazio in "mattonelle" microscopiche da $64 \times 64$ elementi, che rappresentano l'unità fondamentale del calcolo.
 
 ### 2. Communication (Comunicazione)
 
-L'algoritmo è stato progettato puntando alla situazione ideale: *No need for communications*. Come indicano le slide, si tratta di problemi che possono essere scomposti ed eseguiti in parallelo senza quasi alcun bisogno di condividere dati tra i task. Assegnando a ogni thread una striscia orizzontale indipendente della matrice C, ho evitato qualsiasi collisione. Non c'è stato uso di `lock`, `barrier` , né operazioni collettive costose come le `reduction`. Ogni thread lavora nel totale isolamento della sua Cache.
+L'algoritmo è stato progettato puntando alla situazione ideale: *No need for communications*. Si tratta di problemi che possono essere scomposti ed eseguiti in parallelo senza quasi alcun bisogno di condividere dati tra i task. Assegnando a ogni thread una striscia orizzontale indipendente della matrice C, ho evitato qualsiasi collisione. Non c'è stato uso di `lock`, `barrier` , né operazioni collettive costose come le `reduction`. Ogni thread lavora nel totale isolamento della sua Cache.
 
 ### 3. Agglomeration (Agglomerazione)
 
- Non ho dato in pasto a OpenMP i singoli quadratini $64 \times 64$ (che avrebbero generato una granularità troppo fine e un overhead di comunicazione mostruoso ). Invece ho **agglomerato** il lavoro posizionando il `#pragma omp parallel for` solo sul ciclo più esterno `i`. Così facendo, ho impachettato intere "strisce" da 64 righe per 10.000 colonne in un singolo maxi-task. Questo garantisce un altissimo rapporto tra calcolo e comunicazione, permettendo al thread di macinare calcoli per decine di secondi senza mai fermarsi (coarse grain) .
+ Non ho dato in pasto a OpenMP i singoli quadratini $64 \times 64$ (che avrebbero generato una granularità troppo fine e un overhead di comunicazione mostruoso ). Invece ho **agglomerato** il lavoro posizionando il `#pragma omp parallel for` solo sul ciclo più esterno `i`. Così facendo, ho impachettato intere "strisce" da 64 righe per 10.000 colonne (per n=10k) in un singolo maxi-task. Questo garantisce un altissimo rapporto tra calcolo e comunicazione, permettendo al thread di macinare calcoli per migliaia di milli secondi senza mai fermarsi (coarse grain).
 
 ### 4. Mapping (Mappatura)
 Delegato il compito allo scheduler, approccio master-slave/worker paradigm , usando  `schedule(dynamic)` con OpenMp
@@ -208,7 +254,7 @@ Delegato il compito allo scheduler, approccio master-slave/worker paradigm , usa
 ### risultati
 icx -g -O3 -xHost -fiopenmp -o bin/matmul_p_tiled  mat_mul_parallel.c
 sbalorditivo
-sul mio i7 6700
+sul mio i7 6700 in casa
 single core vettorizzato xhost 03 etc ./matmul 10000
 Computation time (N=10000): 573.019573 seconds
 con algoritmo originale parallelo 
@@ -216,24 +262,50 @@ con algoritmo originale parallelo
 I'm using 8 OpenMP Thread
 Computation time (N=10000): 329.788830 seconds
 
-con alogirtmo parallelo otttimizzato blocchi da 64x64 4096
+con alogirtmo parallelo otttimizzato blocchi da 64x64
 Computation time (N=10000): 51.348811 seconds
 
 ora vedo un vantaggio nell'tilizzo del parallelismo rispetto a prima
 
-sul pc wk007 aula 210
+sul pc wk007 aula 210 e 24 openMp thread
 Computation time (N=10000, BLOCK=64): 8.602647 seconds
+c'è un evidente speedup
 
-
-
-
-investighiamo come l'algoritmo ora scala bene per dimensioni di 5k, 10k 15k
-e per il numero di thread in termin di speed up ed efficiency
+infatti guardando la roofline si nota la differenza
+![alt text](snap/210_n10000_roofline_second_test.png)
+soprendente la perfomance 177GBFlops contro i 57 di prima
+ma vedo che su tutti i core ancora non semmbra sfruttare completamente la propria potenza! c'è da invesitigare piu approfonditamente nello scalare dei core e al cambiamento della dimensione del problema, h oscelto 5k, 10k 15k per studiare speed up ed efficiency.
 
 
 
 ## scalabilità
 grafici generati dal benchmark.sh
+![alt text](results/210_scalability_graph.png)
+
+cosa possiamo dire, in tutte le esecuzioni lo speed up è linear fino agli 8 threads, che molto probabilmente sono i performance core
+andando sui efficency la situazione cambia e la curva si appiattisce, al raggiungimento dei 16 thread, superati tali si usano i thread dell'hypertreading logici e quindi cadendo nel simultaneos multithreading, che in generale sono oro per il computer ma nel nostro algoritmo non ci danno speedup e tanto parallelismo. infatti la formula teorica dello speed up e dell'efficienza ci da una chiarissima immagine di come è l'archittetura del computer, l'efficienza rimane chiaramente molto altra sui p-core.
+questo calo di prestazioni degli e-core creano una specie di barriera implicita, ovvero anche se i thread piu veloci finiscono il loro task, stanno letteralmente fermi ad aspettare quelli più lenti, quindi si crea questo load imbalance. che con lo scheduling dinamico cerco di mascherare, ma comunque questo overhead c'è sempre. una soluzione che mi viene in mente è quello di dare il carico non ungualmente, darne molto di piu agli performance core e meno agli efficency, magari un dimensionamento diverso dei blocchi per loro, noto che hanno la l2 condivisa e il che mi fa capire che loro si riempono la memoria molto piu velocemente degli altri, quindi è normale che se su 16 core fisisi ci sia questo appiattimento della curva quando nel sistema la metà dei core sono piu lenti e meno capienti.
+la conferma me la da inteladvisor
+![alt text](snap/210_8core_roofline_parallel_tiled.png)
+dove gli 8 core performano meglio che con tutti 16, raggiungono quasi 200GBFLops e il liminte intrinseco di calcolo della macchina!
+
+
+
+guardano le immagini il dimensionamento del problema piu ottimale sembra proprio quello con matrici con n=10000 dove lo speed up e l'efficency sono migliori rispetto ad altri dimensionamenti.
+
+Concludo che ho provato a sperimentare diverse dimensioni dei blocchi per vedere come fittano in cache e quale sia la miglior configurazione per questo algoritmo su questo hardware
+ho provato blocchi da 32x32, 64x64, 128x128, e su vari dimensionamenti usati precendetemente
+![alt text](results/block_comparison_n5000.png)
+![alt text](results/block_comparison_n10000.png)
+![alt text](results/block_comparison_n15000.png)
+
+il chiaro vincitore rimane il dimensionamento 64x64, ma c'è qualcosa di interessante quando si va a n piu gorssi, nel ultima immagine con n 15000 è stato l'algoritmo con blocchi piu piccoli a splendere meglio rispetto agli altri, il che fa molto strano ma rende molto interessante, mi fa pensare che al ingrandire del problema una adeguata decomposizione impatta parecchio sulla perfomrance e che quindi bisogna costruire l'algoritmo in base molto alla mole dei dati. Per quanto riguarda gli esperimenti concludo che il calcolo parallelo ha raggiunto un buono speed up e che nell'empiricità degli esperimenti ci si va a sbattere nella teoria dove il raggiugngimento perfetto della performance è veramente difficile. dove per cercare di ottimizzare il meglio non basta far far le cose ottimizzate per la cache ma bisogna pensare l'eterogenità dei core, il chè complica molto l'aspetto del load balancing.
+
+
+
+
+
+
 
 
 
