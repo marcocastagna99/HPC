@@ -1,0 +1,32 @@
+--- THREADS = 2 ---
+I'm using 2 OpenMP Thread
+Computation time (N=15000): 202.318683 seconds
+
+--- THREADS = 4 ---
+I'm using 4 OpenMP Thread
+Computation time (N=15000): 107.079417 seconds
+
+--- THREADS = 8 ---
+I'm using 8 OpenMP Thread
+Computation time (N=15000): 55.229331 seconds
+
+--- THREADS = 12 ---
+I'm using 12 OpenMP Thread
+Computation time (N=15000): 44.164830 seconds
+
+--- THREADS = 16 ---
+I'm using 16 OpenMP Thread
+Computation time (N=15000): 39.811315 seconds
+
+--- THREADS = 20 ---
+I'm using 20 OpenMP Thread
+Computation time (N=15000): 40.163692 seconds
+
+--- THREADS = 24 ---
+I'm using 24 OpenMP Thread
+Computation time (N=15000): 40.823925 seconds
+
+--- THREADS = 28 ---
+I'm using 28 OpenMP Thread
+Computation time (N=15000): 40.744327 seconds
+

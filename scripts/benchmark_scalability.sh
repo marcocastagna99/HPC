@@ -45,10 +45,12 @@ compile
 # Define arrays for sizes, threads, and blocks
 SIZES=(5000 10000 15000)
 THREADS=(1 2 4 8 12 16 20 24 28)
-BLOCKS=(32 64 128) # I magici numeri della cache
+BLOCKS=(32 64 128)
+
+
 
 # Create the CSV file and write the updated header
-CSV_FILE="$RESULTS_DIR/scalability_blocks.csv"
+CSV_FILE="$RESULTS_DIR/scalability_blocks128.csv"
 echo "N,BlockSize,Threads,Time_s" > "$CSV_FILE"
 
 title "PHASE 1: OpenMP Scalability Tests with Block Sizes"
@@ -68,9 +70,8 @@ for B in "${BLOCKS[@]}"; do
             
             printf "    Running N=%-5d B=%-3d with %-2d threads... " "$N" "$B" "$t"
             
-            # Passo sia N che B (BlockSize) all'eseguibile!
             OUTPUT=$("$COMPILED_FILE" "$N" "$B")
-            sleep 15 # La tua saggia pausa termica
+            sleep 15 # thermal pause
             
             echo "--- THREADS = $t ---" >> "$RAW_LOG"
             echo "$OUTPUT" >> "$RAW_LOG"
@@ -79,8 +80,6 @@ for B in "${BLOCKS[@]}"; do
             TIME=$(echo "$OUTPUT" | grep -i "Computation time" | awk '{print $(NF-1)}')
             
             echo "${TIME}s"
-            
-            # Salvo nel CSV: N, BlockSize, Threads, Time
             echo "$N,$B,$t,$TIME" >> "$CSV_FILE"
         done
     done
