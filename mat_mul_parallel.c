@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
         for (int k = 0; k < n; k += BLOCK_SIZE) {
             for (int j = 0; j < n; j += BLOCK_SIZE) {
                 
-                // BOUNDARY COMPUTATION (Crucial!)
+                // BOUNDARY COMPUTATION
                 // Since N=10000 is not perfectly divisible by 64, the last block 
                 // at the matrix edges will be truncated. This prevents Segmentation Faults.
                 int i_end = (i + BLOCK_SIZE > n) ? n : i + BLOCK_SIZE;
