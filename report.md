@@ -284,34 +284,6 @@ Regarding the experiments, I conclude that the parallel computation achieved a g
 
 ## CUDA
 
-La divisione serve a rendere il tuo codice scalabile. Se compri una GPU con pochi SM, i blocchi verranno eseguiti in sequenza. Se domani compri una GPU potentissima con 100 SM, la stessa identica griglia eseguirà moltissimi blocchi in parallelo. Il blocco è l'"unità di lavoro" che l'hardware distribuisce.
-
- Cosa succede fisicamente sull'Hardware?
-Questa è la traduzione tra il codice che scrivi e il silicio della tua Tesla T4:
-
-Lancio: La CPU invia la Grid alla GPU.
-
-Assegnazione dei Blocchi: Lo scheduler globale della GPU prende i Blocchi interi e li distribuisce agli Streaming Multiprocessors (SM) disponibili (la T4 ne ha 40).
-
-Regola d'oro: Un blocco, una volta assegnato a un SM, non si muove più fino alla fine del suo lavoro.
-
-Esecuzione a Warp (I Thread): All'interno dell'SM, i thread del tuo blocco non partono tutti a casaccio. Vengono raggruppati in mazzetti di 32 thread chiamati Warp. Tutti e 32 i thread di un Warp eseguono fisicamente la stessa identica istruzione nello stesso momento, ciascuno sui propri dati.
-
-Quindi, non decidi "la dimensione logica dei dati", ma decidi la geometria dei tuoi lavoratori. Se devi processare una matrice, è comodo creare una Grid 2D di Blocchi 2D, in modo che le coordinate dei lavoratori corrispondano fisicamente alle coordinate delle celle della matrice.
-
-![alt text](snap/image.png)
-
-
-concetto grid stride quand i dati sono enormi e si creano tanti blocchi, o thread  si suddividono gli elementi di tutti i blocchi, 
-importatne non creare blocchi piu gorssi dei valore segnato dalla gpu (max thread x block)
-
-Un blocco è indivisibile. Quando l'hardware deve eseguire un blocco, deve assegnarlo per intero a un singolo SM. Non può prendere un blocco, tagliarlo a metà e darne un pezzo all'SM 1 e un pezzo all'SM 2
-
-un blocco deve stare nel SM e ci rimane finche i thread non finiscono il lavoro
-
-warp divergence: se i thread del warp divergono e fanno coe diverse dagli altri il warp non puo sdoppiarsi e quindi vengono eseguiti in modo sequenziale!!!!!
-
-
 
 soluzione pensata:
 blocchi bidimensionali multipli del warp così vengono usati a pieno i warp, costruzione griglia di blocchi bidimensionale (256 thread),
