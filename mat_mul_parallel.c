@@ -3,7 +3,7 @@
 #include <omp.h>
 
 int main(int argc, char **argv) {
-    // Controllo minimo: serve almeno la dimensione N
+
     if (argc < 2) {
         printf("Error: specify at least the dimension N.\n");
         printf("Usage: %s <N> [BLOCK_SIZE]\n", argv[0]);
