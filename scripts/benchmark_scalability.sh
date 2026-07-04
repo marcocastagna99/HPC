@@ -8,7 +8,7 @@ source /opt/intel/oneapi/setvars.sh
 set -euo pipefail
 
 # --- Configuration ---
-COMPILED_FILE="../bin/mat_mul_p"  # The compiled binary to run
+COMPILED_FILE="../bin/mat_mul_p"
 RESULTS_DIR="../results"
 
 # Create a clean directory for all outputs
