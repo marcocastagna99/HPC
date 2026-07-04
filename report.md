@@ -322,6 +322,7 @@ cosa fare?
 approccio tiled come con openMp. i thrad leggono una volta sola un solo elemento di a e un solo elemento di b, caricandoli nella shared, una volta tutti letto (barriera), proseguono a fare i calcoli usando solo la shared! senza andare a prendere gli elementi dalla global ad ogni iterazione, una volta finito il thread continua su un altra tiled etc finchè non finiscono, una volta finito scrive su c nella global una volta sola, ogni blocco schedulato ad ogni sm ha un a porzione diversa di a e b e c
 
 
+
 google colab
 architetttura cpu per il test sequenziale: 
 Architecture:                x86_64
@@ -331,14 +332,88 @@ Architecture:                x86_64
 CPU(s):                      2
   On-line CPU(s) list:       0,1
 Vendor ID:                   GenuineIntel
-  Model name:                Intel(R) Xeon(R) CPU @ 2.00GHz
+  Model name:                Intel(R) Xeon(R) CPU @ 2.20GHz
+
+!gcc -O3 -march=native -fopenmp matmul.c -o matmul_seq
+
+Computation time (N=5000): 91.53734 seconds
+Computation time (N=10000): 764.730147 seconds
+Computation time (N=15000): 2733.177186 seconds
+
+device:
+--- Device 0: "Tesla T4" ---
+  CUDA Capability Major/Minor version:          7.5
+  Total amount of global memory:                14.56 GBytes
+  Number of multiprocessors (SMs):              40
+  Total amount of constant memory:              65536 bytes
+  Total amount of shared memory per block:      49152 bytes
+  Total number of registers available per block: 65536
+  Warp size:                                    32
+  Maximum threads per multiprocessor (SM):      1024
+  Maximum threads per block:                    1024
+  Max dimension size of a thread block (x,y,z): 1024, 1024, 64
+  Max dimension size of a grid size    (x,y,z): 2147483647, 65535, 65535
+
+
+dai dati ricavati dal dispositivo, possiamo intravedere il numero dei 40 Sm,e il max thread per block che ci dice come strutturare i blocchi nel nostro codice, e una memoria globale di 14.56 GB, ampiamente sufficiente per allocare le matrici di test fino a $N=15000$
+leggendo il modello tesla 4, ho investigato sullagpu, la version è 7.5
+![alt text](snap/nvidia_tesla4.png)
+guardando le prestazione, vedo che ha i tensor core, quindi perfetti per i prodotti tra matrici che in un colpo solo di clock fanno un intero prodotto fra matrici, ottimo per rete neurali.
+
+vedo anche un sacco di nvidia cuda core 2560, divisi i 40 SM, ognuno ha 64 cuda core!
+ma dall'immaigine vedo solo prestazioni di Single Precision Performance (FP32), Mixed precision (FP16/FP32), INT8 , INT4
+senza vedere però i FP64 che fanno al nostro problema , dato che faremo un prodotto tra matrici di soli double precision!
+scoprpro dal vendor che la gpu è Basata sulla architettura NVIDIA Turing.
+e guardando un po' la documentazione NVIDIA-Turing-Architecture-Whitepaper
+vedo un SM strutturato in questo modo
+![alt text](snap/SM_turing.png)
+
+il chè non vedo core allestiti per fp64, guardando piu attentamente il documento mi accorgo
+![alt text](snap/TU102.png)
+
+quidni i core di punta di questa gpu sono gli FP32 mentre gli fp64 sono solo per compatibilità, e con perfomrance molto ridotte,
+1/32nd the TFLOP rate of FP32 operations , quindi se sono 8.1 TFloPs i FP32 i FP64 sono a 0,25 TFlops, e abbiamo solo 80 unità (2 per ogni SM), questa gpu sembrerebbe pensata per inferenza ai e grafica per lo più, non per calcolo scentifico HPC, mentre per questo tipo  di calcoli le A100, v100, h100, sarebbero piu adeguate che hanno il rapporto fp64:fp32 1:2 , ma su colab il piano gratuito ci fa usare solo la tesla, per cui gli esperimaneti non utilizzeranno la piena capacità di calcolo della gpu
 
 
 
+### first solution
+blocchi bidimensionali multipli del warp così vengono usati a pieno i warp, ho scelto inizialmente blocchi 16x16, costruido un enorme griglia di blocchi bidimensionale,
+pensare l'algoritmo che ogni thread calcola un solo elemento c, quindi si puo fare riga per colonna classico,quindi ogni thread deve fare riga per colonna per quel elemento (e quindi deve sapere quale riga e quale colonna), scorrendo tutte le colonne di una data riga row, e tutte le righe ad una speficia colonna col, quindi somma di prodotto di riga per colonna, ma assegnando comunque ad ogni thread celle contigue per efficienza sfruttando il Memory Coalescing. ogni thread quindi si calcola la propria pozione di c usando griglia globale bidimensionale dei blocchi, quindi logicamente creo una griglia enorme grande quanto c, divisa in blocchi logici che verranno schedulati ai vari SM in parallelo, e ogni thread di quei blocchi hanno una posizione globale row e col in base a blockid.x* blockDim+ threadid.x e blockid.y* blockDim+ threadid.y. In questo modo ogni thread sa quale riga e quale colonna deve scorrere!
+poi per poter costruire un amtrice di blocchi precisi divido (n/dim blocco , n/dim blocco) ma dato che il calcolo arrotonda sempre ci aggiungo uno shiftino di dim blocco -1 sesempio se blocco da 16x16 (n+15/16, n+15/16) in questo modo anche se non è divisibile perfettamente per 16 rieso a prendere i bordi!
+
+una volta deciso come partizionare, il calcol procede semplicemente al prodotto matriciale, nella gpu si usa solo una dimensuione, ma l'dea è quella di usare questa moonodimensione a prendere tutta la matrice e shiffare solo di indici sviluppati dal codice
 
 
 
+```c
+__global__ void matMulKernel(double *a, double *b, double *c, int n) {
 
+    int col = blockIdx.x * blockDim.x + threadIdx.x;
+    int row = blockIdx.y * blockDim.y + threadIdx.y;
+
+    // check that the thread is within the matrix boundaries
+    if (row < n && col < n) {
+        double sum = 0.0;
+
+        // 1D array simulating a 2D matrix (row * n + col)
+        for (int k = 0; k < n; k++) {
+            sum += a[row * n + k] * b[k * n + col];
+        }
+        c[row * n + col] = sum;
+    }
+}
+```
+
+quindi con semplicità si riesce a parallelizzare
+ottendendo un run con n=5000
+Matrix Dimension N           : 5000
+Transfer Time CPU -> GPU     : 85.669121 ms
+GPU Kernel Computation Time  : 1223.180176 ms
+Transfer Time GPU -> CPU     : 50.634144 ms
+Total Time (Data + Compute)  : 1359.483398 ms
+1 secondo circa e uno speedup di circa 70 dal run sequenziale
+
+profilando, noto che il maggior delay non sta nel passaggio cpu /gpu, ma bensì l'esecuzione del kernel, con nproof ci dice che il 90.67%  del tempo è usato dal l'esecuziobne del kernel: GPU activities:   90.67%  1.26170s         1  1.26170s  1.26170s  1.26170s  matMulKernel(double*, double*, double*, int), e piu umento n e piu l'esecuzione è taken dal kernel, 94% n 10k, e 97% n=15k
 
 
 
