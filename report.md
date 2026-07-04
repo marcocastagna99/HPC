@@ -322,6 +322,22 @@ cosa fare?
 approccio tiled come con openMp. i thrad leggono una volta sola un solo elemento di a e un solo elemento di b, caricandoli nella shared, una volta tutti letto (barriera), proseguono a fare i calcoli usando solo la shared! senza andare a prendere gli elementi dalla global ad ogni iterazione, una volta finito il thread continua su un altra tiled etc finchè non finiscono, una volta finito scrive su c nella global una volta sola, ogni blocco schedulato ad ogni sm ha un a porzione diversa di a e b e c
 
 
+google colab
+architetttura cpu per il test sequenziale: 
+Architecture:                x86_64
+  CPU op-mode(s):            32-bit, 64-bit
+  Address sizes:             46 bits physical, 48 bits virtual
+  Byte Order:                Little Endian
+CPU(s):                      2
+  On-line CPU(s) list:       0,1
+Vendor ID:                   GenuineIntel
+  Model name:                Intel(R) Xeon(R) CPU @ 2.00GHz
+
+
+
+
+
+
 
 
 
