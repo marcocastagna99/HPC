@@ -368,11 +368,13 @@ e guardando un po' la documentazione NVIDIA-Turing-Architecture-Whitepaper
 vedo un SM strutturato in questo modo
 ![alt text](snap/SM_turing.png)
 
-il chè non vedo core allestiti per fp64, guardando piu attentamente il documento mi accorgo
+il chè non vedo core allestiti per le alu fp64, guardando piu attentamente il documento mi accorgo
 ![alt text](snap/TU102.png)
 
-quidni i core di punta di questa gpu sono gli FP32 mentre gli fp64 sono solo per compatibilità, e con perfomrance molto ridotte,
+quidni i core di punta di questa gpu sono gper FP32 mentre gli fp64 sono solo per compatibilità, e con perfomrance molto ridotte,
 1/32nd the TFLOP rate of FP32 operations , quindi se sono 8.1 TFloPs i FP32 i FP64 sono a 0,25 TFlops, e abbiamo solo 80 unità (2 per ogni SM), questa gpu sembrerebbe pensata per inferenza ai e grafica per lo più, non per calcolo scentifico HPC, mentre per questo tipo  di calcoli le A100, v100, h100, sarebbero piu adeguate che hanno il rapporto fp64:fp32 1:2 , ma su colab il piano gratuito ci fa usare solo la tesla, per cui gli esperimaneti non utilizzeranno la piena capacità di calcolo della gpu
+
+quindi abbiamo solo 2 alu fp64 e divisi i thread di un warp, un operazione fp64 costa 16 giri di clock!!!
 
 
 
@@ -414,9 +416,21 @@ Total Time (Data + Compute)  : 1359.483398 ms
 1 secondo circa e uno speedup di circa 70 dal run sequenziale
 
 profilando, noto che il maggior delay non sta nel passaggio cpu /gpu, ma bensì l'esecuzione del kernel, con nproof ci dice che il 90.67%  del tempo è usato dal l'esecuziobne del kernel: GPU activities:   90.67%  1.26170s         1  1.26170s  1.26170s  1.26170s  matMulKernel(double*, double*, double*, int), e piu umento n e piu l'esecuzione è taken dal kernel, 94% n 10k, e 97% n=15k
+profilando piu accuratamente suu un visual profile, su nvidia snight: su un run n=10k
+![alt text](snap/nsight_naive.png)
+una cosa che noto e che non ho utilizzato è la shared memory.
 
+la global ci pesa 400-800 clock cycles
 
+sicuramente l'algoritmo puo essee scritto meglio, così com'è ogni thread pesca dalla global ogni elemento di a e di b per fare il prodotto e sapendo che la global è lentissima, l'algoritmo è ineficciente, anche se c'è il memory cohaleshing che fa una sola lettura in memoria per il warp, sempre se il warp è disposto bene ovvero thread richiedono elementi contigui in memomoria (nel nostro caos tutti hanno un row e col e sono contigui), comunque non c'è una temporary locality, le cache essendo piccole non aiutano, e una volta il blocco finito, i thread del blocco successivo richiedono magari gli stessi valori del precedente, e così via nei blocchi contigui. e comunque si legge dalla global.
 
+### soluzione 2
+per poter limitare il piu possibile l'utilizzo della global, devo cordinare ithread del blocco, usando proprio la shared,
+l'idea è quella riconducibile all'algoritmo di openMp, andare per pezzettti/mattonelle piuttosto che calcolare righe intere alla volta.
+
+l'idea è quella di allocare ad ogni blocco due pezzi della shared apposta per quei thread uno è A e l'altro è B, di dimensioe fissata (direi grande quanto il pezzetto) come cache personale solo per loro, dividerei la sincornizzazione in due fasi:
+per ogni mattonella di matrice c:
+fase 1: la prima è quella che ogni thread del blocco legga uno due valori dalla global, relativo alla propria posizione nella mattonella per A e per B , e lo mettono nella shared, così le mattonelle in shared a e shared b sono piene, la seconda fase, e fare i calcoli a tutti i thread usando solo i propri registri e leggendo SOLO dalla shared, in questo modo limitando una sola lettura dalla global a mattonella di c
 
 comandi utili 
 scrot -s screenshot.png
