@@ -495,7 +495,7 @@ Total Time (Data + Compute)  : 8753.960938 ms
 
 This version gives a speedup of about **87x**, which is better than the 81x speedup of the first version. Also, the profiler data shows that Shared Memory is now actually used. The register use per thread has dropped a lot (from 63 down to 42 registers per thread).
 
-[alt text](snap/nsight_tiled_kernel.png) 
+![alt text](snap/nsight_tiled_kernel.png) 
  
 ## Scalability
 
