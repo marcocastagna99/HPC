@@ -423,16 +423,6 @@ Undoubtedly, the algorithm can be optimized. In its current naive state, each th
 
 Although the implementation benefits from **Memory Coalescing** which consolidates memory accesses into fewer transactions per warp, given that threads in our setup request contiguous memory elements based on their `row` and `col` coordinates;it completely lacks **Temporal Locality**. The L1 and L2 caches are too small to retain the massive amounts of data required. Consequently, once a block finishes its computation, the subsequent adjacent blocks may request the exact same values, but they are forced to re-read them entirely from Global Memory. This repeated fetching from high-latency memory strictly limits the performance, creating a severe **Memory-Bound** bottleneck.
 
----
-
-
-
-
-
-
-
-
-
 
 
 
@@ -489,44 +479,101 @@ __global__ void matMulKernel(double *a, double *b, double *c, int n) {
         c[row * n + col] = sum;
     }
 ```
-risultati:
 
+
+
+### Solution 2
+
+To limit the use of global memory as much as possible, it is necessary to coordinate the threads of the block using Shared memory itself. To calculate an element of matrix C, the idea is to proceed by "tiles" (Tile), similarly to what was done with OpenMP, rather than moving entire rows or columns at a time.
+
+As for the agglomeration phase, in OpenMP the calculation of a "strip" of C (made of many small pieces next to each other) was assigned to a single thread. In CUDA I apply a similar concept, but using an entire block of threads, with the goal of calculating not just a single element, but a complete tile of C. Consequently, I advance this block of threads exactly over the tiles of matrices A and B of the same size as the block, moving to the right for A and downwards for B.
+
+To do this, each block allocates two portions of Shared memory dedicated exclusively to those threads (of the same size as the tiles), into which the values of A and B needed for the calculation will be inserted. These areas work like a personal cache to use at each iteration. The coordination of the algorithm is divided into two distinct phases, separated by synchronization barriers (`__syncthreads()`):
+ 
+For each logical tile `t`:
+
+* **Phase 1 (Reading):** Each thread of the block reads two values from the Global Memory, relating to its local position in the tile (`ty, tx`) and, above all, to its position in the global grid (`row, col`). Considering that the sliding of A happens on the same row and that of B on the same column, for the current tile `t` each thread takes two values and saves them in the dedicated areas in Shared Memory. In this way, the two shared tiles are filled with a single cooperative read (each thread loads exactly one value per matrix).
+* **Phase 2 (Calculation):** All threads perform the calculations using only their private registers and reading EXCLUSIVELY from the Shared Memory. Each thread calculates the dot product by multiplying the values of its row in Shared-A by those of its column in Shared-B.
+
+With this approach, reads from the very slow Global Memory are reduced to only two for each thread at each logical step, followed by a single final write of the result in C at the end of the iterations.
+
+---
+
+```c
+__global__ void matMulKernel(double *a, double *b, double *c, int n) {
+    __shared__ double As[TILE_SIZE][TILE_SIZE];
+    __shared__ double Bs[TILE_SIZE][TILE_SIZE];
+
+    int tx = threadIdx.x;
+    int ty = threadIdx.y;
+    int col = blockIdx.x * TILE_SIZE + tx;
+    int row = blockIdx.y * TILE_SIZE + ty;
+
+    double sum = 0.0;
+
+    for (int t = 0; t < (n + TILE_SIZE - 1) / TILE_SIZE; t++) {
+        if (row < n && t * TILE_SIZE + tx < n)
+            As[ty][tx] = a[row * n + t * TILE_SIZE + tx];
+        else
+            As[ty][tx] = 0.0;
+
+        if (t * TILE_SIZE + ty < n && col < n)
+            Bs[ty][tx] = b[(t * TILE_SIZE + ty) * n + col];
+        else
+            Bs[ty][tx] = 0.0;
+
+        __syncthreads();
+
+        for (int k = 0; k < TILE_SIZE; k++) {
+            sum += As[ty][k] * Bs[k][tx];
+        }
+        __syncthreads();
+    }
+
+    if (row < n && col < n) {
+        c[row * n + col] = sum;
+    }
+}
+
+```
+
+
+**Results**
+
+```text
 BlockSize: 16x16
 H2D Time : 358.513092 ms
 Kernel Time : 8225.050781 ms
 D2H Time : 170.397049 ms
 Total Time (Data + Compute)  : 8753.960938 ms
 
-speedup 87! supereto il precedente di 81
-e dal profiler si nota che ora la shared viene utilizzata e che i thread usano meno registri (prima 63 ora 42)
-[alt text](snap/nsight_tiled_kernel.png) 
+```
 
-## Scalabilità
-dato che l'arcitettura non ci permette di modificare a piacimento il numero dei thead ma bensì solo il dimensionamento dei blocchi
-ho pensato di confrontare in 3 dimensionamenti diversi lo speedup e l'efficency
-ho pensato a provre blocchi 8x8, 16x16, 32x32 (il max supportato), per ogni dimensionamento n (5000, 10000, 15000)
+This version gives a speedup of about **87x**, which is better than the 81x speedup of the first version. Also, the profiler data shows that Shared Memory is now actually used. The register use per thread has dropped a lot (from 63 down to 42 registers per thread).
+
+[alt text](snap/nsight_tiled_kernel.png) 
+ 
+## Scalability
+
+In CUDA, we cannot set the total number of threads directly; we can only choose the block size. Because of this, I decided to test the speedup and efficiency using different block sizes.
+Specifically, I tested **8x8**, **16x16**, and **32x32** blocks (the maximum limit of the hardware) for different matrix sizes: **N=5000, N=10000, and N=15000**.
+
+
+**Analysis of the Results:**
 
 ![alt text](results/cuda_speedup_efficiency_graphs.png) 
 
-cosa è successo?
-con bocchi 8x8 lo speed up è quello piu basso, in tutte le casistiche!
-avendo blocchi da 64 prendendo n=5000 avremo da schedulare 625 blocchi x 625 = 390.625 blocchi
-tantini, circa 10 mila ad ogni SM, overhead assicurato troppi blocchi e pochi thread, In un contesto Compute-Bound limitato dalle unità FP64, tutti questi context switch crea un collo di bottiglia.
-però per quanto riguarda l'efficienza è la configurazione piu efficiente, ed è normale con così pochi thread c'è meno utuilizzo dei registri e un miglior utilizzo hardware da parte di tutti i thread.
-per quanto riguarda 16x16 sembra un buon compromesso per tutte i dimensionamenti
-e 32x32 sembra trarre vantaggio a un dimensionamento grande.
-ovviamente su dimensionamenti piccoli ci sono meno blocchi e quindi c'è meno sfruttamento dell'occupancy, i context switch veloci sono pochie e non si riesce a nascondere la latenza! e c'è un consumo elevato di registri che potrebbbero richiedere piu di quelli disponibili! infatti l'efficency potrebbe essere un indizio su cui investigare affondo
+* **The 8x8 block (64 threads):** This setup has the lowest speedup for all matrix sizes. With 64 threads per block and N=5000, the system must schedule a huge grid of 625x625 = 390,625 blocks. This means about 10,000 blocks for each SM, which creates a lot of scheduling overhead. In a Compute-Bound situation with very few FP64 units, managing all these blocks slows down the hardware scheduler. On the other hand, this setup has the highest efficiency per thread. This is normal: a small block uses fewer registers, so the active threads can work without resource limits.
+* **The 16x16 block (256 threads):** This setup is a great balance (the "sweet spot") for all matrix sizes. It finds the best compromise between filling the SMs (occupancy) and reducing the scheduling overhead.
+* **The 32x32 block (1024 threads):** This huge block size is only better for very large matrices (N=15000). For smaller matrices, there are too few blocks to keep the SMs fully busy (low occupancy). Because of this, there are not enough warps to do fast context switches, so the hardware cannot hide the memory delay (latency). Also, a block of 1024 threads uses too many registers, which can cause register spilling (moving data to slower memory). The big drop in the efficiency graph clearly shows this hardware limit.
 
-concludo infine che molto sicutamente l'approccio Cuda è quello piu versatile, moderno, ma nel mio caso dato il limite harware i risultatit sono pressochè simili a quelli con openMP guardando i tempi di esecuzione, ovviamente sono architetture completamente diverse e due esempi separati, ma la  potenza dei core cpu sono un buon esempio che non sono da sottovalutare nel parallelismo! sono molto soddifsfatto perchè ho imparato ad andare piu affono ad un seplie parallelismo, ci  tantissimi fattori che fanno crollare la performance e ho imparato grazei agli strumenti del corso ad analizzare i risultati. Sarei stato molto cursioso a vedere i riusultati se avessimo usato i tensor core, o  comunque usando almneno classici cuda core per quella gpu sui fp32 per vedere il cambio evidente di performance
+## Conclusions
 
+In conclusion, CUDA is definitely a more flexible and modern tool for parallel computing. However, in my case, the Tesla T4 has severe limits for double-precision (FP64) math. Because of this, the execution times are very similar to the OpenMP results on the CPU. Even though we are comparing two completely different architectures, the power of modern CPU cores shows that they are still very strong for parallel work and should not be ignored.
 
+Overall, this project taught me a lot. It helped me look past simple parallelization and understand the many hardware factors that can ruin performance, like memory limits, high register use, and scheduling overhead. Using the profiling tools from the course was very important to analyze and understand these problems.
 
+Finally, for the future, it would be very interesting to test the code using single-precision (`float` - FP32) numbers. This simple change would let us use all the 2560 standard CUDA cores on this GPU, or even the Tensor Cores. This would certainly bring a huge improvement in overall performance.
 
 
 
-
-
-
-comandi utili 
-scrot -s screenshot.png
-advixe-gui
