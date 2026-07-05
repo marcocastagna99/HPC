@@ -393,31 +393,46 @@ __global__ void matMulKernel(double *a, double *b, double *c, int n) {
 
 ```
 
+Thus, the parallelization is achieved easily. A test run with $N=10000$ yields the following results:
 
-
-quindi con semplicità si riesce a parallelizzare
-ottendendo un run con n=10000
-
-```
+```text
 Matrix Dimension N           : 10000
 Transfer Time CPU -> GPU     : 340.948517 ms
 GPU Kernel Computation Time  : 8916.573242 ms
 Transfer Time GPU -> CPU     : 167.988388 ms
 Total Time (Data + Compute)  : 9425.509766 ms
-```
-9 secondi e mezzo circa e uno speedup di circa 81 dal run sequenziale
 
-profilando, noto che il maggior delay non sta nel passaggio cpu /gpu, ma bensì l'esecuzione del kernel, con nproof ci dice che il 90.67%  del tempo è usato dal l'esecuziobne del kernel: GPU activities:   90.67%  1.26170s  matMulKernel(double*, double*, double*, int), e piu umento n e piu l'esecuzione è presa dal kernel, 94% n 10k, e 97% n=15k
-profilando piu accuratamente suu un visual profile, su nvidia snight: su un run n=10k
+```
+
+This results in a total execution time of approximately 9.5 seconds, achieving a speedup of about 81x compared to the sequential CPU baseline.
+
+Through performance profiling, it becomes evident that the primary delay is not caused by the CPU-to-GPU data transfer (PCIe bottleneck), but rather by the kernel execution itself. Using `nvprof`, the data indicates that 90.67% of the total time is consumed by the computation: `GPU activities: 90.67% 1.26170s matMulKernel(double*, double*, double*, int)`. Furthermore, as the dimension $N$ increases, the percentage of time spent in the kernel grows correspondingly, reaching 94% for $N=10000$ and 97% for $N=15000$.
+
+A more in-depth profiling session using the visual profiler, NVIDIA Nsight Systems, on a run with $N=10000$ confirms this behavior:
 
 ![alt text](snap/nsight_naive.png) 
 
-si vede chiaramente che la maggoirprarte del tempo di esecuzione è usato dal kernel, ma una cosa che noto e che non ho utilizzato è la shared memory.
+The timeline clearly shows that the vast majority of the execution time is dedicated to the kernel. However, a critical observation from the profiler is the complete absence of Shared Memory utilization.
 
-la global ci pesa 400-800 clock cycles
-la shared  2-4 clock cycles
+To put this into perspective:
 
-sicuramente l'algoritmo puo essee scritto meglio, così com'è ogni thread pesca dalla global ogni elemento di a e di b per fare il prodotto e lo fa n volte, sapendo che la global è lentissima, l'algoritmo è ineficciente, anche se c'è il memory cohaleshing che fa una sola lettura in memoria per il warp, sempre se il warp è disposto bene ovvero thread richiedono elementi contigui in memomoria (nel nostro caso tutti hanno un row e col e sono contigui), comunque non c'è una temporary locality, le cache essendo piccole non aiutano, e una volta il blocco finito, i thread del blocco successivo richiedono magari gli stessi valori del precedente, e così via nei blocchi contigui. e comunque si legge sempre dalla global. quindi una situazione memory bound!
+* Accessing **Global Memory** costs between 400 and 800 clock cycles.
+* Accessing **Shared Memory** requires only 2 to 4 clock cycles.
+
+Undoubtedly, the algorithm can be optimized. In its current naive state, each thread repeatedly fetches every single element of matrices $A$ and $B$ directly from the extremely slow Global Memory $N$ times to compute the dot product. This makes the algorithm inherently inefficient.
+
+Although the implementation benefits from **Memory Coalescing** which consolidates memory accesses into fewer transactions per warp, given that threads in our setup request contiguous memory elements based on their `row` and `col` coordinates;it completely lacks **Temporal Locality**. The L1 and L2 caches are too small to retain the massive amounts of data required. Consequently, once a block finishes its computation, the subsequent adjacent blocks may request the exact same values, but they are forced to re-read them entirely from Global Memory. This repeated fetching from high-latency memory strictly limits the performance, creating a severe **Memory-Bound** bottleneck.
+
+---
+
+
+
+
+
+
+
+
+
 
 
 
