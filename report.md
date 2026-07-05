@@ -284,45 +284,6 @@ Regarding the experiments, I conclude that the parallel computation achieved a g
 
 ## CUDA
 
-
-soluzione pensata:
-blocchi bidimensionali multipli del warp così vengono usati a pieno i warp, costruzione griglia di blocchi bidimensionale (256 thread),
-pensare l'algoritmo che ogni thread calcola un solo elemento c, quindi si puo fare riga per colonna classico,quindi ogni threa deve fare riga per colonna per quel elemento (e quindi deve sapere quale riga e quale colonna), scorrendo tutte le colonne di una data riga row, e tutte le righe ad una speficia colonna col, quindi somma di prodotto di riga per colonna, ma assegnando comunque ad ogni thread celle contigue per efficienza: calcolandosi per la propria pozione della griglia globale bidimensionale dei blocchi, quindi logicamente creo una griglia enorme grande quanto c, divisa in blocchi logici che verranno schedulati ai vari SM in parallelo, e ogni thread di quei blocchi hanno una posizione globale row e col in base a blockid.x* blockDim+ threadid.x e blockid.y* blockDim+ threadid.y. In questo modo ogni thread sa quale riga e quale colonna deve scorrere!
-cosa succede im memoria quando ad un warp di 32 thread gli viene dato un blocco, dato che il wapr è da 32 e il blocco da 256 elementi, bisona pensare tutto a 1D, e così un warp singolo prende due righe di un blocco.  esempio warp 0, SM0, N=5000
-Thread da 0 a 15: Hanno ty = 0 (quindi row = 0) e tx da 0 a 15 (quindi col da 0 a 15).
-Thread da 16 a 31: Hanno ty = 1 (quindi row = 1) e tx da 0 a 15 (quindi col da 0 a 15).
-
-L'impatto sulla Memoria:
-Quando questo Warp richiede i dati della matrice $B$ al ciclo $k=0$ (chiedendo gli indirizzi b[0...15]), i thread stanno chiedendo 16 indirizzi fisicamente contigui in memoria.
-Nonostante a livello algoritmico il singolo thread stia concettualmente "scendendo in verticale" saltando di N elementi ad ogni passo, il fatto che 16 thread lo facciano affiancati crea un pattern di lettura orizzontale. La GPU fonde queste 16 richieste adiacenti in un'unica operazione efficiente (Memory Coalescing), evitando il collasso delle prestazioni che si avrebbe su una CPU standard.
-
-La lettura della Matrice A (Broadcast):
-Allo stesso ciclo $k=0$, cosa chiedono gli stessi primi 16 thread per la matrice $A$? Poiché si trovano tutti sulla stessa riga (row=0), chiedono tutti esattamente lo stesso identico elemento: a[0].
-Invece di fare 16 letture identiche, l'hardware applica un meccanismo chiamato Broadcast: legge il numero una singola volta dalla memoria e lo "urla" simultaneamente a tutti i thread che lo hanno richiesto.
-
-4. I Limiti dell'Approccio Naive (Memory Wall)
-
-Se l'hardware è in grado di ottimizzare così bene le letture di $B$ (Coalescing) e di $A$ (Broadcast), per quale motivo l'algoritmo Naive è considerato inefficiente e si preferisce passare all'algoritmo Tiled?
-
-Il difetto fatale risiede nella ridondanza degli accessi su larga scala:
-
-Il Broadcast salva tempo per quel singolo Warp in quel preciso istante.
-
-Tuttavia, non appena il Blocco ha terminato i suoi calcoli, i dati letti vengono "dimenticati" dall'SM.
-
-Quando lo scheduler farà partire i Blocchi successivi per calcolare le restanti celle della riga di $C$, i nuovi thread dovranno accedere alla Global Memory per leggere di nuovo lo stesso identico elemento a[0].
-
-Su una matrice $N = 5000$, lo stesso identico numero a[0] verrà prelevato dalla lentissima VRAM esterna 5000 volte distinte. Questa immensa quantità di letture ripetute satura il bus PCIe e la banda passante della memoria (effetto Memory Wall), costringendo i velocissimi CUDA Cores a rimanere in attesa dei dati.
-L'algoritmo è, di fatto, pesantemente Memory-Bound, motivo per cui lo step successivo di ottimizzazione in CUDA consiste nell'usare la Shared Memory (Tiled approach) per fungere da cache manuale e bloccare queste letture ridondanti dalla VRAM.
-
-nel prodotto riga-per-colonna, per calcolare le celle di $C$ che stanno affiancate sulla stessa riga,  serve la stessa identica riga di $A$.Immaginando la primissima riga di blocchi della  Griglia (la fascia più in alto della matrice C).Per coprire i 5000 elementi di larghezza, hai messo in fila orizzontale 313 blocchi (dal Blocco 0 al Blocco 312).Cosa succede a questi blocchi?Il Blocco 0 (colonne da 0 a 15 di C): Inizia a lavorare. Per calcolare i suoi risultati, i suoi thread devono leggere le prime 16 righe di A (per intero, tutti i 5000 elementi di quelle righe!). Le leggono dalla Global Memory, fanno i calcoli, salvano in C.Appena il blocco finisce, i thread muoiono e i dati spariscono dalle piccolissime cache del Multiprocessore.Il Blocco 1 (colonne da 16 a 31 di C): Viene mandato in esecuzione. Indovina di cosa ha bisogno per calcolare i suoi risultati? Ha bisogno ESATTAMENTE delle prime 16 righe di A, per intero!Siccome il Blocco 0 le ha "cancellate" morendo, il Blocco 1 deve ri-chiedere alla lentissima Global Memory di mandargli di nuovo tutti i 5000 elementi di quelle 16 righe.Il Blocco 2, il Blocco 3... fino al Blocco 312:Tutti loro si trovano sulla fascia alta di C. E tutti loro, uno dopo l'altro, chiederanno alla Global Memory di mandargli le stesse identiche prime 16 righe di A.
-problema quindi di temporary locality per le dimensioni piccocle delle cache
-cosa fare?
-
-approccio tiled come con openMp. i thrad leggono una volta sola un solo elemento di a e un solo elemento di b, caricandoli nella shared, una volta tutti letto (barriera), proseguono a fare i calcoli usando solo la shared! senza andare a prendere gli elementi dalla global ad ogni iterazione, una volta finito il thread continua su un altra tiled etc finchè non finiscono, una volta finito scrive su c nella global una volta sola, ogni blocco schedulato ad ogni sm ha un a porzione diversa di a e b e c
-
-
-
 google colab
 architetttura cpu per il test sequenziale: 
 Architecture:                x86_64
@@ -413,19 +374,20 @@ __global__ void matMulKernel(double *a, double *b, double *c, int n) {
 
 
 quindi con semplicità si riesce a parallelizzare
-ottendendo un run con n=5000
+ottendendo un run con n=10000
 
 ```
-Matrix Dimension N           : 5000
-Transfer Time CPU -> GPU     : 85.669121 ms
-GPU Kernel Computation Time  : 1223.180176 ms
-Transfer Time GPU -> CPU     : 50.634144 ms
-Total Time (Data + Compute)  : 1359.483398 ms
+Matrix Dimension N           : 10000
+Transfer Time CPU -> GPU     : 340.948517 ms
+GPU Kernel Computation Time  : 8916.573242 ms
+Transfer Time GPU -> CPU     : 167.988388 ms
+Total Time (Data + Compute)  : 9425.509766 ms
 ```
-1 secondo circa e uno speedup di circa 70 dal run sequenziale
+9 secondi e mezzo circa e uno speedup di circa 81 dal run sequenziale
 
 profilando, noto che il maggior delay non sta nel passaggio cpu /gpu, ma bensì l'esecuzione del kernel, con nproof ci dice che il 90.67%  del tempo è usato dal l'esecuziobne del kernel: GPU activities:   90.67%  1.26170s  matMulKernel(double*, double*, double*, int), e piu umento n e piu l'esecuzione è presa dal kernel, 94% n 10k, e 97% n=15k
 profilando piu accuratamente suu un visual profile, su nvidia snight: su un run n=10k
+
 ![alt text](snap/nsight_naive.png) 
 
 si vede chiaramente che la maggoirprarte del tempo di esecuzione è usato dal kernel, ma una cosa che noto e che non ho utilizzato è la shared memory.
@@ -433,20 +395,27 @@ si vede chiaramente che la maggoirprarte del tempo di esecuzione è usato dal ke
 la global ci pesa 400-800 clock cycles
 la shared  2-4 clock cycles
 
-sicuramente l'algoritmo puo essee scritto meglio, così com'è ogni thread pesca dalla global ogni elemento di a e di b per fare il prodotto e lo fa n volte, sapendo che la global è lentissima, l'algoritmo è ineficciente, anche se c'è il memory cohaleshing che fa una sola lettura in memoria per il warp, sempre se il warp è disposto bene ovvero thread richiedono elementi contigui in memomoria (nel nostro caos tutti hanno un row e col e sono contigui), comunque non c'è una temporary locality, le cache essendo piccole non aiutano, e una volta il blocco finito, i thread del blocco successivo richiedono magari gli stessi valori del precedente, e così via nei blocchi contigui. e comunque si legge sempre dalla global.
+sicuramente l'algoritmo puo essee scritto meglio, così com'è ogni thread pesca dalla global ogni elemento di a e di b per fare il prodotto e lo fa n volte, sapendo che la global è lentissima, l'algoritmo è ineficciente, anche se c'è il memory cohaleshing che fa una sola lettura in memoria per il warp, sempre se il warp è disposto bene ovvero thread richiedono elementi contigui in memomoria (nel nostro caso tutti hanno un row e col e sono contigui), comunque non c'è una temporary locality, le cache essendo piccole non aiutano, e una volta il blocco finito, i thread del blocco successivo richiedono magari gli stessi valori del precedente, e così via nei blocchi contigui. e comunque si legge sempre dalla global. quindi una situazione memory bound!
 
-### soluzione 2
 
-per poter limitare il piu possibile l'utilizzo della global, devo cordinare i thread del blocco, usando proprio la shared,
-l'idea è di andare per pezzettti/mattonelle piuttosto che calcolare un elememnto di c muovendomi per righe/colonne intere alla volta come ho fatto per openMP.
-come partiziono? a matttonelle, come agglomero? in openMp facevo fare una striscia di c ad un thread singolo, qua faccio l'analogo ma ad un blocco di thread per poter calcolare in fine una mattoenlla completa di c! quindi farei muovere un blocco di thread esattamente nei blocchi delle matrici A,B di stessa dimensione
 
-ho pensato di far allocare ad ogni blocco di thread due pezzi della shared apposta per quei thread (grandi quanto la dimensione del blocco dei thread), i quali ci mettereanno i blocchetti A e di B necessari per il calcolo, proprio come cache personale solo per loro da usare ad ogni iterazione, e dividerei la coordinazione in due fasi:
-una di lettura e una di calcolo (quindi due barriere)
+### Soluzione 2
 
-quindi ad ogni mattonella logica:
+Per poter limitare il più possibile l'utilizzo della memoria globale, è necessario coordinare i thread del blocco usando proprio la memoria Shared. Per calcolare un elemento della matrice C, l'idea è di procedere per "mattonelle" (Tile), analogamente a quanto fatto con OpenMP, piuttosto che muovere intere righe o colonne alla volta.
 
-fase 1: ogni thread del blocco (grande come la mattonella) legga due valori dalla global, relativo alla propria posizione nella mattonella (ty,tx) e sopratutto dalla griglia blobale (row,col) per A e il corrispettivo valore per il prodotto da B , e lo mettono nella shared, così le mattonelle in shared A e shared B sono piene con una sola lettura (tutti i thread ci mettono i valori), la seconda fase, e fare i calcoli a tutti i thread usando solo i propri registri e leggendo SOLO dalla shared, in questo modo limitando una sola lettura dalla global a mattonella, e una scrittura finale in c dopo aver iterato tutte le mattonelle.
+Per quanto riguarda la fase di agglomerazione, in OpenMP si assegnava il calcolo di una "striscia" di C (fatta da tanti pezzetti uno affianco all'altro) a un singolo thread. In CUDA applichiamo un concetto analogo, ma usando un intero blocco di thread, con il fine di calcolare non un solo elemento, ma una mattonella completa di C. Di conseguenza, facciamo scorrere questo blocco di thread esattamente sulle mattonelle delle matrici A e B della stessa dimensione del blocco, muovendoci verso destra per A e verso il basso per B.
+
+Per farlo, ogni blocco alloca due porzioni di memoria Shared dedicate esclusivamente a quei thread (della stessa dimensione delle mattonelle), nelle quali verranno inseriti i valori di A e di B necessari per il calcolo. Queste aree funzionano come una cache personale da usare ad ogni iterazione. La coordinazione dell'algoritmo si divide in due fasi distinte, separate da barriere di sincronizzazione (`__syncthreads()`):
+
+Per ogni mattonella logica `t`:
+
+* **Fase 1 (Lettura):** Ogni thread del blocco legge due valori dalla Global Memory, relativi alla propria posizione locale nella mattonella (`ty, tx`) e, soprattutto, alla propria posizione nella griglia globale (`row, col`). Considerando che lo scorrimento di A avviene sulla stessa riga e quello di B sulla stessa colonna, per la mattonella corrente `t` ogni thread preleva due valori e li salva nelle aree dedicate in Shared Memory. In questo modo, le due mattonelle condivise si riempiono con una singola lettura cooperativa (ogni thread carica esattamente un operando per matrice).
+* **Fase 2 (Calcolo):** Tutti i thread eseguono i calcoli usando solo i propri registri privati e leggendo ESCLUSIVAMENTE dalla Shared Memory. Ogni thread calcola il prodotto scalare moltiplicando i valori della sua riga in Shared-A per quelli della sua colonna in Shared-B.
+
+Con questo approccio, le letture dalla lentissima Global Memory vengono ridotte a sole due per ogni thread a ogni step logico, seguite da un'unica scrittura finale del risultato in C al termine delle iterazioni.
+
+---
+
 
 ```c
 __global__ void matMulKernel(double *a, double *b, double *c, int n) {
@@ -483,6 +452,37 @@ __global__ void matMulKernel(double *a, double *b, double *c, int n) {
         c[row * n + col] = sum;
     }
 ```
+risultati:
+
+BlockSize: 16x16
+H2D Time : 358.513092 ms
+Kernel Time : 8225.050781 ms
+D2H Time : 170.397049 ms
+Total Time (Data + Compute)  : 8753.960938 ms
+
+speedup 87! supereto il precedente di 81
+
+
+## Scalabilità
+dato che l'arcitettura non ci permette di modificare a piacimento il numero dei thead ma bensì solo il dimensionamento dei blocchi
+ho pensato di confrontare in 3 dimensionamenti diversi lo speedup e l'efficency
+ho pensato a provre blocchi 8x8, 16x16, 32x32 (il max supportato), per ogni dimensionamento n (5000, 10000, 15000)
+
+![alt text](results/cuda_speedup_efficiency_graphs.png) 
+
+cosa è successo?
+con bocchi 8x8 lo speed up è quello piu basso, in tutte le casistiche!
+avendo blocchi da 64 prendendo n=5000 avremo da schedulare 625 blocchi x 625 = 390.625 blocchi
+tantini, circa 10 mila ad ogni SM, overhead assicurato troppi blocchi e pochi thread, In un contesto Compute-Bound limitato dalle unità FP64, tutti questi context switch crea un collo di bottiglia.
+però per quanto riguarda l'efficienza è la configurazione piu efficiente, ed è normale con così pochi thread c'è meno utuilizzo dei registri e un miglior utilizzo hardware da parte di tutti i thread.
+per quanto riguarda 16x16 sembra un buon compromesso per tutte i dimensionamenti
+e 32x32 sembra trarre vantaggio a un dimensionamento grande.
+ovviamente su dimensionamenti piccoli ci sono meno blocchi e quindi c'è meno sfruttamento dell'occupancy, i context switch veloci sono pochie e non si riesce a nascondere la latenza! e c'è un consumo elevato di registri che potrebbbero richiedere piu di quelli disponibili! infatti l'efficency potrebbe essere un indizio su cui investigare affondo
+
+concludo infine che molto sicutamente l'approccio Cuda è quello piu versatile, moderno, ma nel mio caso dato il limite harware i risultatit sono pressochè simili a quelli con openMP guardando i tempi di esecuzione, ovviamente sono architetture completamente diverse e due esempi separati, ma la  potenza dei core cpu sono un buon esempio che non sono da sottovalutare nel parallelismo! sono molto soddifsfatto e sono molto cursioso a vedere i riusultati se avessimo usato i tensor core 
+
+
+
 
 
 
