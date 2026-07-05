@@ -426,65 +426,9 @@ Although the implementation benefits from **Memory Coalescing** which consolidat
 
 
 
-### Soluzione 2
-
-Per poter limitare il più possibile l'utilizzo della memoria globale, è necessario coordinare i thread del blocco usando proprio la memoria Shared. Per calcolare un elemento della matrice C, l'idea è di procedere per "mattonelle" (Tile), analogamente a quanto fatto con OpenMP, piuttosto che muovere intere righe o colonne alla volta.
-
-Per quanto riguarda la fase di agglomerazione, in OpenMP si assegnava il calcolo di una "striscia" di C (fatta da tanti pezzetti uno affianco all'altro) a un singolo thread. In CUDA applichiamo un concetto analogo, ma usando un intero blocco di thread, con il fine di calcolare non un solo elemento, ma una mattonella completa di C. Di conseguenza, facciamo scorrere questo blocco di thread esattamente sulle mattonelle delle matrici A e B della stessa dimensione del blocco, muovendoci verso destra per A e verso il basso per B.
-
-Per farlo, ogni blocco alloca due porzioni di memoria Shared dedicate esclusivamente a quei thread (della stessa dimensione delle mattonelle), nelle quali verranno inseriti i valori di A e di B necessari per il calcolo. Queste aree funzionano come una cache personale da usare ad ogni iterazione. La coordinazione dell'algoritmo si divide in due fasi distinte, separate da barriere di sincronizzazione (`__syncthreads()`):
-
-Per ogni mattonella logica `t`:
-
-* **Fase 1 (Lettura):** Ogni thread del blocco legge due valori dalla Global Memory, relativi alla propria posizione locale nella mattonella (`ty, tx`) e, soprattutto, alla propria posizione nella griglia globale (`row, col`). Considerando che lo scorrimento di A avviene sulla stessa riga e quello di B sulla stessa colonna, per la mattonella corrente `t` ogni thread preleva due valori e li salva nelle aree dedicate in Shared Memory. In questo modo, le due mattonelle condivise si riempiono con una singola lettura cooperativa (ogni thread carica esattamente un operando per matrice).
-* **Fase 2 (Calcolo):** Tutti i thread eseguono i calcoli usando solo i propri registri privati e leggendo ESCLUSIVAMENTE dalla Shared Memory. Ogni thread calcola il prodotto scalare moltiplicando i valori della sua riga in Shared-A per quelli della sua colonna in Shared-B.
-
-Con questo approccio, le letture dalla lentissima Global Memory vengono ridotte a sole due per ogni thread a ogni step logico, seguite da un'unica scrittura finale del risultato in C al termine delle iterazioni.
-
----
-
-
-```c
-__global__ void matMulKernel(double *a, double *b, double *c, int n) {
-    __shared__ double As[TILE_SIZE][TILE_SIZE];
-    __shared__ double Bs[TILE_SIZE][TILE_SIZE];
-
-    int tx = threadIdx.x;
-    int ty = threadIdx.y;
-    int col = blockIdx.x * TILE_SIZE + tx;
-    int row = blockIdx.y * TILE_SIZE + ty;
-
-    double sum = 0.0;
-
-    for (int t = 0; t < (n + TILE_SIZE - 1) / TILE_SIZE; t++) {
-        if (row < n && t * TILE_SIZE + tx < n)
-            As[ty][tx] = a[row * n + t * TILE_SIZE + tx];
-        else
-            As[ty][tx] = 0.0;
-
-        if (t * TILE_SIZE + ty < n && col < n)
-            Bs[ty][tx] = b[(t * TILE_SIZE + ty) * n + col];
-        else
-            Bs[ty][tx] = 0.0;
-
-        __syncthreads();
-
-        for (int k = 0; k < TILE_SIZE; k++) {
-            sum += As[ty][k] * Bs[k][tx];
-        }
-        __syncthreads();
-    }
-
-    if (row < n && col < n) {
-        c[row * n + col] = sum;
-    }
-```
-
-
-
 ### Solution 2
 
-To limit the use of global memory as much as possible, it is necessary to coordinate the threads of the block using Shared memory itself. To calculate an element of matrix C, the idea is to proceed by "tiles" (Tile), similarly to what was done with OpenMP, rather than moving entire rows or columns at a time.
+To limit the use of global memory as much as possible, it is necessary to coordinate the threads of the block using Shared memory itself. To calculate an element of matrix C, the idea is to proceed by "tiles" (Tile), similarly to what I done with OpenMP, rather than moving entire rows or columns at a time.
 
 As for the agglomeration phase, in OpenMP the calculation of a "strip" of C (made of many small pieces next to each other) was assigned to a single thread. In CUDA I apply a similar concept, but using an entire block of threads, with the goal of calculating not just a single element, but a complete tile of C. Consequently, I advance this block of threads exactly over the tiles of matrices A and B of the same size as the block, moving to the right for A and downwards for B.
 
