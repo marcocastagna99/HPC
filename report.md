@@ -280,12 +280,13 @@ Regarding the experiments, I conclude that the parallel computation achieved a g
 
 
 
+## CUDA 
 
+**From Google Colab**
 
-## CUDA
+**CPU architecture for the sequential test:**
 
-google colab
-architetttura cpu per il test sequenziale: 
+```text
 Architecture:                x86_64
   CPU op-mode(s):            32-bit, 64-bit
   Address sizes:             46 bits physical, 48 bits virtual
@@ -295,15 +296,22 @@ CPU(s):                      2
 Vendor ID:                   GenuineIntel
   Model name:                Intel(R) Xeon(R) CPU @ 2.20GHz
 
+```
+
+```bash
 !gcc -O3 -march=native -fopenmp matmul.c -o matmul_seq
 
-Computation time (N=5000): 91.53734 seconds
-Computation time (N=10000): 764.730147 seconds
-Computation time (N=15000): 2733.177186 seconds
-situazio diverso rispetto a prima, molto piu lenta 
-
-device:
 ```
+
+* **Computation time (N=5000):** 91.53734 seconds
+* **Computation time (N=10000):** 764.730147 seconds
+* **Computation time (N=15000):** 2733.177186 seconds
+
+*Note: The situation is different with the remote CPU, which is significantly slower in single-core performance.*
+
+**Device Properties:**
+
+```text
 --- Device 0: "Tesla T4" ---
   CUDA Capability Major/Minor version:          7.5
   Total amount of global memory:                14.56 GBytes
@@ -316,40 +324,54 @@ device:
   Maximum threads per block:                    1024
   Max dimension size of a thread block (x,y,z): 1024, 1024, 64
   Max dimension size of a grid size    (x,y,z): 2147483647, 65535, 65535
+
 ```
 
-dai dati ricavati dal dispositivo, possiamo intravedere il numero dei 40 SM,e il max thread per block che ci dice come strutturare i blocchi nel nostro codice, e una memoria globale di 14.56 GB, ampiamente sufficiente per allocare le matrici di test fino a $N=15000$
-leggendo il modello tesla 4, ho investigato sulla gpu, la version è 7.5
-![alt text](snap/nvidia_tesla4.png)
-guardando le prestazione, vedo che ha i tensor core, quindi perfetti per i prodotti tra matrici che in un colpo solo di clock fanno un intero prodotto fra matrici, ottimo per rete neurali.
+From the data retrieved from the device, we can observe the presence of 40 Streaming Multiprocessors (SMs) and the maximum number of threads per block, which guides us on how to structure the thread blocks in our code. Furthermore, the global memory of 14.56 GB is more than sufficient to allocate the test matrices up to $N=15000$.
 
-vedo anche un sacco di nvidia cuda core 2560, divisi i 40 SM, ognuno ha 64 cuda core!
-ma dall'immaigine vedo solo prestazioni di Single Precision Performance (FP32), Mixed precision (FP16/FP32), INT8 , INT4
-senza vedere però i FP64 che fanno al nostro problema , visto che faremo un prodotto tra matrici di soli double precision!
-scoprpro dal vendor che la gpu è Basata sulla architettura NVIDIA Turing.
-e guardando un po' la documentazione NVIDIA-Turing-Architecture-Whitepaper
-vedo un SM strutturato in questo modo
+Investigating the Tesla T4 model, I verified that the GPU is based on compute capability version 7.5.
+
+![alt text](snap/nvidia_tesla4.png)
+
+Looking at the performance specifications, the architecture features Tensor Cores. These are ideal for matrix multiplications because they can compute an entire matrix product in a single clock cycle, making them excellent for neural networks.
+
+I also observed a total of 2560 NVIDIA CUDA cores divided among the 40 SMs, meaning each SM contains 64 CUDA cores. However, the specifications only showcase the performance for Single Precision (FP32), Mixed Precision (FP16/FP32), INT8, and INT4. There is no explicit mention of Double Precision (FP64) performance, which is critical for our specific problem since our matrix multiplication relies entirely on double-precision variables.
+
+According to the vendor specifications, the GPU is based on the NVIDIA Turing architecture. Analyzing the documentation in the *NVIDIA Turing Architecture Whitepaper*, the structure of an SM is detailed as follows:
+
 ![alt text](snap/SM_turing.png)
 
-il chè non vedo core allestiti con alu fp64, guardando piu attentamente il documento mi accorgo 
+
+In this diagram, I do not see any cores explicitly dedicated to FP64 operations. Looking more closely at the documentation, I noticed that:
+
 ![alt text](snap/TU102.png)
 
-quidni i core di punta di questa gpu sono gper FP32 mentre gli fp64 sono solo per compatibilità, e con perfomrance molto ridotte,
-1/32nd the TFLOP rate of FP32 operations , quindi se sono 8.1 TFloPs i FP32 i FP64 sono a 0,25 TFlops, e abbiamo solo 80 unità (2 per ogni SM), questa gpu sembrerebbe pensata per inferenza ai e grafica per lo più, non per calcolo scentifico HPC, mentre per questo tipo  di calcoli le A100, v100, h100, sarebbero piu adeguate che hanno il rapporto fp64:fp32 1:2 , ma su colab il piano gratuito ci fa usare solo la tesla per i nostri esperimenti
+Consequently, the primary execution units of this GPU are optimized for FP32, whereas FP64 support is included only for compatibility purposes and operates at significantly reduced performance. Specifically, the FP64 throughput is limited to 1/32nd of the FP32 TFLOP rate. Therefore, while FP32 performance reaches 8.1 TFLOPS, the FP64 performance drops to approximately 0.25 TFLOPS (254.4 GFLOPS), relying on only 80 units in total (2 per SM).
 
-quindi abbavendo solo 2 alu fp64 e divisi i thread di un warp (32), un operazione fp64 costa 16 giri di clock!!!
+This GPU appears to be designed primarily for AI inference and computer graphics, rather than scientific High-Performance Computing (HPC). For scientific workloads, alternative enterprise GPUs such as the A100, V100, or H100 would be far more appropriate, as they maintain a much higher FP64-to-FP32 ratio of 1:2. However, the Google Colab free tier limits our experimental setup strictly to the Tesla T4.
+
+Ultimately, because there are only 2 FP64 ALUs available per SM to be shared among the 32 threads of a warp, executing a single FP64 operation requires 16 clock cycles!
 
 
+### First Solution Adopted: Naive Implementation
 
-### first solution adopted
-blocchi bidimensionali multipli del warp così vengono usati a pieno i warp, ho scelto inizialmente blocchi 16x16, costruido un enorme griglia di blocchi bidimensionale,
-pensare l'algoritmo che ogni thread calcola un solo elemento c, quindi si puo fare riga per colonna classico,quindi ogni thread deve fare riga per colonna per quel elemento (e quindi deve sapere quale riga e quale colonna), scorrendo tutte le colonne di una data riga row, e tutte le righe ad una speficia colonna col, quindi somma di prodotto di riga per colonna, ma assegnando comunque ad ogni thread celle contigue per efficienza sfruttando il Memory Coalescing. ogni thread quindi si calcola la propria pozione di c usando griglia globale bidimensionale dei blocchi, quindi logicamente creo una griglia enorme grande quanto c, divisa in blocchi logici che verranno schedulati ai vari SM in parallelo, e ogni thread di quei blocchi hanno una posizione globale row e col in base a blockid.y* blockDim+ threadid.y e blockid.x* blockDim+ threadid.x (inportante per .y si indica posizione riga). In questo modo ogni thread sa quale riga e quale colonna deve scorrere! per poter costruire un amtrice di blocchi precisi calcolo (n/dim blocco , n/dim blocco) ma dato che il calcolo dei blocchi deve essere intero, ci aggiungo un pezzet per fare bene l'arrotondamento di dimmensione blocco -1 sesempio se blocco da 16x16 (n+15/16, n+15/16) in questo modo anche se non è divisibile perfettamente per 16 rieso a prendere i bordi!
+The first strategy involves using two-dimensional thread blocks that are multiples of the warp size (32 threads) to ensure full warp utilization. Initially, a block size of $16 \times 16$ was chosen, creating a large two-dimensional grid of blocks.
 
-una volta deciso come partizionare, il calcol procede semplicemente al prodotto matriciale, nella gpu devo pensare questo caclolo monodimensionale, ma l'dea è quella di sfruttare questa moonodimensione e far prendere gli elementi necessari per matmul ad ogni thread da a e da b, quindi basta un solo ciclo fino ad n, e fare semolicemente i calcoli, dalla global devo prendere da a pensando alla row del thread per n quindi trovanndo la riga giusta + indice di scorrimento k, mentre per b devo saltare di riga in riga quindi k deve spostarsi di n ogni volta e per prendere la colonna giusta ci sommo col del thead
+In this algorithm, each thread is responsible for computing a single element of the result matrix $C$ using the classic row-by-column multiplication. Consequently, each thread must determine its respective row and column indices. It iterates through all the columns of a given `row` in matrix $A$, and all the rows of a specific `col` in matrix $B$, accumulating the sum of the products. Furthermore, contiguous memory cells are assigned to adjacent threads to maximize efficiency by exploiting **Memory Coalescing**.
+
+Each thread calculates its own global position within matrix $C$ using the global two-dimensional grid of blocks. Logically, this creates a massive grid equivalent to the size of $C$, which is divided into logical blocks that are scheduled across the various SMs in parallel. Every thread within these blocks obtains a global `row` and `col` coordinate using the following formulas:
+
+* `row = blockIdx.y * blockDim.y + threadIdx.y` (where `.y` denotes the row position)
+* `col = blockIdx.x * blockDim.x + threadIdx.x` (where `.x` denotes the column position)
+
+This mechanism allows each thread to identify exactly which row and column it needs to traverse. To construct a precise grid of blocks, the grid dimensions are calculated as `(n / blockDim.x, n / blockDim.y)`. Since the block count must be an integer, a padding factor of `blockDim - 1` is added to handle the ceiling rounding. For instance, with a $16 \times 16$ block, the formula becomes `((n + 15) / 16, (n + 15) / 16)`. This approach ensures that matrix boundaries are correctly included even if $N$ is not perfectly divisible by 16.
+
+Once the partitioning strategy is established, the computation proceeds with the standard matrix multiplication. Within the GPU, this calculation must be managed using a monodimensional memory layout. The core idea is to leverage this 1D representation so that each thread can retrieve the necessary elements from matrices $A$ and $B$. This requires a single loop running up to $N$.
+
+To access the global memory for matrix $A$, the thread's `row` is multiplied by $N$ to locate the correct row offset, to which the loop index `k` is added. For matrix $B$, the access must jump from row to row; therefore, index `k` is multiplied by $N$ at each iteration, and the thread's global `col` index is added to target the correct column.
 
 
 ![alt text](snap/cuda_naive_memory_access.png)
-
 
 ```c
 __global__ void matMulKernel(double *a, double *b, double *c, int n) {
@@ -357,7 +379,7 @@ __global__ void matMulKernel(double *a, double *b, double *c, int n) {
     int col = blockIdx.x * blockDim.x + threadIdx.x;
     int row = blockIdx.y * blockDim.y + threadIdx.y;
 
-    // check that the thread is within the matrix boundaries
+    // Check that the thread is within the matrix boundaries
     if (row < n && col < n) {
         double sum = 0.0;
 
@@ -368,8 +390,8 @@ __global__ void matMulKernel(double *a, double *b, double *c, int n) {
         c[row * n + col] = sum;
     }
 }
-```
 
+```
 
 
 
@@ -461,7 +483,8 @@ D2H Time : 170.397049 ms
 Total Time (Data + Compute)  : 8753.960938 ms
 
 speedup 87! supereto il precedente di 81
-
+e dal profiler si nota che ora la shared viene utilizzata e che i thread usano meno registri (prima 63 ora 42)
+[alt text](snap/nsight_tiled_kernel.png) 
 
 ## Scalabilità
 dato che l'arcitettura non ci permette di modificare a piacimento il numero dei thead ma bensì solo il dimensionamento dei blocchi
@@ -479,7 +502,7 @@ per quanto riguarda 16x16 sembra un buon compromesso per tutte i dimensionamenti
 e 32x32 sembra trarre vantaggio a un dimensionamento grande.
 ovviamente su dimensionamenti piccoli ci sono meno blocchi e quindi c'è meno sfruttamento dell'occupancy, i context switch veloci sono pochie e non si riesce a nascondere la latenza! e c'è un consumo elevato di registri che potrebbbero richiedere piu di quelli disponibili! infatti l'efficency potrebbe essere un indizio su cui investigare affondo
 
-concludo infine che molto sicutamente l'approccio Cuda è quello piu versatile, moderno, ma nel mio caso dato il limite harware i risultatit sono pressochè simili a quelli con openMP guardando i tempi di esecuzione, ovviamente sono architetture completamente diverse e due esempi separati, ma la  potenza dei core cpu sono un buon esempio che non sono da sottovalutare nel parallelismo! sono molto soddifsfatto e sono molto cursioso a vedere i riusultati se avessimo usato i tensor core 
+concludo infine che molto sicutamente l'approccio Cuda è quello piu versatile, moderno, ma nel mio caso dato il limite harware i risultatit sono pressochè simili a quelli con openMP guardando i tempi di esecuzione, ovviamente sono architetture completamente diverse e due esempi separati, ma la  potenza dei core cpu sono un buon esempio che non sono da sottovalutare nel parallelismo! sono molto soddifsfatto perchè ho imparato ad andare piu affono ad un seplie parallelismo, ci  tantissimi fattori che fanno crollare la performance e ho imparato grazei agli strumenti del corso ad analizzare i risultati. Sarei stato molto cursioso a vedere i riusultati se avessimo usato i tensor core, o  comunque usando almneno classici cuda core per quella gpu sui fp32 per vedere il cambio evidente di performance
 
 
 
