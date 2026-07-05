@@ -339,8 +339,10 @@ Vendor ID:                   GenuineIntel
 Computation time (N=5000): 91.53734 seconds
 Computation time (N=10000): 764.730147 seconds
 Computation time (N=15000): 2733.177186 seconds
+situazio diverso rispetto a prima, molto piu lenta 
 
 device:
+```
 --- Device 0: "Tesla T4" ---
   CUDA Capability Major/Minor version:          7.5
   Total amount of global memory:                14.56 GBytes
@@ -353,38 +355,39 @@ device:
   Maximum threads per block:                    1024
   Max dimension size of a thread block (x,y,z): 1024, 1024, 64
   Max dimension size of a grid size    (x,y,z): 2147483647, 65535, 65535
+```
 
-
-dai dati ricavati dal dispositivo, possiamo intravedere il numero dei 40 Sm,e il max thread per block che ci dice come strutturare i blocchi nel nostro codice, e una memoria globale di 14.56 GB, ampiamente sufficiente per allocare le matrici di test fino a $N=15000$
-leggendo il modello tesla 4, ho investigato sullagpu, la version è 7.5
+dai dati ricavati dal dispositivo, possiamo intravedere il numero dei 40 SM,e il max thread per block che ci dice come strutturare i blocchi nel nostro codice, e una memoria globale di 14.56 GB, ampiamente sufficiente per allocare le matrici di test fino a $N=15000$
+leggendo il modello tesla 4, ho investigato sulla gpu, la version è 7.5
 ![alt text](snap/nvidia_tesla4.png)
 guardando le prestazione, vedo che ha i tensor core, quindi perfetti per i prodotti tra matrici che in un colpo solo di clock fanno un intero prodotto fra matrici, ottimo per rete neurali.
 
 vedo anche un sacco di nvidia cuda core 2560, divisi i 40 SM, ognuno ha 64 cuda core!
 ma dall'immaigine vedo solo prestazioni di Single Precision Performance (FP32), Mixed precision (FP16/FP32), INT8 , INT4
-senza vedere però i FP64 che fanno al nostro problema , dato che faremo un prodotto tra matrici di soli double precision!
+senza vedere però i FP64 che fanno al nostro problema , visto che faremo un prodotto tra matrici di soli double precision!
 scoprpro dal vendor che la gpu è Basata sulla architettura NVIDIA Turing.
 e guardando un po' la documentazione NVIDIA-Turing-Architecture-Whitepaper
 vedo un SM strutturato in questo modo
 ![alt text](snap/SM_turing.png)
 
-il chè non vedo core allestiti per le alu fp64, guardando piu attentamente il documento mi accorgo
+il chè non vedo core allestiti con alu fp64, guardando piu attentamente il documento mi accorgo 
 ![alt text](snap/TU102.png)
 
 quidni i core di punta di questa gpu sono gper FP32 mentre gli fp64 sono solo per compatibilità, e con perfomrance molto ridotte,
-1/32nd the TFLOP rate of FP32 operations , quindi se sono 8.1 TFloPs i FP32 i FP64 sono a 0,25 TFlops, e abbiamo solo 80 unità (2 per ogni SM), questa gpu sembrerebbe pensata per inferenza ai e grafica per lo più, non per calcolo scentifico HPC, mentre per questo tipo  di calcoli le A100, v100, h100, sarebbero piu adeguate che hanno il rapporto fp64:fp32 1:2 , ma su colab il piano gratuito ci fa usare solo la tesla, per cui gli esperimaneti non utilizzeranno la piena capacità di calcolo della gpu
+1/32nd the TFLOP rate of FP32 operations , quindi se sono 8.1 TFloPs i FP32 i FP64 sono a 0,25 TFlops, e abbiamo solo 80 unità (2 per ogni SM), questa gpu sembrerebbe pensata per inferenza ai e grafica per lo più, non per calcolo scentifico HPC, mentre per questo tipo  di calcoli le A100, v100, h100, sarebbero piu adeguate che hanno il rapporto fp64:fp32 1:2 , ma su colab il piano gratuito ci fa usare solo la tesla per i nostri esperimenti
 
-quindi abbiamo solo 2 alu fp64 e divisi i thread di un warp, un operazione fp64 costa 16 giri di clock!!!
+quindi abbavendo solo 2 alu fp64 e divisi i thread di un warp (32), un operazione fp64 costa 16 giri di clock!!!
 
 
 
-### first solution
+### first solution adopted
 blocchi bidimensionali multipli del warp così vengono usati a pieno i warp, ho scelto inizialmente blocchi 16x16, costruido un enorme griglia di blocchi bidimensionale,
-pensare l'algoritmo che ogni thread calcola un solo elemento c, quindi si puo fare riga per colonna classico,quindi ogni thread deve fare riga per colonna per quel elemento (e quindi deve sapere quale riga e quale colonna), scorrendo tutte le colonne di una data riga row, e tutte le righe ad una speficia colonna col, quindi somma di prodotto di riga per colonna, ma assegnando comunque ad ogni thread celle contigue per efficienza sfruttando il Memory Coalescing. ogni thread quindi si calcola la propria pozione di c usando griglia globale bidimensionale dei blocchi, quindi logicamente creo una griglia enorme grande quanto c, divisa in blocchi logici che verranno schedulati ai vari SM in parallelo, e ogni thread di quei blocchi hanno una posizione globale row e col in base a blockid.x* blockDim+ threadid.x e blockid.y* blockDim+ threadid.y. In questo modo ogni thread sa quale riga e quale colonna deve scorrere!
-poi per poter costruire un amtrice di blocchi precisi divido (n/dim blocco , n/dim blocco) ma dato che il calcolo arrotonda sempre ci aggiungo uno shiftino di dim blocco -1 sesempio se blocco da 16x16 (n+15/16, n+15/16) in questo modo anche se non è divisibile perfettamente per 16 rieso a prendere i bordi!
+pensare l'algoritmo che ogni thread calcola un solo elemento c, quindi si puo fare riga per colonna classico,quindi ogni thread deve fare riga per colonna per quel elemento (e quindi deve sapere quale riga e quale colonna), scorrendo tutte le colonne di una data riga row, e tutte le righe ad una speficia colonna col, quindi somma di prodotto di riga per colonna, ma assegnando comunque ad ogni thread celle contigue per efficienza sfruttando il Memory Coalescing. ogni thread quindi si calcola la propria pozione di c usando griglia globale bidimensionale dei blocchi, quindi logicamente creo una griglia enorme grande quanto c, divisa in blocchi logici che verranno schedulati ai vari SM in parallelo, e ogni thread di quei blocchi hanno una posizione globale row e col in base a blockid.y* blockDim+ threadid.y e blockid.x* blockDim+ threadid.x (inportante per .y si indica posizione riga). In questo modo ogni thread sa quale riga e quale colonna deve scorrere! per poter costruire un amtrice di blocchi precisi calcolo (n/dim blocco , n/dim blocco) ma dato che il calcolo dei blocchi deve essere intero, ci aggiungo un pezzet per fare bene l'arrotondamento di dimmensione blocco -1 sesempio se blocco da 16x16 (n+15/16, n+15/16) in questo modo anche se non è divisibile perfettamente per 16 rieso a prendere i bordi!
 
-una volta deciso come partizionare, il calcol procede semplicemente al prodotto matriciale, nella gpu si usa solo una dimensuione, ma l'dea è quella di usare questa moonodimensione a prendere tutta la matrice e shiffare solo di indici sviluppati dal codice
+una volta deciso come partizionare, il calcol procede semplicemente al prodotto matriciale, nella gpu devo pensare questo caclolo monodimensionale, ma l'dea è quella di sfruttare questa moonodimensione e far prendere gli elementi necessari per matmul ad ogni thread da a e da b, quindi basta un solo ciclo fino ad n, e fare semolicemente i calcoli, dalla global devo prendere da a pensando alla row del thread per n quindi trovanndo la riga giusta + indice di scorrimento k, mentre per b devo saltare di riga in riga quindi k deve spostarsi di n ogni volta e per prendere la colonna giusta ci sommo col del thead
 
+
+![alt text](snap/cuda_naive_memory_access.png)
 
 
 ```c
@@ -406,31 +409,85 @@ __global__ void matMulKernel(double *a, double *b, double *c, int n) {
 }
 ```
 
+
+
+
 quindi con semplicità si riesce a parallelizzare
 ottendendo un run con n=5000
+
+```
 Matrix Dimension N           : 5000
 Transfer Time CPU -> GPU     : 85.669121 ms
 GPU Kernel Computation Time  : 1223.180176 ms
 Transfer Time GPU -> CPU     : 50.634144 ms
 Total Time (Data + Compute)  : 1359.483398 ms
+```
 1 secondo circa e uno speedup di circa 70 dal run sequenziale
 
-profilando, noto che il maggior delay non sta nel passaggio cpu /gpu, ma bensì l'esecuzione del kernel, con nproof ci dice che il 90.67%  del tempo è usato dal l'esecuziobne del kernel: GPU activities:   90.67%  1.26170s         1  1.26170s  1.26170s  1.26170s  matMulKernel(double*, double*, double*, int), e piu umento n e piu l'esecuzione è taken dal kernel, 94% n 10k, e 97% n=15k
+profilando, noto che il maggior delay non sta nel passaggio cpu /gpu, ma bensì l'esecuzione del kernel, con nproof ci dice che il 90.67%  del tempo è usato dal l'esecuziobne del kernel: GPU activities:   90.67%  1.26170s  matMulKernel(double*, double*, double*, int), e piu umento n e piu l'esecuzione è presa dal kernel, 94% n 10k, e 97% n=15k
 profilando piu accuratamente suu un visual profile, su nvidia snight: su un run n=10k
-![alt text](snap/nsight_naive.png)
-una cosa che noto e che non ho utilizzato è la shared memory.
+![alt text](snap/nsight_naive.png) 
+
+si vede chiaramente che la maggoirprarte del tempo di esecuzione è usato dal kernel, ma una cosa che noto e che non ho utilizzato è la shared memory.
 
 la global ci pesa 400-800 clock cycles
+la shared  2-4 clock cycles
 
-sicuramente l'algoritmo puo essee scritto meglio, così com'è ogni thread pesca dalla global ogni elemento di a e di b per fare il prodotto e sapendo che la global è lentissima, l'algoritmo è ineficciente, anche se c'è il memory cohaleshing che fa una sola lettura in memoria per il warp, sempre se il warp è disposto bene ovvero thread richiedono elementi contigui in memomoria (nel nostro caos tutti hanno un row e col e sono contigui), comunque non c'è una temporary locality, le cache essendo piccole non aiutano, e una volta il blocco finito, i thread del blocco successivo richiedono magari gli stessi valori del precedente, e così via nei blocchi contigui. e comunque si legge dalla global.
+sicuramente l'algoritmo puo essee scritto meglio, così com'è ogni thread pesca dalla global ogni elemento di a e di b per fare il prodotto e lo fa n volte, sapendo che la global è lentissima, l'algoritmo è ineficciente, anche se c'è il memory cohaleshing che fa una sola lettura in memoria per il warp, sempre se il warp è disposto bene ovvero thread richiedono elementi contigui in memomoria (nel nostro caos tutti hanno un row e col e sono contigui), comunque non c'è una temporary locality, le cache essendo piccole non aiutano, e una volta il blocco finito, i thread del blocco successivo richiedono magari gli stessi valori del precedente, e così via nei blocchi contigui. e comunque si legge sempre dalla global.
 
 ### soluzione 2
-per poter limitare il piu possibile l'utilizzo della global, devo cordinare ithread del blocco, usando proprio la shared,
-l'idea è quella riconducibile all'algoritmo di openMp, andare per pezzettti/mattonelle piuttosto che calcolare righe intere alla volta.
 
-l'idea è quella di allocare ad ogni blocco due pezzi della shared apposta per quei thread uno è A e l'altro è B, di dimensioe fissata (direi grande quanto il pezzetto) come cache personale solo per loro, dividerei la sincornizzazione in due fasi:
-per ogni mattonella di matrice c:
-fase 1: la prima è quella che ogni thread del blocco legga uno due valori dalla global, relativo alla propria posizione nella mattonella per A e per B , e lo mettono nella shared, così le mattonelle in shared a e shared b sono piene, la seconda fase, e fare i calcoli a tutti i thread usando solo i propri registri e leggendo SOLO dalla shared, in questo modo limitando una sola lettura dalla global a mattonella di c
+per poter limitare il piu possibile l'utilizzo della global, devo cordinare i thread del blocco, usando proprio la shared,
+l'idea è di andare per pezzettti/mattonelle piuttosto che calcolare un elememnto di c muovendomi per righe/colonne intere alla volta come ho fatto per openMP.
+come partiziono? a matttonelle, come agglomero? in openMp facevo fare una striscia di c ad un thread singolo, qua faccio l'analogo ma ad un blocco di thread per poter calcolare in fine una mattoenlla completa di c! quindi farei muovere un blocco di thread esattamente nei blocchi delle matrici A,B di stessa dimensione
+
+ho pensato di far allocare ad ogni blocco di thread due pezzi della shared apposta per quei thread (grandi quanto la dimensione del blocco dei thread), i quali ci mettereanno i blocchetti A e di B necessari per il calcolo, proprio come cache personale solo per loro da usare ad ogni iterazione, e dividerei la coordinazione in due fasi:
+una di lettura e una di calcolo (quindi due barriere)
+
+quindi ad ogni mattonella logica:
+
+fase 1: ogni thread del blocco (grande come la mattonella) legga due valori dalla global, relativo alla propria posizione nella mattonella (ty,tx) e sopratutto dalla griglia blobale (row,col) per A e il corrispettivo valore per il prodotto da B , e lo mettono nella shared, così le mattonelle in shared A e shared B sono piene con una sola lettura (tutti i thread ci mettono i valori), la seconda fase, e fare i calcoli a tutti i thread usando solo i propri registri e leggendo SOLO dalla shared, in questo modo limitando una sola lettura dalla global a mattonella, e una scrittura finale in c dopo aver iterato tutte le mattonelle.
+
+```c
+__global__ void matMulKernel(double *a, double *b, double *c, int n) {
+    __shared__ double As[TILE_SIZE][TILE_SIZE];
+    __shared__ double Bs[TILE_SIZE][TILE_SIZE];
+
+    int tx = threadIdx.x;
+    int ty = threadIdx.y;
+    int col = blockIdx.x * TILE_SIZE + tx;
+    int row = blockIdx.y * TILE_SIZE + ty;
+
+    double sum = 0.0;
+
+    for (int t = 0; t < (n + TILE_SIZE - 1) / TILE_SIZE; t++) {
+        if (row < n && t * TILE_SIZE + tx < n)
+            As[ty][tx] = a[row * n + t * TILE_SIZE + tx];
+        else
+            As[ty][tx] = 0.0;
+
+        if (t * TILE_SIZE + ty < n && col < n)
+            Bs[ty][tx] = b[(t * TILE_SIZE + ty) * n + col];
+        else
+            Bs[ty][tx] = 0.0;
+
+        __syncthreads();
+
+        for (int k = 0; k < TILE_SIZE; k++) {
+            sum += As[ty][k] * Bs[k][tx];
+        }
+        __syncthreads();
+    }
+
+    if (row < n && col < n) {
+        c[row * n + col] = sum;
+    }
+```
+
+
+
+
+
 
 comandi utili 
 scrot -s screenshot.png
