@@ -34,7 +34,7 @@ $$T_{new} = T_{known} \cdot \left(\frac{N_{new}}{N_{known}}\right)^3$$
 * **$N_{new}$**: New matrix dimension.
 * **$N_{known}$**: Known matrix dimension.
 
-* $$T_{5000} = 14.40 \cdot \left(\frac{5000}{2000}\right)^3$$
+  $$T_{5000} = 14.40 \cdot \left(\frac{5000}{2000}\right)^3$$ = 225
 
 
 The hotspot resides at row 35 (`for (j = 0; j < n; ++j)`): this single loop consumes 99.9% of the total execution time (227.353s out of the 227.30s total).
