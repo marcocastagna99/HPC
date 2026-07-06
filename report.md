@@ -25,7 +25,16 @@ The source code features a design optimization where the nested loops are invert
 
 ## **Hotspot Identification**
 
-Starting with a baseline approach, I compiled the code disabling all optimizations (`icx -g -O0 -xHost -fiopenmp -o bin/matmul mat_mul.c`) and analyzed the algorithm with **Data size** = 2000, resulting in a computation time of 14.400218 seconds. I then decided to double the size to $N=5000$, which yielded a computation time of 227.300751 seconds
+Starting with a baseline approach, I compiled the code disabling all optimizations (`icx -g -O0 -xHost -fiopenmp -o bin/matmul mat_mul.c`) and analyzed the algorithm with **Data size** = 2000, resulting in a computation time of 14.400218 seconds. I then decided to double the size to $N=5000$, which yielded a computation time of 227.300751 seconds. we can estimate with this formula: 
+
+$$T_{new} = T_{known} \cdot \left(\frac{N_{new}}{N_{known}}\right)^3$$
+
+* **$T_{new}$**: Estimated execution time for the new matrix size.
+* **$T_{known}$**: Recorded execution time for the known matrix size.
+* **$N_{new}$**: New matrix dimension.
+* **$N_{known}$**: Known matrix dimension.
+
+
 The hotspot resides at row 35 (`for (j = 0; j < n; ++j)`): this single loop consumes 99.9% of the total execution time (227.353s out of the 227.30s total).
 
 
