@@ -1,20 +1,17 @@
 # HPC
-This project makes matrix multiplication faster. Usually, this math takes a long time (with a complexity of $\mathcal{O}(N^{3})$). The goal is to fix memory bottlenecks, like the "Memory Wall," by breaking data into smaller blocks (Loop Tiling). It includes code for standard processors (using OpenMP) and graphics cards (using CUDA). This work was created for a High Performance Computing course.
+
+This project makes matrix multiplication faster. Usually, this math takes a long time (with a complexity of O(N³)). The goal is to fix memory bottlenecks, like the "Memory Wall," by breaking data into smaller blocks (Loop Tiling). It includes code for standard processors (using OpenMP) and graphics cards (using CUDA). This work was created for a High Performance Computing course.
 
 ## Repository Structure & Requirements
 
 The `scripts` folder contains the files needed to build, test, and draw graphs:
 
-* **`Makefile`**: Compiles the OpenMP code using the Intel `icx` compiler.
-* **`benchmark_scalability.sh`**: A script to run OpenMP tests with different sizes, threads, and blocks.
-* **`plot_block.py`, `plot_cuda_scalability.py`, `plot_openMP_scalability.py**`: Python files that draw Speedup and Efficiency graphs.
-
-
-* **`mat_mul_cuda.ipynb`**: A Jupyter notebook to run the CUDA code.
-* **`../mat_mul_parallel.c`**: The main C code for the OpenMP version.
+* `Makefile`: Compiles the OpenMP code using the Intel `icx` compiler.
+* `benchmark_scalability.sh`: A script to run OpenMP tests with different sizes, threads, and blocks.
+* `plot_block.py`, `plot_cuda_scalability.py`, `plot_openMP_scalability.py`: Python files that draw Speedup and Efficiency graphs.
+* `mat_mul_cuda.ipynb`: A Jupyter notebook to run the CUDA code.
+* `../mat_mul_parallel.c`: The main C code for the OpenMP version.
 * **CPU Requirements**: Intel oneAPI toolkit (requires the `icx` compiler).
-
-
 * **GPU Requirements**: Google Colab (with an NVIDIA Tesla T4 GPU) or a local NVIDIA GPU.
 
 
